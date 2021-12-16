@@ -18,7 +18,7 @@ namespace DI_Harmacy
                     {
                         Log.Message(toCheck.Severity.ToString());
                         DamageInfo d = new DamageInfo();
-                        toCheck.Severity /= 2;
+                        toCheck.Severity =toCheck.Severity/2;
                         d.SetAmount(toCheck.Severity);
                         d.SetHitPart(toCheck.Part);
 
@@ -26,18 +26,21 @@ namespace DI_Harmacy
 
 
                     }
-                    else if (i % 64 == 0)
+                    else if (i % 256 == 0)
                     { 
                         if (toCheck.def.Equals(DIH_Hediffs.DIH_NecroticTissue))
                         {
-                            toCheck.Severity += 0.1f; 
-                        } 
+                            toCheck.Severity += 0.01f; 
+                        }
+                       
                     }
                     
                 }
+                if(i>256)
+                { i = 1; }
                 
 
-                i = 1;
+                
            }
             else
             {

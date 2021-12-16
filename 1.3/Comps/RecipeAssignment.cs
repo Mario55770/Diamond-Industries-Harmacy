@@ -76,7 +76,7 @@ namespace DI_Harmacy
             }
             //as if it does not return null, this should run, outside if to prevent redundancy
            //Log.Message(newWorkAmount.ToString());
-            newWorkAmount *= 4;
+            newWorkAmount *= 4*.9f;
             
             clonedandparsed.workAmount = newWorkAmount;
             //run first time. Elsewies dont

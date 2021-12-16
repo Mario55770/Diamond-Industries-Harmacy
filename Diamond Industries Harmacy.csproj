@@ -78,7 +78,7 @@
     <Content Include="About\PublishedFileId.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1.3\Comps\NecroticInjuryHandler.cs" />
+    <None Include="1.3\Comps\NecroticInjuryHandler.cs" />
     <Compile Include="1.3\Comps\RecipeAssignment.cs" />
     <Compile Include="1.3\Comps\AdvanceNecrosis.cs" />
     <None Include="1.3\Comps\ScarChance.cs" />

@@ -4,7 +4,7 @@
   <ThingDef ParentName="BenchBase">
     <defName>DIH_BulkDrugLab</defName>
     <label>bulk drug lab</label>
-    <description>A larger scale workbench that allows producing bulk orders with slight labor savings.</description>
+    <description>A larger scale workbench that allows producing bulk orders with slight labor savings. Works without power at a slightly slower speed.</description>
     <thingClass>Building_WorkTable</thingClass>
     <graphicData>
       <texPath>Things/Building/Production/TableDrugLab</texPath>
@@ -40,6 +40,7 @@
       <WorkToBuild>5000</WorkToBuild>
       <MaxHitPoints>200</MaxHitPoints>
       <Flammability>1.0</Flammability>
+      <WorkTableWorkSpeedFactor>1.2</WorkTableWorkSpeedFactor>
     </statBases>
     <!--default drug lab has size of (3,1). Set to (5,2) to match high tech research bench-->
     <size>(5,2)</size>
@@ -54,9 +55,24 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <building>
+     
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+      <!--In line directly with the electric tailor bench-->
+      <unpoweredWorkTableWorkSpeedFactor>0.8</unpoweredWorkTableWorkSpeedFactor>
     </building>
     <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <shortCircuitInRain>true</shortCircuitInRain>
+        <basePowerConsumption>120</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>ToolCabinet</li>
+        </linkableFacilities>
+      </li>
+      <li Class="CompProperties_Breakdownable"/>
       <li Class="CompProperties_AffectedByFacilities">
         <linkableFacilities>
           <li>ToolCabinet</li>

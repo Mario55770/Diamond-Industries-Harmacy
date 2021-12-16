@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--necrosismodeled off chemical burn-->
+  <HediffDef ParentName="InjuryBase">
+    <defName>DIH_NecroticTissue</defName>
+    <label>necrotic tissue</label>
+    <labelNoun>a section of necrotic tissue</labelNoun>
+    <description>Tissue that has become necrotic, likely due to poisons. Has a high infection chance</description>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>tended</labelTendedWellInner>
+        <labelSolidTendedWell>tended</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <!--Default was 0.30-->
+        <infectionChance>0.50</infectionChance>
+       
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>permenant necrotic tissue</permanentLabel>
+        <becomePermanentChanceFactor>100</becomePermanentChanceFactor>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.01875</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <canMerge>true</canMerge>
+      <destroyedLabel>Rotted off</destroyedLabel>
+      <destroyedOutLabel>Rotted out</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+  <!--todo redefine this as acid maybe.
+  <HediffDef ParentName="InjuryBase">
+    <defName>ChemicalBurn</defName>
+    <label>chemical burn</label>
+    <labelNoun>a chemical burn</labelNoun>
+    <description>A chemical burn.</description>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>tended</labelTendedWellInner>
+        <labelSolidTendedWell>tended</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.30</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>chemical burn scar</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.01875</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <canMerge>true</canMerge>
+      <destroyedLabel>Burned off (chemical)</destroyedLabel>
+      <destroyedOutLabel>Burned out (chemical)</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+  -->
+</Defs>

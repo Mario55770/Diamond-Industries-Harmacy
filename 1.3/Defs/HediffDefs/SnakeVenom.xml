@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef>
+    <defName>DIH_SnakeVenom</defName>
+    <!--toxic buildup is too catch all. This should resemble generic snake bite better than toxic buildup but less than just cobra. 
+    Should feature necrosis, breathing penalty, bleeding speed up, heart attacks, and moving/consiousness down.-->
+    <label>snake venom</label>
+    <description>Venom from a snake. Most snakes are venomous, not poisonous, which is a moot point when its already in your blood already.
+      \nLethal at high doses, it excels more at causing death by exasperating everything, at lower doses by causing bleeding to be more extreme, worsening breathing, and rarely causing heart attacks.
+      \nIt can also slow movement and worsen manipulation and may cause necrosis(If you see this message it means I forgot to add necrosis or remove this message. Either way, go yell at me)</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
+    <lethalSeverity>1</lethalSeverity>
+    <makesSickThought>true</makesSickThought>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <taleOnVisible>ToxicityRevealed</taleOnVisible>
+    <comps>
+      <li Class="HediffCompProperties_Immunizable">
+        <!--0.08 is default decline of toxic buildup. Ive increased it to 0.2-->
+        <severityPerDayNotImmune>-0.3</severityPerDayNotImmune>
+      </li>
+      <li>
+        <compClass>DI_Harmacy.AdvanceNecrosis</compClass>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>initial</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <label>initial</label>
+        <minSeverity>0.04</minSeverity>
+
+        <capMods>
+          <li>
+            <!--As breathing down will affect everything else, I decreased breathing here only-->
+            <capacity>Breathing</capacity>
+            <offset>-0.01</offset>
+          </li>
+        </capMods>
+          <totalBleedFactor>1.1</totalBleedFactor>
+      </li>
+      <li>
+        <label>minor</label>
+        <minSeverity>0.2</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.05</offset>
+          </li>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <offset>-0.05</offset>
+          </li>
+        </capMods>
+        <totalBleedFactor>1.2</totalBleedFactor>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.40</minSeverity>
+        <vomitMtbDays>5</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.1</offset>
+          </li>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <offset>-0.1</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.1</offset>
+          </li>
+        </capMods>
+        <totalBleedFactor>1.3</totalBleedFactor>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>HeartAttack</hediff>
+            <mtbDays>448</mtbDays>
+            <partsToAffect>
+              <li>Heart</li>
+            </partsToAffect>
+          </li>
+        </hediffGivers>
+      </li>
+      <li>
+        <label>serious</label>
+        <minSeverity>0.60</minSeverity>
+        <vomitMtbDays>1</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.2</offset>
+          </li>
+        </capMods>
+        <totalBleedFactor>1.4</totalBleedFactor>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>HeartAttack</hediff>
+            <mtbDays>78</mtbDays>
+            <partsToAffect>
+              <li>Heart</li>
+            </partsToAffect>
+          </li>
+        </hediffGivers>
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.80</minSeverity>
+        <vomitMtbDays>0.5</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Breathing</capacity>
+            <setMax>0.2</setMax>
+          </li>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <setMax>0.2</setMax>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.2</setMax>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <setMax>0.2</setMax>
+          </li>
+        </capMods>
+        <totalBleedFactor>1.5</totalBleedFactor>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>HeartAttack</hediff>
+            <mtbDays>39</mtbDays>
+            <partsToAffect>
+              <li>Heart</li>
+            </partsToAffect>
+          </li>
+        </hediffGivers>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

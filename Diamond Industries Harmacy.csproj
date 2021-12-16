@@ -1,0 +1,94 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6768AFFB-5114-4243-B0B6-B0FAFE4050D2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>DIHarmacy</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>1.3\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>DI_Harmacy</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\RimWorldWin64_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".vs\Diamond Industry Harmacy\DesignTimeBuild\.dtbcache.v2" />
+    <None Include=".vs\Diamond Industry Harmacy\v16\.suo" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="1.3\Defs\BuildingDefs\BulkDrugBench.xml" />
+    <Content Include="1.3\Defs\DamageDefs\VSnakeDamageDefs.xml" />
+    <Content Include="1.3\Defs\HediffDefs\Necrosis.xml" />
+    <Content Include="1.3\Defs\HediffDefs\SnakeVenom.xml" />
+    <Content Include="1.3\Defs\ResearchDefs\ResearchDefs.xml" />
+    <Content Include="1.3\Patches\VanillaPatches.xml" />
+    <Content Include="About\About.xml" />
+    <Content Include="About\Manifest.xml" />
+    <Content Include="About\Preview.png" />
+    <Content Include="About\PublishedFileId.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="1.3\Comps\NecroticInjuryHandler.cs" />
+    <Compile Include="1.3\Comps\RecipeAssignment.cs" />
+    <Compile Include="1.3\Comps\AdvanceNecrosis.cs" />
+    <None Include="1.3\Comps\ScarChance.cs" />
+    <Compile Include="1.3\Defs\DamageDefs\DIH_DamageDefs.cs" />
+    <Compile Include="1.3\Defs\HediffDefs\DIH_Hediffs.cs" />
+    <None Include="DIH\ModSettings.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>

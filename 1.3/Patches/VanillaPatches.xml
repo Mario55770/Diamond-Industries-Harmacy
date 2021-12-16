@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Cobra"]/tools/li[label="venom-fangs"]/capacities</xpath>
+    <value>
+      <capacities>
+        <li>DIH_VSnakeBite</li>
+      </capacities>
+    </value>
+  </Operation>
+</Patch>

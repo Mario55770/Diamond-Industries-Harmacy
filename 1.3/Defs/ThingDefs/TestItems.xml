@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+  <!--<ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
     <defName>PoisonTest_knife</defName>
     <label>Poisonknifetest</label>
     <techLevel>Neolithic</techLevel>
@@ -128,7 +128,7 @@
         <Crafting>3</Crafting>
       </skillRequirements>
     </recipeMaker>
-    <!--<verbs>
+    <verbs>
       <li>
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
@@ -139,7 +139,7 @@
         <soundCastTail>GunTail_Light</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
       </li>
-    </verbs>--> 
+    </verbs>
     <tools>
       <li>
         <label>grip</label>
@@ -192,167 +192,202 @@
     </verbs>
    </ThingDef>
 
+-->
+	
 
-  <ThingDef ParentName="ApparelBase">
-    <defName>TESTJEUMPJET</defName>
-    <label>jump packTESTPOISONCOMPS</label>
-    <description>A single-person burst rocket for short-ranged flight. With its integrated harness and guidance assistant, the jump pack allows anyone to leap long distances at high speed, even over obstacles. It must be recharged after several uses.\n\nSome spacer tech militaries have melee combat specialists who use jump packs to bypass obstacles and rapidly close with the enemy.</description>
-    <techLevel>Industrial</techLevel>
-    <comps>
-      <li Class="DI_Harmacy.CompProperties_Poison">
-        <maxCharges>5</maxCharges>
-        <ammoDef>Chemfuel</ammoDef>
-        <ammoCountPerCharge>20</ammoCountPerCharge>
-        <baseReloadTicks>60</baseReloadTicks>
-        <soundReload>Standard_Reload</soundReload>
-        <hotKey>Misc4</hotKey>
-        <chargeNoun>jump</chargeNoun>
-        <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
-      </li>
-    </comps>
-    <verbs>
-      <li>
-        <verbClass>Verb_Jump</verbClass>
-        <label>jump</label>
-        <violent>false</violent>
-        <hasStandardCommand>true</hasStandardCommand>
-        <onlyManualCast>True</onlyManualCast>
-        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-        <warmupTime>0.5</warmupTime>
-        <warmupEffecter>JumpWarmupEffect</warmupEffecter>
-        <requireLineOfSight>true</requireLineOfSight>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-          <canTargetPawns>false</canTargetPawns>
-          <canTargetBuildings>false</canTargetBuildings>
-        </targetParams>
-      </li>
-    </verbs>
-    <recipeMaker>
-      <unfinishedThingDef>UnfinishedPack</unfinishedThingDef>
-      <researchPrerequisite>JumpPack</researchPrerequisite>
-      <recipeUsers>
-        <li>TableMachining</li>
-      </recipeUsers>
-      <useIngredientsForColor>false</useIngredientsForColor>
-      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-      <workSkill>Crafting</workSkill>
-      <effectWorking>Smith</effectWorking>
-      <soundWorking>Recipe_Machining</soundWorking>
-      <skillRequirements>
-        <Crafting>4</Crafting>
-      </skillRequirements>
-    </recipeMaker>
-    <costList>
-      <Plasteel>30</Plasteel>
-      <ComponentIndustrial>3</ComponentIndustrial>
-      <Chemfuel>100</Chemfuel>
-    </costList>
-    <graphicData>
-      <texPath>Things/Pawn/Humanlike/Apparel/JumpPack/JumpPack</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <tickerType>Normal</tickerType>
-    <statBases>
-      <WorkToMake>14000</WorkToMake>
-      <Mass>3</Mass>
-      <Flammability>0.4</Flammability>
-      <EquipDelay>2</EquipDelay>
-      <JumpRange>23.9</JumpRange>
-    </statBases>
-    <thingSetMakerTags>
-      <li>RewardStandardMidFreq</li>
-      <li>RewardStandardQualitySuper</li>
-    </thingSetMakerTags>
-    <thingCategories>
-      <li>ApparelUtility</li>
-    </thingCategories>
-    <apparel>
-      <countsAsClothingForNudity>false</countsAsClothingForNudity>
-      <scoreOffset>4</scoreOffset>
-      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/JumpPack/JumpPack</wornGraphicPath>
-      <wornGraphicData>
-        <renderUtilityAsPack>true</renderUtilityAsPack>
-        <east>
-          <offset>(-0.35,-0.05)</offset>
-          <thin>
-            <offset>(0.05,0)</offset>
-          </thin>
-          <hulk>
-            <offset>(-0.1,0)</offset>
-          </hulk>
-          <fat>
-            <offset>(-0.15,0)</offset>
-          </fat>
-        </east>
-        <west>
-          <offset>(0.35,-0.05)</offset>
-          <thin>
-            <offset>(-0.05,0)</offset>
-          </thin>
-          <hulk>
-            <offset>(0.1,0)</offset>
-          </hulk>
-          <fat>
-            <offset>(0.15,0)</offset>
-          </fat>
-        </west>
-        <male>
-          <scale>(0.75,0.75)</scale>
-        </male>
-        <female>
-          <scale>(0.75,0.75)</scale>
-        </female>
-        <thin>
-          <scale>(0.7,0.7)</scale>
-        </thin>
-        <hulk>
-          <scale>(0.9,0.9)</scale>
-        </hulk>
-        <fat>
-          <scale>(0.9,0.9)</scale>
-        </fat>
+		<ThingDef ParentName="ApparelBase">
+			<defName>TESTPOISONJUMP</defName>
+			<label>POISONJUMPTEST</label>
+			<description>A single-person burst rocket for short-ranged flight. With its integrated harness and guidance assistant, the jump pack allows anyone to leap long distances at high speed, even over obstacles. It must be recharged after several uses.\n\nSome spacer tech militaries have melee combat specialists who use jump packs to bypass obstacles and rapidly close with the enemy.</description>
+			<techLevel>Industrial</techLevel>
+			<comps>
+				<li Class="DI_Harmacy.CompProperties_Poisonable">
+					<maxCharges>5</maxCharges>
+					<ammoDef>Chemfuel</ammoDef>
+					<ammoCountPerCharge>20</ammoCountPerCharge>
+					<baseReloadTicks>60</baseReloadTicks>
+					<soundReload>Standard_Reload</soundReload>
+					<hotKey>Misc4</hotKey>
+					<chargeNoun>jump</chargeNoun>
+					<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+				</li>
+			</comps>
+			<verbs>
+				<li>
+					<verbClass>DI_Harmacy.VerbPoison_Jump</verbClass>
+					<label>jump</label>
+					<violent>false</violent>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<warmupTime>0.5</warmupTime>
+					<warmupEffecter>JumpWarmupEffect</warmupEffecter>
+					<requireLineOfSight>true</requireLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+						<canTargetPawns>false</canTargetPawns>
+						<canTargetBuildings>false</canTargetBuildings>
+					</targetParams>
+				</li>
+			</verbs>
+			<recipeMaker>
+				<unfinishedThingDef>UnfinishedPoisonPack</unfinishedThingDef>
+				<researchPrerequisite>JumpPack</researchPrerequisite>
+				<recipeUsers>
+					<li>TableMachining</li>
+				</recipeUsers>
+				<useIngredientsForColor>false</useIngredientsForColor>
+				<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+				<workSkill>Crafting</workSkill>
+				<effectWorking>Smith</effectWorking>
+				<soundWorking>Recipe_Machining</soundWorking>
+				<skillRequirements>
+					<Crafting>4</Crafting>
+				</skillRequirements>
+			</recipeMaker>
+			<costList>
+				<Plasteel>30</Plasteel>
+				<ComponentIndustrial>3</ComponentIndustrial>
+				<Chemfuel>100</Chemfuel>
+			</costList>
+			<graphicData>
+				<texPath>Things/Pawn/Humanlike/Apparel/JumpPack/JumpPack</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+			<tickerType>Normal</tickerType>
+			<statBases>
+				<WorkToMake>14000</WorkToMake>
+				<Mass>3</Mass>
+				<Flammability>0.4</Flammability>
+				<EquipDelay>2</EquipDelay>
+				<JumpRange>23.9</JumpRange>
+			</statBases>
+			<thingSetMakerTags>
+				<li>RewardStandardMidFreq</li>
+				<li>RewardStandardQualitySuper</li>
+			</thingSetMakerTags>
+			<thingCategories>
+				<li>ApparelUtility</li>
+			</thingCategories>
+			<apparel>
+				<countsAsClothingForNudity>false</countsAsClothingForNudity>
+				<scoreOffset>4</scoreOffset>
+				<wornGraphicPath>Things/Pawn/Humanlike/Apparel/JumpPack/JumpPack</wornGraphicPath>
+				<wornGraphicData>
+					<renderUtilityAsPack>true</renderUtilityAsPack>
+					<east>
+						<offset>(-0.35,-0.05)</offset>
+						<thin>
+							<offset>(0.05,0)</offset>
+						</thin>
+						<hulk>
+							<offset>(-0.1,0)</offset>
+						</hulk>
+						<fat>
+							<offset>(-0.15,0)</offset>
+						</fat>
+					</east>
+					<west>
+						<offset>(0.35,-0.05)</offset>
+						<thin>
+							<offset>(-0.05,0)</offset>
+						</thin>
+						<hulk>
+							<offset>(0.1,0)</offset>
+						</hulk>
+						<fat>
+							<offset>(0.15,0)</offset>
+						</fat>
+					</west>
+					<male>
+						<scale>(0.75,0.75)</scale>
+					</male>
+					<female>
+						<scale>(0.75,0.75)</scale>
+					</female>
+					<thin>
+						<scale>(0.7,0.7)</scale>
+					</thin>
+					<hulk>
+						<scale>(0.9,0.9)</scale>
+					</hulk>
+					<fat>
+						<scale>(0.9,0.9)</scale>
+					</fat>
 
-      </wornGraphicData>
-      <careIfWornByCorpse>false</careIfWornByCorpse>
-      <careIfDamaged>false</careIfDamaged>
-      <wearPerDay>0</wearPerDay>
-      <bodyPartGroups>
-        <li>Waist</li>
-      </bodyPartGroups>
-      <layers>
-        <li>Belt</li>
-      </layers>
-      <tags>
-        <li>PackJump</li>
-      </tags>
-    </apparel>
-    <tradeTags>
-      <li>ExoticMisc</li>
-    </tradeTags>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>(0.33,0.33,0.33,1)</only>
-        </li>
-        <li>
-          <weight>10</weight>
-          <only>(0.65,0.65,0.65,1)</only>
-        </li>
-        <li>
-          <weight>6</weight>
-          <min>(0.3,0.3,0.3,1)</min>
-          <max>(0.5,0.5,0.5,1)</max>
-        </li>
-        <li>
-          <weight>10</weight>
-          <only>(0.9,0.9,0.9,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-    <allowedArchonexusCount>1</allowedArchonexusCount>
-  </ThingDef>
-
-
+				</wornGraphicData>
+				<careIfWornByCorpse>false</careIfWornByCorpse>
+				<careIfDamaged>false</careIfDamaged>
+				<wearPerDay>0</wearPerDay>
+				<bodyPartGroups>
+					<li>Waist</li>
+				</bodyPartGroups>
+				<layers>
+					<li>Belt</li>
+				</layers>
+				<tags>
+					<li>PackJump</li>
+				</tags>
+			</apparel>
+			<tradeTags>
+				<li>ExoticMisc</li>
+			</tradeTags>
+			<colorGenerator Class="ColorGenerator_Options">
+				<options>
+					<li>
+						<weight>10</weight>
+						<only>(0.33,0.33,0.33,1)</only>
+					</li>
+					<li>
+						<weight>10</weight>
+						<only>(0.65,0.65,0.65,1)</only>
+					</li>
+					<li>
+						<weight>6</weight>
+						<min>(0.3,0.3,0.3,1)</min>
+						<max>(0.5,0.5,0.5,1)</max>
+					</li>
+					<li>
+						<weight>10</weight>
+						<only>(0.9,0.9,0.9,1)</only>
+					</li>
+				</options>
+			</colorGenerator>
+			<allowedArchonexusCount>1</allowedArchonexusCount>
+		</ThingDef>
+	<ThingDef ParentName="UnfinishedBase">
+		<defName>UnfinishedPoisonPack</defName>
+		<label>unfinished pack</label>
+		<description>An unfinished piece of a pack.</description>
+		<statBases>
+			<Flammability>0.5</Flammability>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Item/Unfinished/UnfinishedPack</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<stuffCategories Inherit="false" />
+	</ThingDef>
+	<StatDef>
+		<defName>JumpRange</defName>
+		<label>Jump range</label>
+		<description>The maximum jump distance.</description>
+		<category>Apparel</category>
+		<minValue>0</minValue>
+		<toStringStyle>FloatOne</toStringStyle>
+		<formatString>{0} c</formatString>
+		<showIfUndefined>false</showIfUndefined>
+		<displayPriorityInCategory>60</displayPriorityInCategory>
+		<parts>
+			<li Class="StatPart_Quality">
+				<factorAwful>0.75</factorAwful>
+				<factorPoor>0.9</factorPoor>
+				<factorNormal>1</factorNormal>
+				<factorGood>1.06</factorGood>
+				<factorExcellent>1.13</factorExcellent>
+				<factorMasterwork>1.19</factorMasterwork>
+				<factorLegendary>1.25</factorLegendary>
+			</li>
+		</parts>
+	</StatDef>
 </Defs>

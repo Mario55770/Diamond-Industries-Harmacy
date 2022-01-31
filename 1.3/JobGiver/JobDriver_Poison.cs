@@ -24,7 +24,7 @@ namespace DI_Harmacy
             Thing gear = f.Gear;
             CompPoisonable comp = gear != null ? gear.TryGetComp<CompPoisonable>() : (CompPoisonable)null;
             f.FailOn<JobDriver_Poison>((Func<bool>)(() => comp == null));
-            f.FailOn<JobDriver_Poison>((Func<bool>)(() => comp.Weilder != this.pawn));
+            f.FailOn<JobDriver_Poison>((Func<bool>)(() => comp.Wearer != this.pawn));
             f.FailOn<JobDriver_Poison>((Func<bool>)(() => !comp.NeedsReload(true)));
             f.FailOnDestroyedOrNull<JobDriver_Poison>(TargetIndex.A);
             f.FailOnIncapable<JobDriver_Poison>(PawnCapacityDefOf.Manipulation);

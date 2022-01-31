@@ -73,7 +73,7 @@
   <ItemGroup>
     <Content Include="1.3\Defs\HediffDefs\BrickKnockoutPoison.xml" />
     <Content Include="1.3\Defs\JobDefs\JobsDefs.xml" />
-    <Content Include="1.3\Defs\ThingDefs\testknife.xml" />
+    <Content Include="1.3\Defs\ThingDefs\TestItems.xml" />
     <Content Include="1.3\Defs\ThingDefs\ThingCategories.xml" />
     <Content Include="1.3\Defs\ThingDefs\PoisonVialDefs.xml" />
     <Content Include="1.3_Royalty\Patches\RoyaltyPatches.xml" />
@@ -93,9 +93,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="1.3\Comps\Command_Poisonable.cs" />
-    <Compile Include="1.3\Comps\CompProperties_Poison.cs" />
     <Compile Include="1.3\Comps\CompPoisonable.cs" />
-    <Compile Include="1.3\Comps\GizmoPoisonAmmoStatus.cs" />
+    <Compile Include="1.3\Comps\CompProperties_Poisonable.cs" />
+    <None Include="1.3\Comps\GizmoPoisonAmmoStatus.cs" />
     <Compile Include="1.3\Comps\RecipeAssignment.cs" />
     <Compile Include="1.3\Comps\AdvanceNecrosis.cs" />
     <Compile Include="1.3\Defs\DamageDefs\DIH_DamageDefs.cs" />
@@ -103,9 +103,10 @@
     <Compile Include="1.3\Defs\JobDefs\DIH_JobDefs.cs" />
     <Compile Include="1.3\JobGiver\JobDriver_Poison.cs" />
     <Compile Include="1.3\JobGiver\JobGiver_Poison.cs" />
+    <None Include="1.3\JobGiver\Old\PoisonableUtility.cs" />
     <Compile Include="1.3\JobGiver\PoisonableUtility.cs" />
-    <None Include="1.3\JobGiver\PoisonWorkGiverUtility.cs" />
-    <Compile Include="1.3\Verb\Verbs.cs" />
+    <Compile Include="1.3\Verbs\VerbPoison_Jump.cs" />
+    <Compile Include="1.3\Verbs\Verbs.cs" />
     <None Include="DIH\ModSettings.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,428 +1,271 @@
-﻿using System;
+﻿// RimWorld.CompReloadable
 using System.Collections.Generic;
-using System.Linq;
+using RimWorld;
 using UnityEngine;
 using Verse;
-using RimWorld;
 using Verse.Sound;
-
 namespace DI_Harmacy
+{ 
+public class CompPoisonable : ThingComp, IVerbOwner
 {
-    // Token: 0x020011C5 RID: 4549
-    [StaticConstructorOnStartup]
-    public class CompPoisonable : ThingComp, IVerbOwner
-    {
-        public CompProperties_Poison Props
-        {
-            get
-            {
-                return (CompProperties_Poison)this.props;
-            }
-        }
+	private int remainingCharges;
 
+	private VerbTracker verbTracker;
 
+		//public CompProperties_Reloadable Props => props as CompProperties_Reloadable;
+		public CompProperties_Poisonable Props => props as CompProperties_Poisonable;
+	public int RemainingCharges => remainingCharges;
 
-        // Token: 0x17001327 RID: 4903
-        // (get) Token: 0x06006EAA RID: 28330 RVA: 0x002563CF File Offset: 0x002545CF
-        public int RemainingCharges
-        {
-            get
-            {
-                return this.remainingCharges;
-            }
-        }
+	public int MaxCharges => Props.maxCharges;
 
-        // Token: 0x17001328 RID: 4904
-        // (get) Token: 0x06006EAB RID: 28331 RVA: 0x002563D7 File Offset: 0x002545D7
-        public int MaxCharges
-        {
-            get
-            {
-                return this.Props.maxCharges;
-            }
-        }
+	public ThingDef AmmoDef => Props.ammoDef;
 
-        // Token: 0x17001329 RID: 4905
-        // (get) Token: 0x06006EAC RID: 28332 RVA: 0x002563E4 File Offset: 0x002545E4
-        public ThingDef AmmoDef
-        {
-            get
-            {
-                return this.Props.ammoDef;
-            }
-        }
+	public bool CanBeUsed => remainingCharges > 0;
 
-        // Token: 0x1700132A RID: 4906
-        // (get) Token: 0x06006EAD RID: 28333 RVA: 0x002563F1 File Offset: 0x002545F1
-        public bool CanBeUsed
-        {
-            get
-            {
-                return this.remainingCharges > 0;
-            }
-        }
+		//public Pawn Wearer => ReloadableUtility.WearerOf(this);
+		public Pawn Wearer => PoisonableUtility.WearerOf(this);
+	public List<VerbProperties> VerbProperties => parent.def.Verbs;
 
-        public Pawn Weilder
-        {
-            get
-            {
-                return PoisonableUtility.WeaponHolder(this);
-            }
-        }
-        public List<VerbProperties> VerbProperties
-        {
-            get
-            {
-                return this.parent.def.Verbs;
-            }
-        }
+	public List<Tool> Tools => parent.def.tools;
 
-        // Token: 0x1700132D RID: 4909
-        // (get) Token: 0x06006EB0 RID: 28336 RVA: 0x0009C9D9 File Offset: 0x0009ABD9
-        public List<Tool> Tools
-        {
-            get
-            {
-                return this.parent.def.tools;
-            }
-        }
+	public ImplementOwnerTypeDef ImplementOwnerTypeDef => ImplementOwnerTypeDefOf.NativeVerb;
 
-        // Token: 0x1700132E RID: 4910
-        // (get) Token: 0x06006EB1 RID: 28337 RVA: 0x001AE522 File Offset: 0x001AC722
-        public ImplementOwnerTypeDef ImplementOwnerTypeDef
-        {
-            get
-            {
-                return ImplementOwnerTypeDefOf.NativeVerb;
-            }
-        }
+	public Thing ConstantCaster => Wearer;
 
-        // Token: 0x1700132F RID: 4911
-        // (get) Token: 0x06006EB2 RID: 28338 RVA: 0x00256404 File Offset: 0x00254604
-        public Thing ConstantCaster
-        {
-            get
-            {
-                return this.Weilder;
-            }
-        }
+	public VerbTracker VerbTracker
+	{
+		get
+		{
+			if (verbTracker == null)
+			{
+				verbTracker = new VerbTracker(this);
+			}
+			return verbTracker;
+		}
+	}
 
-        // Token: 0x06006EB3 RID: 28339 RVA: 0x0025640C File Offset: 0x0025460C
-        public string UniqueVerbOwnerID()
-        {
-            return "Reloadable_" + this.parent.ThingID;
-        }
+	public string LabelRemaining => $"{RemainingCharges} / {MaxCharges}";
 
-        // Token: 0x06006EB4 RID: 28340 RVA: 0x00256423 File Offset: 0x00254623
-        public bool VerbsStillUsableBy(Pawn p)
-        {
-            return this.Weilder == p;
-        }
+	public List<Verb> AllVerbs => VerbTracker.AllVerbs;
 
-        // Token: 0x17001330 RID: 4912
-        // (get) Token: 0x06006EB5 RID: 28341 RVA: 0x0025642E File Offset: 0x0025462E
-        public VerbTracker VerbTracker
-        {
-            get
-            {
-                if (this.verbTracker == null)
-                {
-                    this.verbTracker = new VerbTracker(this);
-                }
-                return this.verbTracker;
-            }
-        }
+	public string UniqueVerbOwnerID()
+	{
+		return "Reloadable_" + parent.ThingID;
+	}
 
-        // Token: 0x17001331 RID: 4913
-        // (get) Token: 0x06006EB6 RID: 28342 RVA: 0x0025644A File Offset: 0x0025464A
-        public string LabelRemaining
-        {
-            get
-            {
-                return string.Format("{0} / {1}", this.RemainingCharges, this.MaxCharges);
-            }
-        }
+	public bool VerbsStillUsableBy(Pawn p)
+	{
+		return Wearer == p;
+	}
 
-        // Token: 0x17001332 RID: 4914
-        // (get) Token: 0x06006EB7 RID: 28343 RVA: 0x0025646C File Offset: 0x0025466C
-        public List<Verb> AllVerbs
-        {
-            get
-            {
-                return this.VerbTracker.AllVerbs;
-            }
-        }
+	public override void PostPostMake()
+	{
+		base.PostPostMake();
+		remainingCharges = MaxCharges;
+	}
 
-        // Token: 0x06006EB8 RID: 28344 RVA: 0x00256479 File Offset: 0x00254679
-        public override void PostPostMake()
-        {
-            base.PostPostMake();
-            this.remainingCharges = this.MaxCharges;
-        }
+	public override string CompInspectStringExtra()
+	{
+		return "ChargesRemaining".Translate(Props.ChargeNounArgument) + ": " + LabelRemaining;
+	}
 
-        // Token: 0x06006EB9 RID: 28345 RVA: 0x0025648D File Offset: 0x0025468D
-        public override string CompInspectStringExtra()
-        {
-            return "ChargesRemaining".Translate(this.Props.ChargeNounArgument) + ": " + this.LabelRemaining;
-        }
+	public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
+	{
+		IEnumerable<StatDrawEntry> enumerable = base.SpecialDisplayStats();
+		if (enumerable != null)
+		{
+			foreach (StatDrawEntry item in enumerable)
+			{
+				yield return item;
+			}
+		}
+		yield return new StatDrawEntry(StatCategoryDefOf.Apparel, "Stat_Thing_ReloadChargesRemaining_Name".Translate(Props.ChargeNounArgument), LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(Props.ChargeNounArgument), 2749);
+	}
 
-        // Token: 0x06006EBA RID: 28346 RVA: 0x002564BE File Offset: 0x002546BE
-        public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
-        {
-            IEnumerable<StatDrawEntry> enumerable = base.SpecialDisplayStats();
-            if (enumerable != null)
-            {
-                foreach (StatDrawEntry statDrawEntry in enumerable)
-                {
-                    yield return statDrawEntry;
-                }
-                IEnumerator<StatDrawEntry> enumerator = null;
-            }
-            yield return new StatDrawEntry(StatCategoryDefOf.Apparel, "Stat_Thing_ReloadChargesRemaining_Name".Translate(this.Props.ChargeNounArgument), this.LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(this.Props.ChargeNounArgument), 2749, null, null, false);
-            //these two were here but detected as never reached?
-            //yield break;
-            //yield break;
-        }
+	public override void PostExposeData()
+	{
+		base.PostExposeData();
+		Scribe_Values.Look(ref remainingCharges, "remainingCharges", -999);
+		Scribe_Deep.Look(ref verbTracker, "verbTracker", this);
+		if (Scribe.mode == LoadSaveMode.PostLoadInit && remainingCharges == -999)
+		{
+			remainingCharges = MaxCharges;
+		}
+	}
 
-        // Token: 0x06006EBB RID: 28347 RVA: 0x002564D0 File Offset: 0x002546D0
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            Scribe_Values.Look<int>(ref this.remainingCharges, "remainingCharges", -999, false);
-            Scribe_Deep.Look<VerbTracker>(ref this.verbTracker, "verbTracker", new object[]
-            {
-                this
-            });
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && this.remainingCharges == -999)
-            {
-                this.remainingCharges = this.MaxCharges;
-            }
-        }
+	public override IEnumerable<Gizmo> CompGetWornGizmosExtra()
+	{
+		foreach (Gizmo item in base.CompGetWornGizmosExtra())
+		{
+			yield return item;
+		}
+		bool drafted = Wearer.Drafted;
+		if ((drafted && !Props.displayGizmoWhileDrafted) || (!drafted && !Props.displayGizmoWhileUndrafted))
+		{
+			yield break;
+		}
+		ThingWithComps gear = parent;
+		foreach (Verb allVerb in VerbTracker.AllVerbs)
+		{
+			if (allVerb.verbProps.hasStandardCommand)
+			{
+				yield return CreateVerbTargetCommand(gear, allVerb);
+			}
+		}
+		if (Prefs.DevMode)
+		{
+			Command_Action command_Action = new Command_Action();
+			command_Action.defaultLabel = "Debug: Reload to full";
+			command_Action.action = delegate
+			{
+				remainingCharges = MaxCharges;
+			};
+			yield return command_Action;
+		}
+	}
 
-        //        public override IEnumerable<Gizmo> CompGetWornGizmosExtra()
-        public override void CompTick()
-        {
-            UsedOnce();
-            CompGetGizmosExtra();
-             
-        }
-        public override IEnumerable<Gizmo> CompGetGizmosExtra()
-        {
-           // Log.Message("TEST");
-            if (Find.Selector.SingleSelectedThing == this.parent)
-            {
-                yield return new GizmoPoisonAmmoStatus
-                {
-                    poisonable = this
-                };
+	private Command_Poisonable CreateVerbTargetCommand(Thing gear, Verb verb)
+	{
+		Command_Poisonable command_Poisonable = new Command_Poisonable(this);
+		command_Poisonable.defaultDesc = gear.def.description;
+		command_Poisonable.hotKey = Props.hotKey;
+		command_Poisonable.defaultLabel = verb.verbProps.label;
+		command_Poisonable.verb = verb;
+		if (verb.verbProps.defaultProjectile != null && verb.verbProps.commandIcon == null)
+		{
+			command_Poisonable.icon = verb.verbProps.defaultProjectile.uiIcon;
+			command_Poisonable.iconAngle = verb.verbProps.defaultProjectile.uiIconAngle;
+			command_Poisonable.iconOffset = verb.verbProps.defaultProjectile.uiIconOffset;
+			command_Poisonable.overrideColor = verb.verbProps.defaultProjectile.graphicData.color;
+		}
+		else
+		{
+			command_Poisonable.icon = ((verb.UIIcon != BaseContent.BadTex) ? verb.UIIcon : gear.def.uiIcon);
+			command_Poisonable.iconAngle = gear.def.uiIconAngle;
+			command_Poisonable.iconOffset = gear.def.uiIconOffset;
+			command_Poisonable.defaultIconColor = gear.DrawColor;
+		}
+		if (!Wearer.IsColonistPlayerControlled)
+		{
+			command_Poisonable.Disable();
+		}
+		else if (verb.verbProps.violent && Wearer.WorkTagIsDisabled(WorkTags.Violent))
+		{
+			command_Poisonable.Disable("IsIncapableOfViolenceLower".Translate(Wearer.LabelShort, Wearer).CapitalizeFirst() + ".");
+		}
+		else if (!CanBeUsed)
+		{
+			command_Poisonable.Disable(DisabledReason(MinAmmoNeeded(allowForcedReload: false), MaxAmmoNeeded(allowForcedReload: false)));
+		}
+		return command_Poisonable;
+	}
 
-            }
+	public string DisabledReason(int minNeeded, int maxNeeded)
+	{
+		if (AmmoDef == null)
+		{
+			return "CommandReload_NoCharges".Translate(Props.ChargeNounArgument);
+		}
+		return TranslatorFormattedStringExtensions.Translate(arg3: ((Props.ammoCountToRefill == 0) ? ((minNeeded == maxNeeded) ? minNeeded.ToString() : $"{minNeeded}-{maxNeeded}") : Props.ammoCountToRefill.ToString()).Named("COUNT"), key: "CommandReload_NoAmmo", arg1: Props.ChargeNounArgument, arg2: NamedArgumentUtility.Named(AmmoDef, "AMMO"));
+	}
 
-           /** Log.Message("Should print if this ever runs exist");
-            foreach (Gizmo gizmo in base.CompGetWornGizmosExtra())
-            {
+	public bool NeedsReload(bool allowForcedReload)
+	{
+		if (AmmoDef == null)
+		{
+			return false;
+		}
+		if (Props.ammoCountToRefill != 0)
+		{
+			if (!allowForcedReload)
+			{
+				return remainingCharges == 0;
+			}
+			return RemainingCharges != MaxCharges;
+		}
+		return RemainingCharges != MaxCharges;
+	}
 
-                yield return gizmo;
-            }
-            IEnumerator<Gizmo> enumerator = null;
-            bool drafted = this.Weilder.Drafted;
-            if ((drafted && !this.Props.displayGizmoWhileDrafted) || (!drafted && !this.Props.displayGizmoWhileUndrafted))
-            {
-                yield break;
-            }
-            ThingWithComps gear = this.parent;
-            foreach (Verb verb in this.VerbTracker.AllVerbs)
-            {
-                if (verb.verbProps.hasStandardCommand)
-                {
-                    yield return this.CreateVerbTargetCommand(gear, verb);
-                }
-            }
-            List<Verb>.Enumerator enumerator2 = default(List<Verb>.Enumerator);
-            if (Prefs.DevMode)
-            {
-                yield return new Command_Action
-                {
-                    defaultLabel = "Debug: Reload to full",
-                    action = delegate ()
-                    {
-                        this.remainingCharges = this.MaxCharges;
-                    }
-                };
-            }
-            yield break;
-            // yield break;
-           **/
-        }
+	public void ReloadFrom(Thing ammo)
+	{
+		if (!NeedsReload(allowForcedReload: true))
+		{
+			return;
+		}
+		if (Props.ammoCountToRefill != 0)
+		{
+			if (ammo.stackCount < Props.ammoCountToRefill)
+			{
+				return;
+			}
+			ammo.SplitOff(Props.ammoCountToRefill).Destroy();
+			remainingCharges = MaxCharges;
+		}
+		else
+		{
+			if (ammo.stackCount < Props.ammoCountPerCharge)
+			{
+				return;
+			}
+			int num = Mathf.Clamp(ammo.stackCount / Props.ammoCountPerCharge, 0, MaxCharges - RemainingCharges);
+			ammo.SplitOff(num * Props.ammoCountPerCharge).Destroy();
+			remainingCharges += num;
+		}
+		if (Props.soundReload != null)
+		{
+			Props.soundReload.PlayOneShot(new TargetInfo(Wearer.Position, Wearer.Map));
+		}
+	}
 
-        // Token: 0x06006EBD RID: 28349 RVA: 0x00256544 File Offset: 0x00254744
-        private Command_Poisonable CreateVerbTargetCommand(Thing gear, Verb verb)
-        {
-            Command_Poisonable command_poisonable = new Command_Poisonable(this);
-            command_poisonable.defaultDesc = gear.def.description;
-            command_poisonable.hotKey = this.Props.hotKey;
-            command_poisonable.defaultLabel = verb.verbProps.label;
-            command_poisonable.verb = verb;
-            if (verb.verbProps.defaultProjectile != null && verb.verbProps.commandIcon == null)
-            {
-                command_poisonable.icon = verb.verbProps.defaultProjectile.uiIcon;
-                command_poisonable.iconAngle = verb.verbProps.defaultProjectile.uiIconAngle;
-                command_poisonable.iconOffset = verb.verbProps.defaultProjectile.uiIconOffset;
-                command_poisonable.overrideColor = new Color?(verb.verbProps.defaultProjectile.graphicData.color);
-            }
-            else
-            {
-                command_poisonable.icon = ((verb.UIIcon != BaseContent.BadTex) ? verb.UIIcon : gear.def.uiIcon);
-                command_poisonable.iconAngle = gear.def.uiIconAngle;
-                command_poisonable.iconOffset = gear.def.uiIconOffset;
-                command_poisonable.defaultIconColor = gear.DrawColor;
-            }
-            if (!this.Weilder.IsColonistPlayerControlled)
-            {
-                command_poisonable.Disable(null);
-            }
-            else if (verb.verbProps.violent && this.Weilder.WorkTagIsDisabled(WorkTags.Violent))
-            {
-                command_poisonable.Disable("IsIncapableOfViolenceLower".Translate(this.Weilder.LabelShort, this.Weilder).CapitalizeFirst() + ".");
-            }
-            else if (!this.CanBeUsed)
-            {
-                command_poisonable.Disable(this.DisabledReason(this.MinAmmoNeeded(false), this.MaxAmmoNeeded(false)));
-            }
-            return command_poisonable;
-        }
+	public int MinAmmoNeeded(bool allowForcedReload)
+	{
+		if (!NeedsReload(allowForcedReload))
+		{
+			return 0;
+		}
+		if (Props.ammoCountToRefill != 0)
+		{
+			return Props.ammoCountToRefill;
+		}
+		return Props.ammoCountPerCharge;
+	}
 
-        // Token: 0x06006EBE RID: 28350 RVA: 0x00256704 File Offset: 0x00254904
-        public string DisabledReason(int minNeeded, int maxNeeded)
-        {
-            string result;
-            if (this.AmmoDef == null)
-            {
-                result = "CommandReload_NoCharges".Translate(this.Props.ChargeNounArgument);
-            }
-            else
-            {
-                string arg;
-                if (this.Props.ammoCountToRefill != 0)
-                {
-                    arg = this.Props.ammoCountToRefill.ToString();
-                }
-                else
-                {
-                    arg = ((minNeeded == maxNeeded) ? minNeeded.ToString() : string.Format("{0}-{1}", minNeeded, maxNeeded));
-                }
-                result = "CommandReload_NoAmmo".Translate(this.Props.ChargeNounArgument, this.AmmoDef.Named("AMMO"), arg.Named("COUNT"));
-            }
-            return result;
-        }
+	public int MaxAmmoNeeded(bool allowForcedReload)
+	{
+		if (!NeedsReload(allowForcedReload))
+		{
+			return 0;
+		}
+		if (Props.ammoCountToRefill != 0)
+		{
+			return Props.ammoCountToRefill;
+		}
+		return Props.ammoCountPerCharge * (MaxCharges - RemainingCharges);
+	}
 
-        // Token: 0x06006EBF RID: 28351 RVA: 0x002567B4 File Offset: 0x002549B4
-        public bool NeedsReload(bool allowForcedReload)
-        {
-            if (this.AmmoDef == null)
-            {
-                return false;
-            }
-            if (this.Props.ammoCountToRefill == 0)
-            {
-                return this.RemainingCharges != this.MaxCharges;
-            }
-            if (!allowForcedReload)
-            {
-                return this.remainingCharges == 0;
-            }
-            return this.RemainingCharges != this.MaxCharges;
-        }
+	public int MaxAmmoAmount()
+	{
+		if (AmmoDef == null)
+		{
+			return 0;
+		}
+		if (Props.ammoCountToRefill == 0)
+		{
+			return Props.ammoCountPerCharge * MaxCharges;
+		}
+		return Props.ammoCountToRefill;
+	}
 
-        // Token: 0x06006EC0 RID: 28352 RVA: 0x00256808 File Offset: 0x00254A08
-        public void ReloadFrom(Thing ammo)
-        {
-            if (!this.NeedsReload(true))
-            {
-                return;
-            }
-            if (this.Props.ammoCountToRefill != 0)
-            {
-                if (ammo.stackCount < this.Props.ammoCountToRefill)
-                {
-                    return;
-                }
-                ammo.SplitOff(this.Props.ammoCountToRefill).Destroy(DestroyMode.Vanish);
-                this.remainingCharges = this.MaxCharges;
-            }
-            else
-            {
-                if (ammo.stackCount < this.Props.ammoCountPerCharge)
-                {
-                    return;
-                }
-                int num = Mathf.Clamp(ammo.stackCount / this.Props.ammoCountPerCharge, 0, this.MaxCharges - this.RemainingCharges);
-                ammo.SplitOff(num * this.Props.ammoCountPerCharge).Destroy(DestroyMode.Vanish);
-                this.remainingCharges += num;
-            }
-            if (this.Props.soundReload != null)
-            {
-                this.Props.soundReload.PlayOneShot(new TargetInfo(this.Weilder.Position, this.Weilder.Map, false));
-            }
-        }
-
-        // Token: 0x06006EC1 RID: 28353 RVA: 0x00256904 File Offset: 0x00254B04
-        public int MinAmmoNeeded(bool allowForcedReload)
-        {
-            if (!this.NeedsReload(allowForcedReload))
-            {
-                return 0;
-            }
-            if (this.Props.ammoCountToRefill != 0)
-            {
-                return this.Props.ammoCountToRefill;
-            }
-            return this.Props.ammoCountPerCharge;
-        }
-
-        // Token: 0x06006EC2 RID: 28354 RVA: 0x00256935 File Offset: 0x00254B35
-        public int MaxAmmoNeeded(bool allowForcedReload)
-        {
-            if (!this.NeedsReload(allowForcedReload))
-            {
-                return 0;
-            }
-            if (this.Props.ammoCountToRefill != 0)
-            {
-                return this.Props.ammoCountToRefill;
-            }
-            return this.Props.ammoCountPerCharge * (this.MaxCharges - this.RemainingCharges);
-        }
-
-        // Token: 0x06006EC3 RID: 28355 RVA: 0x00256974 File Offset: 0x00254B74
-        public int MaxAmmoAmount()
-        {
-            if (this.AmmoDef == null)
-            {
-                return 0;
-            }
-            if (this.Props.ammoCountToRefill == 0)
-            {
-                return this.Props.ammoCountPerCharge * this.MaxCharges;
-            }
-            return this.Props.ammoCountToRefill;
-        }
-
-        // Token: 0x06006EC4 RID: 28356 RVA: 0x002569AC File Offset: 0x00254BAC
-        public void UsedOnce()
-        {
-            if (this.remainingCharges > 0)
-            {
-                this.remainingCharges--;
-            }
-
-        }
-
-        // Token: 0x04003D65 RID: 15717
-        private int remainingCharges;
-
-        // Token: 0x04003D66 RID: 15718
-        private VerbTracker verbTracker;
-    }
+	public void UsedOnce()
+	{
+		if (remainingCharges > 0)
+		{
+			remainingCharges--;
+		}
+		if (Props.destroyOnEmpty && remainingCharges == 0 && !parent.Destroyed)
+		{
+			parent.Destroy();
+		}
+	}
 }
-
+}

@@ -1,7 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <!--Template to make resource items-->
-  <ThingDef ParentName="ResourceBase">
+	<!--the parent def of the poison vials. Just so I can have less redundant stats and junk-->
+	<ThingDef ParentName="ResourceBase" Name="PoisonBase" Abstract="True">
+		<!--<thingClass>Poison</thingClass>-->
+		<graphicData>
+			<texPath>Things/Item/Resource/Neutroamine</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.90</drawSize>
+		</graphicData>
+			
+		<stackLimit>25</stackLimit>
+		<healthAffectsPrice>false</healthAffectsPrice>
+		<uiIconForStackCount>1</uiIconForStackCount>
+		<soundInteract>Standard_Drop</soundInteract>
+		<soundDrop>Standard_Drop</soundDrop>
+		<statBases>
+			<!--not all inclusive but covers some of the big ones. Change these to be the stats you want.-->
+			<MaxHitPoints>50</MaxHitPoints>
+			
+			<Mass>0.02</Mass>
+			<Flammability>0.7</Flammability>
+			<DeteriorationRate>1.0</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<!--what catagory it is displayed as in game-->
+			<li>DIH_PoisonTab</li>
+		</thingCategories>
+	</ThingDef>
+  <ThingDef ParentName="PoisonBase">
     <!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
     <defName>DIH_GenericPoison</defName>
     <!--This is the name displayed in game-->
@@ -9,27 +35,12 @@
     <!--the descritpion of the item-->
     <description>Generic poison vial. Shouldn't show up besides in dev mode with any luck.</description>
     <!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
-    <graphicData>
-      <texPath>Things/Item/Resource/Neutroamine</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-      <drawSize>0.90</drawSize>
+	  <graphicData>
       <color>(180,173,150)</color>
     </graphicData>
-    <!--How many it should stack to-->
-    <stackLimit>50</stackLimit>
-    <!--whether damage to the item affects how much it costs-->
-    <healthAffectsPrice>false</healthAffectsPrice>
-    <statBases>
-      <!--not all inclusive but covers some of the big ones. Change these to be the stats you want.-->
-      <MaxHitPoints>50</MaxHitPoints>
-      <MarketValue>30</MarketValue>
-      <Mass>0.02</Mass>
-      <Flammability>0.7</Flammability>
-      <DeteriorationRate>1.0</DeteriorationRate>
-    </statBases>
-    <thingCategories>
-      <!--what catagory it is displayed as in game-->
-      <li>DIH_PoisonTab</li>
-    </thingCategories>
+	  <statBases>
+		  <!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
+		  <MarketValue>30</MarketValue>
+	  </statBases>
   </ThingDef>
 </Defs>

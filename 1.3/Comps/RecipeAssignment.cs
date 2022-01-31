@@ -24,7 +24,7 @@ namespace DI_Harmacy
             int a = 0;
             //total detected recipes
             int t = 0;
-            List<RecipeDef> nullRecipes = new List<RecipeDef>();
+            
             foreach (RecipeDef recipeToCopy in recipeSource.AllRecipes)
             {
                 //Log.Message(recipeToCopy.defName);
@@ -38,11 +38,8 @@ namespace DI_Harmacy
                     applyRecipesTo.recipes.Add(clonedRecipe);
                    
                 }
-                else
-                {
-                    nullRecipes.Add(recipeToCopy);
-                }
-                //known to work but not usful for my application.applyRecipesTo.AllRecipes.AddRange(recipeSource.AllRecipes);
+                
+               
                 t++;
             }
             if (a != t)

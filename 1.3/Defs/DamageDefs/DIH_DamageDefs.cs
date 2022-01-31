@@ -6,5 +6,7 @@ namespace DI_Harmacy
     {
         //public static DamageDef DIH_VSnakeBite;
         public static ToolCapacityDef DIH_VSnakeBite;
+        public static ToolCapacityDef DIH_MMPoisonedBite;
+        public static ToolCapacityDef DIH_MMPoisonedScratch;
     }
 }

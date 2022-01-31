@@ -52,6 +52,10 @@
       <HintPath>..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
       <HintPath>..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>
@@ -62,31 +66,51 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include=".editorconfig" />
     <None Include=".vs\Diamond Industry Harmacy\DesignTimeBuild\.dtbcache.v2" />
     <None Include=".vs\Diamond Industry Harmacy\v16\.suo" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1.3\Defs\HediffDefs\BrickKnockoutPoison.xml" />
+    <Content Include="1.3\Defs\JobDefs\JobsDefs.xml" />
+    <Content Include="1.3\Defs\ThingDefs\testknife.xml" />
+    <Content Include="1.3\Defs\ThingDefs\ThingCategories.xml" />
+    <Content Include="1.3\Defs\ThingDefs\PoisonVialDefs.xml" />
+    <Content Include="1.3_Royalty\Patches\RoyaltyPatches.xml" />
     <Content Include="1.3\Defs\BuildingDefs\BulkDrugBench.xml" />
+    <Content Include="1.3\Defs\DamageDefs\MidnightMurderDamageDefs.xml" />
     <Content Include="1.3\Defs\DamageDefs\VSnakeDamageDefs.xml" />
+    <Content Include="1.3\Defs\HediffDefs\MidnightMurderPoison.xml" />
     <Content Include="1.3\Defs\HediffDefs\Necrosis.xml" />
     <Content Include="1.3\Defs\HediffDefs\SnakeVenom.xml" />
     <Content Include="1.3\Defs\ResearchDefs\ResearchDefs.xml" />
-    <Content Include="1.3\Patches\VanillaPatches.xml" />
+    <Content Include="1.3\Patches\CorePatches.xml" />
     <Content Include="About\About.xml" />
     <Content Include="About\Manifest.xml" />
     <Content Include="About\Preview.png" />
     <Content Include="About\PublishedFileId.txt" />
+    <Content Include="LoadFolders.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="1.3\Comps\NecroticInjuryHandler.cs" />
+    <Compile Include="1.3\Comps\Command_Poisonable.cs" />
+    <Compile Include="1.3\Comps\CompProperties_Poison.cs" />
+    <Compile Include="1.3\Comps\CompPoisonable.cs" />
+    <Compile Include="1.3\Comps\GizmoPoisonAmmoStatus.cs" />
     <Compile Include="1.3\Comps\RecipeAssignment.cs" />
     <Compile Include="1.3\Comps\AdvanceNecrosis.cs" />
-    <None Include="1.3\Comps\ScarChance.cs" />
     <Compile Include="1.3\Defs\DamageDefs\DIH_DamageDefs.cs" />
     <Compile Include="1.3\Defs\HediffDefs\DIH_Hediffs.cs" />
+    <Compile Include="1.3\Defs\JobDefs\DIH_JobDefs.cs" />
+    <Compile Include="1.3\JobGiver\JobDriver_Poison.cs" />
+    <Compile Include="1.3\JobGiver\JobGiver_Poison.cs" />
+    <Compile Include="1.3\JobGiver\PoisonableUtility.cs" />
+    <None Include="1.3\JobGiver\PoisonWorkGiverUtility.cs" />
+    <Compile Include="1.3\Verb\Verbs.cs" />
     <None Include="DIH\ModSettings.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="1.3\Defs\RecipeDefs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />

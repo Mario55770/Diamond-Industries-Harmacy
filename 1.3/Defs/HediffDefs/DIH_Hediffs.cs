@@ -8,6 +8,7 @@ namespace DI_Harmacy
     {
         public static HediffDef DIH_SnakeVenom;
         public static HediffDef DIH_NecroticTissue;
-        
+        public static HediffDef DIH_MidnightMurder;
+        public static HediffDef DIH_BrickKnockoutPoison;
     }
 }

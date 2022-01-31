@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--Template to make resource items-->
+  <ThingDef ParentName="ResourceBase">
+    <!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
+    <defName>DIH_GenericPoison</defName>
+    <!--This is the name displayed in game-->
+    <label>generic poison vial</label>
+    <!--the descritpion of the item-->
+    <description>Generic poison vial. Shouldn't show up besides in dev mode with any luck.</description>
+    <!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
+    <graphicData>
+      <texPath>Things/Item/Resource/Neutroamine</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.90</drawSize>
+      <color>(180,173,150)</color>
+    </graphicData>
+    <!--How many it should stack to-->
+    <stackLimit>50</stackLimit>
+    <!--whether damage to the item affects how much it costs-->
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <statBases>
+      <!--not all inclusive but covers some of the big ones. Change these to be the stats you want.-->
+      <MaxHitPoints>50</MaxHitPoints>
+      <MarketValue>30</MarketValue>
+      <Mass>0.02</Mass>
+      <Flammability>0.7</Flammability>
+      <DeteriorationRate>1.0</DeteriorationRate>
+    </statBases>
+    <thingCategories>
+      <!--what catagory it is displayed as in game-->
+      <li>DIH_PoisonTab</li>
+    </thingCategories>
+  </ThingDef>
+</Defs>

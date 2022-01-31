@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/HediffDef[defName="VenomFangs"]/comps/li/tools/li[label="venom fangs"]/capacities</xpath>
+    <value>
+      <capacities>
+        <li>DIH_MMPoisonedBite</li>
+      </capacities>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/HediffDef[defName="VenomTalon"]/comps/li/tools/li[label="venom talon"]/capacities</xpath>
+    <value>
+      <capacities>
+        <li>DIH_MMPoisonedScratch</li>
+      </capacities>
+    </value>
+  </Operation>
+  <!--Add the link to midnight murder
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="VenomTalon"]/descriptionHyperlinks</xpath>
+    <value>
+      <HediffDef>
+        <li>DIH_MidnightMurder</li>
+      </HediffDef>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="VenomFangs"]/descriptionHyperlinks</xpath>
+    <value>
+      <HediffDef>
+        <li>DIH_MidnightMurder</li>
+      </HediffDef>
+    </value>
+  </Operation>
+  -->
+</Patch>

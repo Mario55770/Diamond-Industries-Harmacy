@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--handles bites for venom fangs mostly-->
+  <DamageDef ParentName="Bite">
+    <defName>DIH_MMPoisonedBite</defName>
+    <label>poisoned bite</label>
+    <additionalHediffs>
+      <li>
+        <!--uses my hediff instead of toxic build up-->
+        <hediff>DIH_MidnightMurder</hediff>
+        <!--toxic bite gives 0.015-->
+        <severityPerDamageDealt>0.01</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
+        <victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+      </li>
+      
+
+    </additionalHediffs>
+    <applyAdditionalHediffsIfHuntingForFood>false</applyAdditionalHediffsIfHuntingForFood>
+    <impactSoundType>Toxic</impactSoundType>
+    <damageEffecter>Impact_Toxic</damageEffecter>
+  </DamageDef>
+  <!--the tool def to implement my damage def on snakes.-->
+  <ToolCapacityDef>
+    <defName>DIH_MMPoisonedBite</defName>
+    <label>poisoned bite</label>
+  </ToolCapacityDef>
+  <!--The maneuver it uses in game. Copy of toxic bite-->
+  <ManeuverDef>
+    <defName>DIH_MMPoisonedBite</defName>
+    <requiredCapacity>DIH_MMPoisonedBite</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>DIH_MMPoisonedBite</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Bite_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Bite_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Bite_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Bite_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+    <!--handles scratches for venom talons mostly-->
+    <DamageDef ParentName="Scratch">
+      <defName>DIH_MMPoisonedScratch</defName>
+      <label>poisoned scratch</label>
+      <additionalHediffs>
+        <li>
+          <!--uses my hediff instead of toxic build up-->
+          <hediff>DIH_MidnightMurder</hediff>
+          <!--toxic bite gives 0.015-->
+          <severityPerDamageDealt>0.01</severityPerDamageDealt>
+          <victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
+          <victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+        </li>
+      </additionalHediffs>
+      <applyAdditionalHediffsIfHuntingForFood>false</applyAdditionalHediffsIfHuntingForFood>
+      <impactSoundType>Toxic</impactSoundType>
+      <damageEffecter>Impact_Toxic</damageEffecter>
+    </DamageDef>
+    <!--the tool def to implement my damage def on snakes.-->
+    <ToolCapacityDef>
+      <defName>DIH_MMPoisonedScratch</defName>
+      <label>poisoned scratch</label>
+    </ToolCapacityDef>
+    <!--The maneuver it uses in game. Copy of toxic bite-->
+    <ManeuverDef>
+      <defName>ScratchToxic</defName>
+      <requiredCapacity>DIH_MMPoisonedScratch</requiredCapacity>
+      <verb>
+        <verbClass>Verb_MeleeAttackDamage</verbClass>
+        <meleeDamageDef>DIH_MMPoisonedScratch</meleeDamageDef>
+      </verb>
+      <logEntryDef>MeleeAttack</logEntryDef>
+      <combatLogRulesHit>Maneuver_Scratch_MeleeHit</combatLogRulesHit>
+      <combatLogRulesDeflect>Maneuver_Scratch_MeleeDeflect</combatLogRulesDeflect>
+      <combatLogRulesMiss>Maneuver_Scratch_MeleeMiss</combatLogRulesMiss>
+      <combatLogRulesDodge>Maneuver_Scratch_MeleeDodge</combatLogRulesDodge>
+    </ManeuverDef>
+</Defs>

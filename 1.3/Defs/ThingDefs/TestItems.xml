@@ -202,6 +202,7 @@
 			<techLevel>Industrial</techLevel>
 			<comps>
 				<li Class="DI_Harmacy.CompProperties_Poisonable">
+				<!--<li Class="CompProperties_Reloadable">-->
 					<maxCharges>5</maxCharges>
 					<ammoDef>Chemfuel</ammoDef>
 					<ammoCountPerCharge>20</ammoCountPerCharge>

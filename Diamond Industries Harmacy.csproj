@@ -103,7 +103,6 @@
     <Compile Include="1.3\Defs\JobDefs\DIH_JobDefs.cs" />
     <Compile Include="1.3\JobGiver\JobDriver_Poison.cs" />
     <Compile Include="1.3\JobGiver\JobGiver_Poison.cs" />
-    <None Include="1.3\JobGiver\Old\PoisonableUtility.cs" />
     <Compile Include="1.3\JobGiver\PoisonableUtility.cs" />
     <Compile Include="1.3\Verbs\VerbPoison_Jump.cs" />
     <Compile Include="1.3\Verbs\Verbs.cs" />

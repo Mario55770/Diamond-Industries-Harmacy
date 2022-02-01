@@ -18,8 +18,16 @@ namespace DI_Harmacy
 				
 				if (cachedEffectiveRange < 0f)
 				{
-					cachedEffectiveRange = base.EquipmentSource.GetStatValue(StatDefOf.JumpRange);
-				}
+					try
+					{
+						cachedEffectiveRange = base.EquipmentSource.GetStatValue(StatDefOf.JumpRange);
+					}
+					catch
+                    {
+						////Log.Error("Value unset. setting five");
+						cachedEffectiveRange = 5f;
+                    }
+					}
 				return cachedEffectiveRange;
 			}
 		}
@@ -28,6 +36,8 @@ namespace DI_Harmacy
 
 		protected override bool TryCastShot()
 		{
+
+			////Log.Error("TRYCASTSHOT");
 			if (!ModLister.CheckRoyalty("Jumping"))
 			{
 				return false;
@@ -54,6 +64,7 @@ namespace DI_Harmacy
 
 		public override void OrderForceTarget(LocalTargetInfo target)
 		{
+		//	//Log.Error("OrderForceTarget");
 			Map map = CasterPawn.Map;
 			IntVec3 intVec = RCellFinder.BestOrderedGotoDestNear(target.Cell, CasterPawn, AcceptableDestination);
 			Job job = JobMaker.MakeJob(JobDefOf.CastJump, intVec);
@@ -74,6 +85,7 @@ namespace DI_Harmacy
 
 		public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
 		{
+			////Log.Error("ValidateTarget");
 			if (caster == null)
 			{
 				return false;
@@ -82,7 +94,7 @@ namespace DI_Harmacy
 			{
 				return false;
 			}
-			if (!ReloadableUtility.CanUseConsideringQueuedJobs(CasterPawn, base.EquipmentSource))
+			if (!PoisonableUtility.CanUseConsideringQueuedJobs(CasterPawn, base.EquipmentSource))
 			{
 				return false;
 			}
@@ -91,6 +103,7 @@ namespace DI_Harmacy
 
 		public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)
 		{
+		//	//Log.Error("CanHitTargetFrom");
 			float num = EffectiveRange * EffectiveRange;
 			IntVec3 cell = targ.Cell;
 			if ((float)caster.Position.DistanceToSquared(cell) <= num)
@@ -102,6 +115,7 @@ namespace DI_Harmacy
 
 		public override void OnGUI(LocalTargetInfo target)
 		{
+			////Log.Error("OnGui");
 			if (CanHitTarget(target) && ValidJumpTarget(caster.Map, target.Cell))
 			{
 				base.OnGUI(target);
@@ -114,15 +128,24 @@ namespace DI_Harmacy
 
 		public override void DrawHighlight(LocalTargetInfo target)
 		{
+			////Log.Error("DrawHighlight");
+			if(target.IsValid)
+				////Log.Error("IsValid");
+			if (ValidJumpTarget(caster.Map, target.Cell))
+				//Log.Error("validjumptarget");
 			if (target.IsValid && ValidJumpTarget(caster.Map, target.Cell))
 			{
+				
 				GenDraw.DrawTargetHighlightWithLayer(target.CenterVector3, AltitudeLayer.MetaOverlays);
 			}
+			//Log.Error("GenDrawBefore");
 			GenDraw.DrawRadiusRing(caster.Position, EffectiveRange, Color.white, (IntVec3 c) => GenSight.LineOfSight(caster.Position, c, caster.Map) && ValidJumpTarget(caster.Map, c));
+			//Log.Error("GenDrawAfter");
 		}
 
 		public static bool ValidJumpTarget(Map map, IntVec3 cell)
 		{
+			//Log.Error("ValidJumpTarget");
 			if (!cell.IsValid || !cell.InBounds(map))
 			{
 				return false;

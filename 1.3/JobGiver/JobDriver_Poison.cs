@@ -1,67 +1,73 @@
-﻿using System;
+﻿// RimWorld.JobDriver_Reload
 using System.Collections.Generic;
+using RimWorld;
 using Verse;
 using Verse.AI;
-using RimWorld;
 namespace DI_Harmacy
 {
-    public class JobDriver_Poison : JobDriver
-    {
-        private const TargetIndex GearInd = TargetIndex.A;
-        private const TargetIndex AmmoInd = TargetIndex.B;
+	public class JobDriver_Poison : JobDriver
+	{
+		private const TargetIndex GearInd = TargetIndex.A;
 
-        private Thing Gear => this.job.GetTarget(TargetIndex.A).Thing;
+		private const TargetIndex AmmoInd = TargetIndex.B;
 
-        public override bool TryMakePreToilReservations(bool errorOnFailed)
-        {
-            this.pawn.ReserveAsManyAsPossible(this.job.GetTargetQueue(TargetIndex.B), this.job);
-            return true;
-        }
+		private Thing Gear => job.GetTarget(TargetIndex.A).Thing;
 
-        protected override IEnumerable<Toil> MakeNewToils()
-        {
-            JobDriver_Poison f = this;
-            Thing gear = f.Gear;
-            CompPoisonable comp = gear != null ? gear.TryGetComp<CompPoisonable>() : (CompPoisonable)null;
-            f.FailOn<JobDriver_Poison>((Func<bool>)(() => comp == null));
-            f.FailOn<JobDriver_Poison>((Func<bool>)(() => comp.Wearer != this.pawn));
-            f.FailOn<JobDriver_Poison>((Func<bool>)(() => !comp.NeedsReload(true)));
-            f.FailOnDestroyedOrNull<JobDriver_Poison>(TargetIndex.A);
-            f.FailOnIncapable<JobDriver_Poison>(PawnCapacityDefOf.Manipulation);
-            Toil getNextIngredient = Toils_General.Label();
-            yield return getNextIngredient;
-            foreach (Toil toil in f.ReloadAsMuchAsPossible(comp))
-                yield return toil;
-            yield return Toils_JobTransforms.ExtractNextTargetFromQueue(TargetIndex.B);
-            yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden<Toil>(TargetIndex.B).FailOnSomeonePhysicallyInteracting<Toil>(TargetIndex.B);
-            yield return Toils_Haul.StartCarryThing(TargetIndex.B, subtractNumTakenFromJobCount: true).FailOnDestroyedNullOrForbidden<Toil>(TargetIndex.B);
-            yield return Toils_Jump.JumpIf(getNextIngredient, (Func<bool>)(() => !this.job.GetTargetQueue(TargetIndex.B).NullOrEmpty<LocalTargetInfo>()));
-            foreach (Toil toil in f.ReloadAsMuchAsPossible(comp))
-                yield return toil;
-            yield return new Toil()
-            {
-                initAction = (Action)(() =>
-                {
-                    Thing carriedThing = this.pawn.carryTracker.CarriedThing;
-                    if (carriedThing == null || carriedThing.Destroyed)
-                        return;
-                    this.pawn.carryTracker.TryDropCarriedThing(this.pawn.Position, ThingPlaceMode.Near, out Thing _);
-                }),
-                defaultCompleteMode = ToilCompleteMode.Instant
-            };
-        }
+		public override bool TryMakePreToilReservations(bool errorOnFailed)
+		{
+			pawn.ReserveAsManyAsPossible(job.GetTargetQueue(TargetIndex.B), job);
+			return true;
+		}
 
-        private IEnumerable<Toil> ReloadAsMuchAsPossible(CompPoisonable comp)
-        {
-            Toil done = Toils_General.Label();
-            yield return Toils_Jump.JumpIf(done, (Func<bool>)(() => this.pawn.carryTracker.CarriedThing == null || this.pawn.carryTracker.CarriedThing.stackCount < comp.MinAmmoNeeded(true)));
-            yield return Toils_General.Wait(comp.Props.baseReloadTicks).WithProgressBarToilDelay(TargetIndex.A);
-            yield return new Toil()
-            {
-                initAction = (Action)(() => comp.ReloadFrom(this.pawn.carryTracker.CarriedThing)),
-                defaultCompleteMode = ToilCompleteMode.Instant
-            };
-            yield return done;
-        }
-    }
+		protected override IEnumerable<Toil> MakeNewToils()
+		{
+			CompPoisonable comp = Gear?.TryGetComp<CompPoisonable>();
+			this.FailOn(() => comp == null);
+			this.FailOn(() => comp.Wearer != pawn);
+			this.FailOn(() => !comp.NeedsReload(allowForcedReload: true));
+			this.FailOnDestroyedOrNull(TargetIndex.A);
+			this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
+			Toil getNextIngredient = Toils_General.Label();
+			yield return getNextIngredient;
+			foreach (Toil item in ReloadAsMuchAsPossible(comp))
+			{
+				yield return item;
+			}
+			yield return Toils_JobTransforms.ExtractNextTargetFromQueue(TargetIndex.B);
+			yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOnSomeonePhysicallyInteracting(TargetIndex.B);
+			yield return Toils_Haul.StartCarryThing(TargetIndex.B, putRemainderInQueue: false, subtractNumTakenFromJobCount: true).FailOnDestroyedNullOrForbidden(TargetIndex.B);
+			yield return Toils_Jump.JumpIf(getNextIngredient, () => !job.GetTargetQueue(TargetIndex.B).NullOrEmpty());
+			foreach (Toil item2 in ReloadAsMuchAsPossible(comp))
+			{
+				yield return item2;
+			}
+			Toil toil = new Toil();
+			toil.initAction = delegate
+			{
+				Thing carriedThing = pawn.carryTracker.CarriedThing;
+				if (carriedThing != null && !carriedThing.Destroyed)
+				{
+					pawn.carryTracker.TryDropCarriedThing(pawn.Position, ThingPlaceMode.Near, out var _);
+				}
+			};
+			toil.defaultCompleteMode = ToilCompleteMode.Instant;
+			yield return toil;
+		}
+
+		private IEnumerable<Toil> ReloadAsMuchAsPossible(CompPoisonable comp)
+		{
+			Toil done = Toils_General.Label();
+			yield return Toils_Jump.JumpIf(done, () => pawn.carryTracker.CarriedThing == null || pawn.carryTracker.CarriedThing.stackCount < comp.MinAmmoNeeded(allowForcedReload: true));
+			yield return Toils_General.Wait(comp.Props.baseReloadTicks).WithProgressBarToilDelay(TargetIndex.A);
+			Toil toil = new Toil();
+			toil.initAction = delegate
+			{
+				Thing carriedThing = pawn.carryTracker.CarriedThing;
+				comp.ReloadFrom(carriedThing);
+			};
+			toil.defaultCompleteMode = ToilCompleteMode.Instant;
+			yield return toil;
+			yield return done;
+		}
+	}
 }

@@ -8,4 +8,11 @@
       </capacities>
     </value>
   </Operation>
-</Patch>
+	<Operation Class="PatchOperationInsert">
+		<xpath>
+			Defs/ThinkTreeDef[defName="MainColonistBehaviorCore"]/thinkRoot[@Class="ThinkNode_Tagger"]/subNodes/li[@Class="ThinkNode_PrioritySorter"]/subNodes/li[@Class="JobGiver_Reload"]</xpath>
+			<value>
+				<li Class="DI_Harmacy.JobGiver_Poison"/>
+		</value>
+	</Operation>
+	</Patch>

@@ -14,8 +14,9 @@ namespace DI_Harmacy
 
 		public override float GetPriority(Pawn pawn)
 		{
-			return 5.9f;
 			Log.Message("GetPriority");
+			return 5.9f;
+			
 		}
 
 		protected override Job TryGiveJob(Pawn pawn)
@@ -38,6 +39,7 @@ namespace DI_Harmacy
 		{
 			Log.Message("MakeReloadJob");
 			//Job job = JobMaker.MakeJob(JobDefOf.Reload, comp.parent);
+			
 			Job job = JobMaker.MakeJob(DIH_JobDefs.DIH_PoisonJob, comp.parent);
 			Log.Message("MakeJobFORDDIHPOISONJOB");
 			job.targetQueueB = chosenAmmo.Select((Thing t) => new LocalTargetInfo(t)).ToList();

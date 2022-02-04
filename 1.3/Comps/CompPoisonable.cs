@@ -1,5 +1,7 @@
 ﻿// RimWorld.CompReloadable
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -11,20 +13,23 @@ public class CompPoisonable : ThingComp, IVerbOwner
 	private int remainingCharges;
 
 	private VerbTracker verbTracker;
+		
 
 		//public CompProperties_Reloadable Props => props as CompProperties_Reloadable;
 		public CompProperties_Poisonable Props => props as CompProperties_Poisonable;
 	public int RemainingCharges => remainingCharges;
-
-	public int MaxCharges => Props.maxCharges;
+		
+		public int MaxCharges => Props.maxCharges;
 
 	public ThingDef AmmoDef => Props.ammoDef;
 
 	public bool CanBeUsed => remainingCharges > 0;
 
-		//public Pawn Wearer => ReloadableUtility.WearerOf(this);
+
+		//public Pawn Wearer => PoisonableUtility.WearerOf(this);
 		public Pawn Wearer => PoisonableUtility.WearerOf(this);
-	public List<VerbProperties> VerbProperties => parent.def.Verbs;
+		
+		public List<VerbProperties> VerbProperties => parent.def.Verbs;
 
 	public List<Tool> Tools => parent.def.tools;
 
@@ -79,10 +84,47 @@ public class CompPoisonable : ThingComp, IVerbOwner
 				yield return item;
 			}
 		}
-		yield return new StatDrawEntry(StatCategoryDefOf.Apparel, "Stat_Thing_ReloadChargesRemaining_Name".Translate(Props.ChargeNounArgument), LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(Props.ChargeNounArgument), 2749);
+		//previously statcatagorydefof.apparel
+		yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadChargesRemaining_Name".Translate(Props.ChargeNounArgument), LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(Props.ChargeNounArgument), 2749);
 	}
 
-	public override void PostExposeData()
+        public IEnumerable<DamageInfo> applyPoison(IEnumerable<DamageInfo> damageInfos)
+        {
+			Log.Message("applyPoison");
+			foreach (DamageInfo dInfo in damageInfos)
+			{
+				//Log.Message(dInfo.ToString());
+				yield return dInfo;
+			}
+			
+			DamageInfo copyFrom = damageInfos.RandomElement<DamageInfo>();
+			DamageInfo poisonDamageInfo = new DamageInfo(DIH_DamageDefs.DIH_PoisonDamageBase, copyFrom.Amount, copyFrom.ArmorPenetrationInt, copyFrom.Angle, copyFrom.Instigator, copyFrom.HitPart, copyFrom.Weapon, copyFrom.Category,copyFrom.IntendedTarget,copyFrom.InstigatorGuilty);
+						
+			//Log.Message(poisonDamageInfo.ToString());
+			yield return poisonDamageInfo;
+			//return damageInfos;
+			
+		}	
+		/**private static void hediffApplicationComparisons(Pawn p, HediffDef h, FloatRange hediffFactor, BodyPartRecord targetPart)
+		{	
+			if (p.health.Dead || p.health.hediffSet.PartIsMissing(targetPart)) //If pawn dead or part missing..
+				return; //Abort.
+			bool found = false;
+			foreach (Hediff hediff in p.health.hediffSet.hediffs)
+			{
+				if (hediff.def != h || hediff.Part != targetPart)
+					continue;
+				found = true;
+				hediff.Severity += hediffFactor.RandomInRange;
+			}
+			if (!found)
+			{
+				h.initialSeverity = hediffFactor.RandomInRange;
+				p.health.AddHediff(h, targetPart);
+			}
+		}
+		**/
+		public override void PostExposeData()
 	{
 		base.PostExposeData();
 		Scribe_Values.Look(ref remainingCharges, "remainingCharges", -999);

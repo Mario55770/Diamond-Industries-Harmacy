@@ -1,4 +1,0 @@
-You can use images by changing the image line to the name of the folder here(Currently DiamondShieldTextures/BrickSack would give you my brick sack image)
-There are guides on how to make them, but Im providing a couple of textures I used. They arent high quality, but they are free. If you put your pngs in this folder, your file path is created by changing BrickSack to your pngs name.
-
-The format is name of the folder/image name. The image needs to be a png.

@@ -1,29 +1,35 @@
 ﻿// RimWorld.ReloadableUtility
-using System.Collections.Generic;
 using RimWorld;
+using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 using Verse.AI;
 namespace DI_Harmacy
-{ 
-public static class PoisonableUtility
+{
+    public static class PoisonableUtility
 {
 		//formerlyCompReloadable. Will definitely have to be modified as the comp will be on weapons not apparel but is being left for a test.
 	public static CompPoisonable FindSomeReloadableComponent(Pawn pawn, bool allowForcedReload)
 	{
-		if (pawn.apparel == null)
+			var pawnsWeapon =pawn.equipment.Primary;
+			CompPoisonable compPoisonable = pawnsWeapon.TryGetComp<CompPoisonable>();
+			if (compPoisonable != null&&compPoisonable.NeedsReload(allowForcedReload))
+			{
+				return compPoisonable;
+			}
+				/**if (pawn.apparel == null)
 		{
 			return null;
 		}
 		List<Apparel> wornApparel = pawn.apparel.WornApparel;
 		for (int i = 0; i < wornApparel.Count; i++)
 		{
-			CompPoisonable compReloadable = wornApparel[i].TryGetComp<CompPoisonable>();
-			if (compReloadable != null && compReloadable.NeedsReload(allowForcedReload))
+			CompPoisonable compPoisonable = wornApparel[i].TryGetComp<CompPoisonable>();
+			if (compPoisonable != null && compPoisonable.NeedsReload(allowForcedReload))
 			{
-				return compReloadable;
+				return compPoisonable;
 			}
-		}
+		}**/
 		return null;
 	}
 
@@ -39,18 +45,17 @@ public static class PoisonableUtility
 
 	public static IEnumerable<Pair<CompPoisonable, Thing>> FindPotentiallyReloadableGear(Pawn pawn, List<Thing> potentialAmmo)
 	{
-		if (pawn.apparel == null)
-		{
-			yield break;
-		}
-		List<Apparel> worn = pawn.apparel.WornApparel;
-		for (int i = 0; i < worn.Count; i++)
-		{
-			CompPoisonable comp = worn[i].TryGetComp<CompPoisonable>();
-			if (comp?.AmmoDef == null)
+			var pawnsWeapon = pawn.equipment.Primary;
+			CompPoisonable comp = pawnsWeapon.TryGetComp<CompPoisonable>();
+			if (comp == null)
+			{
+				yield break;
+			}
+			
+			/**if (comp?.AmmoDef == null)
 			{
 				continue;
-			}
+			}**/
 			for (int j = 0; j < potentialAmmo.Count; j++)
 			{
 				Thing thing = potentialAmmo[j];
@@ -59,12 +64,35 @@ public static class PoisonableUtility
 					yield return new Pair<CompPoisonable, Thing>(comp, thing);
 				}
 			}
-		}
+			/**if (pawn.apparel == null)
+			{
+				yield break;
+			}
+			List<Apparel> worn = pawn.apparel.WornApparel;
+			for (int i = 0; i < worn.Count; i++)
+			{
+				CompPoisonable comp = worn[i].TryGetComp<CompPoisonable>();
+				if (comp?.AmmoDef == null)
+				{
+					continue;
+				}
+				for (int j = 0; j < potentialAmmo.Count; j++)
+				{
+					Thing thing = potentialAmmo[j];
+					if (thing.def == comp.Props.ammoDef)
+					{
+						yield return new Pair<CompPoisonable, Thing>(comp, thing);
+					}
+				}
+			
+		}**/
 	}
 
 	public static Pawn WearerOf(CompPoisonable comp)
 	{
-		return (comp.ParentHolder as Pawn_ApparelTracker)?.pawn;
+			return (comp.ParentHolder as Pawn);
+			//return (Thing.ParentHolder is Pawn pawn);
+		//return (comp.ParentHolder as Pawn_ApparelTracker)?.pawn;
 	}
 
 	public static int TotalChargesFromQueuedJobs(Pawn pawn, ThingWithComps gear)

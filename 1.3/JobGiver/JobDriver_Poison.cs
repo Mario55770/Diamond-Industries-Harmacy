@@ -1,11 +1,11 @@
 ﻿// RimWorld.JobDriver_Reload
-using System.Collections.Generic;
 using RimWorld;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 namespace DI_Harmacy
 {
-	public class JobDriver_Poison : JobDriver
+    public class JobDriver_Poison : JobDriver
 	{
 		private const TargetIndex GearInd = TargetIndex.A;
 
@@ -15,14 +15,14 @@ namespace DI_Harmacy
 
 		public override bool TryMakePreToilReservations(bool errorOnFailed)
 		{
-			Log.Message("TryMakePreToilReservation");
+			//Log.Message("TryMakePreToilReservation");
 			pawn.ReserveAsManyAsPossible(job.GetTargetQueue(TargetIndex.B), job);
 			return true;
 		}
 
 		protected override IEnumerable<Toil> MakeNewToils()
 		{
-			Log.Message("MakeNewToils");
+			//Log.Message("MakeNewToils");
 			CompPoisonable comp = Gear?.TryGetComp<CompPoisonable>();
 			this.FailOn(() => comp == null);
 			this.FailOn(() => comp.Wearer != pawn);
@@ -58,7 +58,7 @@ namespace DI_Harmacy
 
 		private IEnumerable<Toil> ReloadAsMuchAsPossible(CompPoisonable comp)
 		{
-			Log.Message("ReloadAsMuchAsPossible");
+			//Log.Message("ReloadAsMuchAsPossible");
 			Toil done = Toils_General.Label();
 			yield return Toils_Jump.JumpIf(done, () => pawn.carryTracker.CarriedThing == null || pawn.carryTracker.CarriedThing.stackCount < comp.MinAmmoNeeded(allowForcedReload: true));
 			yield return Toils_General.Wait(comp.Props.baseReloadTicks).WithProgressBarToilDelay(TargetIndex.A);

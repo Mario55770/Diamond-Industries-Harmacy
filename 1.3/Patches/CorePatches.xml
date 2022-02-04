@@ -15,4 +15,12 @@
 				<li Class="DI_Harmacy.JobGiver_Poison"/>
 		</value>
 	</Operation>
+	<!--<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Cobra"]/tools/li[label="venom-fangs"]/capacities</xpath>
+		<value>
+			<capacities>
+				<li>DIH_VSnakeBite</li>
+			</capacities>
+		</value>
+	</Operation>-->
 	</Patch>

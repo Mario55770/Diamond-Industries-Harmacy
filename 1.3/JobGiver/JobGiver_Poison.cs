@@ -14,14 +14,14 @@ namespace DI_Harmacy
 
 		public override float GetPriority(Pawn pawn)
 		{
-			Log.Message("GetPriority");
+			//Log.Message("GetPriority");
 			return 5.9f;
 			
 		}
 
 		protected override Job TryGiveJob(Pawn pawn)
 		{
-			Log.Message("TryGiveJob");
+			//Log.Message("TryGiveJob");
 			CompPoisonable compPoisonable = PoisonableUtility.FindSomeReloadableComponent(pawn, allowForcedReload: false);
 			if (compPoisonable == null)
 			{
@@ -37,17 +37,17 @@ namespace DI_Harmacy
 
 		public static Job MakeReloadJob(CompPoisonable comp, List<Thing> chosenAmmo)
 		{
-			Log.Message("MakeReloadJob");
+			//Log.Message("MakeReloadJob");
 			//Job job = JobMaker.MakeJob(JobDefOf.Reload, comp.parent);
 			
 			Job job = JobMaker.MakeJob(DIH_JobDefs.DIH_PoisonJob, comp.parent);
-			Log.Message("MakeJobFORDDIHPOISONJOB");
+			//Log.Message("MakeJobFORDDIHPOISONJOB");
 			job.targetQueueB = chosenAmmo.Select((Thing t) => new LocalTargetInfo(t)).ToList();
-			Log.Message("ChosenPoison");
+			//Log.Message("ChosenPoison");
 			job.count = chosenAmmo.Sum((Thing t) => t.stackCount);
-			Log.Message("Made a list of ammo?");
+			//Log.Message("Made a list of ammo?");
 			job.count = Math.Min(job.count, comp.MaxAmmoNeeded(allowForcedReload: true));
-			Log.Message("Counted stuff and compared?");
+			//Log.Message("Counted stuff and compared?");
 			return job;
 		}
 	}

@@ -4,7 +4,9 @@
 	<ThingDef ParentName="ResourceBase" Name="PoisonBase" Abstract="True">
 		<!--<thingClass>Poison</thingClass>-->
 		<graphicData>
-			<texPath>Things/Item/Resource/Neutroamine</texPath>
+			<!--
+			<texPath>Things/Item/Resource/Neutroamine</texPath>-->
+			<texPath>Things/Item/Resource/GenericPoison</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<drawSize>0.90</drawSize>
 		</graphicData>
@@ -43,4 +45,20 @@
 		  <MarketValue>30</MarketValue>
 	  </statBases>
   </ThingDef>
+	<ThingDef ParentName="PoisonBase">
+		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
+		<defName>DIH_SnakeVenomVial</defName>
+		<!--This is the name displayed in game-->
+		<label>vial of snake venom</label>
+		<!--the descritpion of the item-->
+		<description>Full of venom either directly from a snake or designed to emulate it. Either way, it'll work the same, by making someones life worse.</description>
+		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
+		<graphicData>
+			<color>(255,255,255)</color>
+		</graphicData>
+		<statBases>
+			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
+			<MarketValue>30</MarketValue>
+		</statBases>
+	</ThingDef>
 </Defs>

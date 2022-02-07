@@ -3,16 +3,18 @@
 	<!--<DamageDef Name="DIH_PoisonDamageBase">-->
 	<DamageDef>
 		<defName>DIH_PoisonDamageBase</defName>
-		<label>crush</label>
-		<workerClass>DamageWorker_AddInjury</workerClass>
+		<label>poison</label>
+		<workerClass>DI_Harmacy.DamageWorker_ApplyPoison</workerClass>
 		<externalViolence>true</externalViolence>
-		<deathMessage>{0} has been crushed to death.</deathMessage>
-		<hediff>Crush</hediff>
-		<hediffSkin>Cut</hediffSkin>
-		<hediffSolid>Crack</hediffSolid>
+		<deathMessage>{0} has been been fatally poisoned.</deathMessage>
+		<hediff>DIH_MidnightMurder</hediff>
+		<hediffSolid>DIH_MidnightMurder</hediffSolid>
+		<!--<hediff>Scratch</hediff>
+		<hediffSolid>Crack</hediffSolid>-->
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-		<impactSoundType>Blunt</impactSoundType>
-		<armorCategory>Blunt</armorCategory>
-		<overkillPctToDestroyPart>0.4~1.0</overkillPctToDestroyPart>
+		<impactSoundType>Toxic</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+		<scratchSplitPercentage>0.67</scratchSplitPercentage>
 	</DamageDef>
 </Defs>

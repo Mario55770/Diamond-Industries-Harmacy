@@ -4,9 +4,9 @@
 	<ThingDef ParentName="ResourceBase" Name="PoisonBase" Abstract="True">
 		<!--<thingClass>Poison</thingClass>-->
 		<graphicData>
-			<!--
-			<texPath>Things/Item/Resource/Neutroamine</texPath>-->
-			<texPath>Things/Item/Resource/GenericPoison</texPath>
+			
+			<texPath>Things/Item/Resource/Neutroamine</texPath>
+			<!--<texPath>Things/Item/Resource/GenericPoison</texPath>-->
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<drawSize>0.90</drawSize>
 		</graphicData>

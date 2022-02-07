@@ -98,32 +98,16 @@ public class CompPoisonable : ThingComp, IVerbOwner
 			}
 			
 			DamageInfo copyFrom = damageInfos.RandomElement<DamageInfo>();
-			DamageInfo poisonDamageInfo = new DamageInfo(DIH_DamageDefs.DIH_PoisonDamageBase, copyFrom.Amount, copyFrom.ArmorPenetrationInt, copyFrom.Angle, copyFrom.Instigator, copyFrom.HitPart, copyFrom.Weapon, copyFrom.Category,copyFrom.IntendedTarget,copyFrom.InstigatorGuilty);
-						
-			//Log.Message(poisonDamageInfo.ToString());
+			//DamageInfo poisonDamageInfo = new DamageInfo(DIH_DamageDefs.DIH_PoisonDamageBase, copyFrom.Amount, copyFrom.ArmorPenetrationInt, copyFrom.Angle, copyFrom.Instigator, copyFrom.HitPart, copyFrom.Weapon, copyFrom.Category,copyFrom.IntendedTarget,copyFrom.InstigatorGuilty);
+			//DefDatabase< typeof(DamageDef)>.getNamed("DIH_PoisonDamageBase");
+			DamageInfo poisonDamageInfo = new DamageInfo(DIH_DamageDefs.DIH_PoisonDamageBase, copyFrom.Amount, instigator: copyFrom.Instigator) ;
+			Log.Message("TEST");
+			poisonDamageInfo.Def.hediff = Props.hediffToApply;
 			yield return poisonDamageInfo;
 			//return damageInfos;
 			
 		}	
-		/**private static void hediffApplicationComparisons(Pawn p, HediffDef h, FloatRange hediffFactor, BodyPartRecord targetPart)
-		{	
-			if (p.health.Dead || p.health.hediffSet.PartIsMissing(targetPart)) //If pawn dead or part missing..
-				return; //Abort.
-			bool found = false;
-			foreach (Hediff hediff in p.health.hediffSet.hediffs)
-			{
-				if (hediff.def != h || hediff.Part != targetPart)
-					continue;
-				found = true;
-				hediff.Severity += hediffFactor.RandomInRange;
-			}
-			if (!found)
-			{
-				h.initialSeverity = hediffFactor.RandomInRange;
-				p.health.AddHediff(h, targetPart);
-			}
-		}
-		**/
+		
 		public override void PostExposeData()
 	{
 		base.PostExposeData();

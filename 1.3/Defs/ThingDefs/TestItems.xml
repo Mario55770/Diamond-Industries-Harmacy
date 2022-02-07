@@ -71,6 +71,7 @@
 			  <chargeNoun>jump</chargeNoun>
 			  <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
 			  <hediffToApply>DIH_SnakeVenom</hediffToApply>
+			  <applyToStruckPart>false</applyToStruckPart>
 		  </li>
 	  </comps>
 	  <!--<verbs>

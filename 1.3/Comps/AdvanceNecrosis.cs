@@ -14,10 +14,14 @@ namespace DI_Harmacy
             
             if (i % 16 == 0)
             {
-
-                foreach (Hediff_Injury toCheck in Pawn.health.hediffSet.GetInjuriesTendable())
+                if (Pawn == null || Pawn.Dead || Pawn.health.hediffSet.GetInjuriesTendable() == null||Pawn.health.hediffSet.GetInjuriesTendable().Count() == 0)
                 {
-
+                    return;
+                }
+                    foreach (Hediff_Injury toCheck in Pawn.health.hediffSet.GetInjuriesTendable())
+                {
+                    if (toCheck == null)
+                        return;
                     if (toCheck.ageTicks < 10 && !toCheck.def.Equals(DIH_Hediffs.DIH_NecroticTissue))
                     {
                         //Log.Message(toCheck.Severity.ToString());
@@ -28,14 +32,15 @@ namespace DI_Harmacy
                         d.SetHitPart(toCheck.Part);
 
                         Pawn.health.AddHediff(DIH_Hediffs.DIH_NecroticTissue, toCheck.Part, d);
-                        
-
-
                     }
                 }
                     IEnumerable<Hediff_Injury> necroticList = (from x in Pawn.health.hediffSet.GetInjuriesTendable() where x.def.Equals(DIH_Hediffs.DIH_NecroticTissue) select x);
+                if (necroticList == null||necroticList.Count()==0)
+                    return;
                 Hediff_Injury necroticInjury = necroticList.RandomElement();
-                {
+                if (necroticInjury == null)
+                    return;
+                
                     if (necroticInjury.def.Equals(DIH_Hediffs.DIH_NecroticTissue))
                     {
 
@@ -46,7 +51,7 @@ namespace DI_Harmacy
                             Pawn.health.Notify_HediffChanged(necroticInjury);
                         }
                     }
-                }
+                
 
 
 

@@ -21,14 +21,12 @@ namespace DI_Harmacy
             var mOriginal = AccessTools.Method(typeof(Verb_MeleeAttackDamage), "DamageInfosToApply"); // if possible use nameof() here
                                                                                                       // var mPrefix = SymbolExtensions.GetMethodInfo(() => MyPrefix());
             IEnumerable<DamageInfo> test = null;
-            var mPostfix = SymbolExtensions.GetMethodInfo(() => MyPostfix(test));
-            // in general, add null checks here (new HarmonyMethod() does it for you too)
-
-            harmony.Patch(mOriginal, null,  new HarmonyMethod(mPostfix));//new HarmonyMethod(mPrefix), new HarmonyMethod(mPostfix));
+            var mPostfix = SymbolExtensions.GetMethodInfo(() => meleeWeaponPoisonPostFix(test));
+            harmony.Patch(mOriginal, null, new HarmonyMethod(mPostfix));//new HarmonyMethod(mPrefix), new HarmonyMethod(mPostfix));
+            
         }
-
-
-        public static IEnumerable<DamageInfo> MyPostfix(IEnumerable<DamageInfo> __result)
+       // [HarmonyDebug]
+        public static IEnumerable<DamageInfo> meleeWeaponPoisonPostFix(IEnumerable<DamageInfo> __result)
         {
            
                 CompPoisonable compPoisonable = null;
@@ -40,7 +38,7 @@ namespace DI_Harmacy
             //Log.Message("CheckNull");
                 if (v.Weapon == null || pawn == null ||!pawn.RaceProps.Humanlike)
                 {
-                    Log.Message("PawnNull");
+                   // Log.Message("PawnNull");
                     return __result;
                 }
             //Log.Message("Weaponnullcheck");
@@ -48,26 +46,24 @@ namespace DI_Harmacy
                 ThingWithComps weapon = pawn.equipment.Primary;
                 if (weapon == null || weapon.def == null)
                 {
-                    Log.Message("WeaponNull");
+                    //Log.Message("WeaponNull");
                     return __result;
                 }
             //Log.Message("WeaponCompare");
                 if (weapon.def == v.Weapon)
                 {
                     compPoisonable = weapon.TryGetComp<CompPoisonable>();
-                Log.Message("CompCheck");
+                //Log.Message("CompCheck");
                     if (compPoisonable != null && compPoisonable.CanBeUsed)
                     {
-                        Log.Message("UsedOnce");
-                        compPoisonable.UsedOnce();
-                    Log.Message("ApplyPoison");
+                     
                     
                   return compPoisonable.applyPoison(__result);
                    
                 }
                     else
                     {
-                        Log.Message("CompCheckedNull");
+                  //      Log.Message("CompCheckedNull");
                         return __result;
                     }
                 }

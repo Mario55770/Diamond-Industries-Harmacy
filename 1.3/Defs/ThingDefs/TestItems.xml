@@ -67,10 +67,10 @@
 			  <ammoCountPerCharge>20</ammoCountPerCharge>
 			  <baseReloadTicks>60</baseReloadTicks>
 			  <soundReload>Standard_Reload</soundReload>
-			  <hotKey>Misc4</hotKey>
+			  <!--<hotKey>Misc4</hotKey>
 			  <chargeNoun>jump</chargeNoun>
 			  <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
-			  <hediffToApply>DIH_SnakeVenom</hediffToApply>
+			  --><hediffToApply>DIH_SnakeVenom</hediffToApply>
 			  <applyToStruckPart>false</applyToStruckPart>
 		  </li>
 	  </comps>
@@ -167,18 +167,22 @@
       </li>
     </tools>
     <tickerType>Normal</tickerType>
-    <comps>
-      <li Class="DI_Harmacy.CompProperties_Poisonable">
-        <maxCharges>5</maxCharges>
-        <ammoDef>Chemfuel</ammoDef>
-        <ammoCountPerCharge>20</ammoCountPerCharge>
-        <baseReloadTicks>60</baseReloadTicks>
-        <soundReload>Standard_Reload</soundReload>
-        <hotKey>Misc4</hotKey>
-        <chargeNoun>jump</chargeNoun>
-        <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
-      </li>
-    </comps>
+	  <comps>
+		  <li Class="DI_Harmacy.CompProperties_Poisonable">
+			  <!--<li Class="CompProperties_Reloadable">-->
+			  <maxCharges>5</maxCharges>
+			  <ammoDef>Chemfuel</ammoDef>
+			  <ammoCountPerCharge>20</ammoCountPerCharge>
+			  <baseReloadTicks>60</baseReloadTicks>
+			  <soundReload>Standard_Reload</soundReload>
+			  <!--<hotKey>Misc4</hotKey>
+			  <chargeNoun>jump</chargeNoun>
+			  <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+			  -->
+			  <hediffToApply>DIH_SnakeVenom</hediffToApply>
+			  <applyToStruckPart>false</applyToStruckPart>
+		  </li>
+	  </comps>
     <!--<verbs>
       <li>
         <verbClass>Verb_Jump</verbClass>

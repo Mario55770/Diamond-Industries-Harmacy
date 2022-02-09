@@ -88,26 +88,20 @@ public class CompPoisonable : ThingComp, IVerbOwner
 		yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadChargesRemaining_Name".Translate(Props.ChargeNounArgument), LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(Props.ChargeNounArgument), 2749);
 	}
 
+		//currently only used on melee damage. Made partly redundant by changes in handling.
         public IEnumerable<DamageInfo> applyPoison(IEnumerable<DamageInfo> damageInfos)
         {
-
-			//Log.Message("applyPoison");
+			//hand the original list back unchanged.
 			foreach (DamageInfo dInfo in damageInfos)
 			{
-				//Log.Message(dInfo.ToString());
 				yield return dInfo;
 			}
 			//ends method if theres no hediff to use.
 			if(Props.hediffToApply==null)
 			{ yield break; }
 			DamageInfo copyFrom = damageInfos.RandomElement<DamageInfo>();
-			//DamageInfo poisonDamageInfo = new DamageInfo(DIH_DamageDefs.DIH_PoisonDamageBase, copyFrom.Amount, copyFrom.ArmorPenetrationInt, copyFrom.Angle, copyFrom.Instigator, copyFrom.HitPart, copyFrom.Weapon, copyFrom.Category,copyFrom.IntendedTarget,copyFrom.InstigatorGuilty);
-			//DefDatabase< typeof(DamageDef)>.getNamed("DIH_PoisonDamageBase");
 			DamageInfo poisonDamageInfo = new DamageInfo(DIH_DamageDefs.DIH_PoisonDamageBase, copyFrom.Amount, instigator: copyFrom.Instigator) ;
-			//Log.Message("TEST");
-			//poisonDamageInfo.Def.hediff = Props.hediffToApply;
 			yield return poisonDamageInfo;
-			//return damageInfos;
 			
 		}	
 		

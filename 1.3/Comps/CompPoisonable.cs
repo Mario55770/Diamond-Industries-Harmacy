@@ -90,19 +90,22 @@ public class CompPoisonable : ThingComp, IVerbOwner
 
         public IEnumerable<DamageInfo> applyPoison(IEnumerable<DamageInfo> damageInfos)
         {
-			Log.Message("applyPoison");
+
+			//Log.Message("applyPoison");
 			foreach (DamageInfo dInfo in damageInfos)
 			{
 				//Log.Message(dInfo.ToString());
 				yield return dInfo;
 			}
-			
+			//ends method if theres no hediff to use.
+			if(Props.hediffToApply==null)
+			{ yield break; }
 			DamageInfo copyFrom = damageInfos.RandomElement<DamageInfo>();
 			//DamageInfo poisonDamageInfo = new DamageInfo(DIH_DamageDefs.DIH_PoisonDamageBase, copyFrom.Amount, copyFrom.ArmorPenetrationInt, copyFrom.Angle, copyFrom.Instigator, copyFrom.HitPart, copyFrom.Weapon, copyFrom.Category,copyFrom.IntendedTarget,copyFrom.InstigatorGuilty);
 			//DefDatabase< typeof(DamageDef)>.getNamed("DIH_PoisonDamageBase");
 			DamageInfo poisonDamageInfo = new DamageInfo(DIH_DamageDefs.DIH_PoisonDamageBase, copyFrom.Amount, instigator: copyFrom.Instigator) ;
-			Log.Message("TEST");
-			poisonDamageInfo.Def.hediff = Props.hediffToApply;
+			//Log.Message("TEST");
+			//poisonDamageInfo.Def.hediff = Props.hediffToApply;
 			yield return poisonDamageInfo;
 			//return damageInfos;
 			

@@ -112,6 +112,7 @@
     <Compile Include="1.3\JobGiver\JobGiver_Poison.cs" />
     <Compile Include="1.3\JobGiver\PoisonableUtility.cs" />
     <Compile Include="1.3\Patches\HarmonyPatching.cs" />
+    <Compile Include="1.3\Patches\RangedHarmonyPatch.cs" />
     <Compile Include="1.3\Verbs\VerbPoison_Jump.cs" />
     <Compile Include="1.3\Verbs\Verbs.cs" />
     <None Include="DIH\ModSettings.cs" />

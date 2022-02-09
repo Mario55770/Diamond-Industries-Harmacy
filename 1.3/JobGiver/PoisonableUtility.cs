@@ -90,7 +90,8 @@ namespace DI_Harmacy
 
 	public static Pawn WearerOf(CompPoisonable comp)
 	{
-			return (comp.ParentHolder as Pawn);
+			
+			return ((comp.ParentHolder as Pawn_EquipmentTracker)?.pawn);
 			//return (Thing.ParentHolder is Pawn pawn);
 		//return (comp.ParentHolder as Pawn_ApparelTracker)?.pawn;
 	}

@@ -82,6 +82,8 @@
     <Content Include="1.3\Defs\ThingDefs\TestItems.xml" />
     <Content Include="1.3\Defs\ThingDefs\ThingCategories.xml" />
     <Content Include="1.3\Defs\ThingDefs\PoisonVialDefs.xml" />
+    <Content Include="1.3\Defs\UIDefs\PawnColumn.xml" />
+    <Content Include="1.3\Patches\CoreMenuPatches.xml" />
     <Content Include="1.3_Royalty\Patches\RoyaltyPatches.xml" />
     <Content Include="1.3\Defs\BuildingDefs\BulkDrugBench.xml" />
     <Content Include="1.3\Defs\DamageDefs\MidnightMurderDamageDefs.xml" />
@@ -90,7 +92,7 @@
     <Content Include="1.3\Defs\HediffDefs\Necrosis.xml" />
     <Content Include="1.3\Defs\HediffDefs\SnakeVenom.xml" />
     <Content Include="1.3\Defs\ResearchDefs\ResearchDefs.xml" />
-    <Content Include="1.3\Patches\CorePatches.xml" />
+    <Content Include="1.3\Patches\CombatCorePatches.xml" />
     <Content Include="About\About.xml" />
     <Content Include="About\Manifest.xml" />
     <Content Include="About\Preview.png" />
@@ -102,7 +104,7 @@
     <Compile Include="1.3\Comps\CompPoisonable.cs" />
     <Compile Include="1.3\Comps\CompProperties_Poisonable.cs" />
     <None Include="1.3\Comps\GizmoPoisonAmmoStatus.cs" />
-    <Compile Include="1.3\Comps\RecipeAssignment.cs" />
+    <Compile Include="1.3\Defs\RecipeDefs\RecipeAssignment.cs" />
     <Compile Include="1.3\Comps\AdvanceNecrosis.cs" />
     <Compile Include="1.3\DamageWorkers\DamageWorker_ApplyPoison.cs" />
     <Compile Include="1.3\Defs\DamageDefs\DIH_DamageDefs.cs" />
@@ -113,13 +115,16 @@
     <Compile Include="1.3\JobGiver\PoisonableUtility.cs" />
     <Compile Include="1.3\Patches\HarmonyPatching.cs" />
     <Compile Include="1.3\Patches\RangedHarmonyPatch.cs" />
+    <Compile Include="1.3\UI\PoisonPolicyEntry.cs" />
+    <Compile Include="1.3\UI\PawnColumnWorker_PoisonPolicy.cs" />
+    <Compile Include="1.3\UI\PoisonPolicy.cs" />
+    <Compile Include="1.3\UI\Pawn_PoisonPolicyTracker.cs" />
+    <Compile Include="1.3\UI\PoisonPolicyUIUtility.cs" />
     <Compile Include="1.3\Verbs\VerbPoison_Jump.cs" />
     <Compile Include="1.3\Verbs\Verbs.cs" />
     <None Include="DIH\ModSettings.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="1.3\Defs\RecipeDefs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />

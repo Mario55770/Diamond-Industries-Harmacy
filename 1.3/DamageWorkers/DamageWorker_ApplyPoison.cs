@@ -18,6 +18,7 @@ namespace DI_Harmacy
 
         protected override void ApplySpecialEffectsToPart(Pawn pawn, float totalDamage, DamageInfo dinfo, DamageResult result)
         {
+           // Log.Message("TEST");
             //get the variables
             CompPoisonable compPoisonable = null;
             Pawn p = (dinfo.Instigator as Pawn); 

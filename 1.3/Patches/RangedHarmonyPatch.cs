@@ -7,7 +7,7 @@ using HarmonyLib;
 namespace DI_Harmacy
 {
     [StaticConstructorOnStartup]
-    
+    [HarmonyDebug]
     class RangedHarmonyPatch
     {
         static ExtraDamage poisonDamage;
@@ -26,7 +26,7 @@ namespace DI_Harmacy
             Projectile p = null;
             var rPostFix = SymbolExtensions.GetMethodInfo(() => rangedPoisonPostFix(variables, variables, ref p));
             harmony.Patch(rOriginal, null, new HarmonyMethod(rPostFix));
-             poisonDamage = new ExtraDamage
+            poisonDamage = new ExtraDamage
             {
                 chance = 1f,
                 amount = 1f
@@ -48,32 +48,31 @@ namespace DI_Harmacy
                 return;
 
 
-            //get the vvariable one and work with it
-            List<ExtraDamage> extraDamages1 = __instance.def.projectile.extraDamages;
-            //if null or empty, create my own list, with my own poison damage
-            if (extraDamages1.NullOrEmpty())
-            {       
+
+            if (__instance.def.projectile.extraDamages.NullOrEmpty<ExtraDamage>())
+            {
+                if (__instance.def.projectile.extraDamages == null)
+                {
+
                     ExtraDamage[] extradamageArr = { poisonDamage };
                     List<ExtraDamage> extraDamages = new List<ExtraDamage>(extradamageArr);
-                extraDamages1 = extraDamages;
-                
+                    __instance.def.projectile.extraDamages = extraDamages;
+                }
             }
             else
             {
-                //check each extra damage for my daamge def.
-                foreach (ExtraDamage exDamage in extraDamages1)
+
+                foreach (ExtraDamage exDamage in __instance.def.projectile.extraDamages)
                 {
-                    //if found, end
                     if (exDamage.def.Equals(poisonDamage.def))
                     {
 
                         return;
                     }
                 }
-                //if it hits this point, it means that I need to add my poison to the list
-                extraDamages1.Add(poisonDamage);
+                __instance.def.projectile.extraDamages.Add(poisonDamage);
             }
-           
+
 
         }
     }

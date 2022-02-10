@@ -11,6 +11,7 @@ namespace DI_Harmacy
     class RangedHarmonyPatch
     {
         static ExtraDamage poisonDamage;
+        static DamageDef poisonDamageDef;
         static RangedHarmonyPatch()
         {
             // Log.Message("TEST LAUNCH ERROR");
@@ -35,7 +36,7 @@ namespace DI_Harmacy
             poisonDamage.armorPenetration = 1f;
 
 
-            DamageDef poisonDamageDef = DIH_DamageDefs.DIH_PoisonDamageBase;
+            poisonDamageDef = DIH_DamageDefs.DIH_PoisonDamageBase;
 
             poisonDamageDef.isRanged = true;
 
@@ -58,11 +59,11 @@ namespace DI_Harmacy
             }
             else
             {
-                //searches through each Extra damage for one with the damage def I made earlier. Definitely unoptimal cause I could cache the def instead of getting it each time.
+                //searches through each Extra damage for one with the damage def I made earlier.
                 foreach (ExtraDamage exDamage in __instance.def.projectile.extraDamages)
                 {
                     //if match, end method
-                    if (exDamage.def.Equals(poisonDamage.def))
+                    if (exDamage.def.Equals(poisonDamageDef))
                     {
                         return;
                     }

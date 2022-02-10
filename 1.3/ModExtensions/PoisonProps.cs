@@ -6,10 +6,8 @@ using Verse;
 
 namespace DI_Harmacy
 {
-    class PoisonProps : DefModExtension
+    class PoisonProps:DefModExtension
     {
-        public bool isPoison = true;
         public HediffDef poisonInflicts = null;
-        
     }
 }

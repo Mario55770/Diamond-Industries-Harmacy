@@ -56,6 +56,11 @@
 			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
 			<MarketValue>30</MarketValue>
 		</statBases>
+		<modExtensions>
+			<li Class="DI_Harmacy.PoisonProps">
+				<poisonInflicts>DIH_SnakeVenom</poisonInflicts>
+			</li>
+		</modExtensions>
 	</ThingDef>
 	<ThingDef ParentName="PoisonBase">
 		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
@@ -72,6 +77,11 @@
 			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
 			<MarketValue>30</MarketValue>
 		</statBases>
+		<modExtensions>
+			<li Class="DI_Harmacy.PoisonProps">
+				<poisonInflicts>DIH_BrickKnockoutPoison</poisonInflicts>
+			</li>
+		</modExtensions>
 	</ThingDef>
 	<ThingDef ParentName="PoisonBase">
 		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
@@ -87,6 +97,11 @@
 		<statBases>
 			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
 			<MarketValue>30</MarketValue>
+			<modExtensions>
+				<li Class="DI_Harmacy.PoisonProps">
+					<poisonInflicts>DIH_MidnightMurder</poisonInflicts>
+				</li>
+			</modExtensions>
 		</statBases>
 	</ThingDef>
 </Defs>

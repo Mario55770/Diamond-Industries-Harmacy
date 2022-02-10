@@ -18,38 +18,37 @@ namespace DI_Harmacy
 
         protected override void ApplySpecialEffectsToPart(Pawn pawn, float totalDamage, DamageInfo dinfo, DamageResult result)
         {
-            Log.Message("This ran");
+           // Log.Message("TEST");
+            //get the variables
             CompPoisonable compPoisonable = null;
-            //(comp.ParentHolder as Pawn)
-            //Log.Message("Var V");
-            
-            //Log.Message("PAwnInstagate");
-            Pawn p = (dinfo.Instigator as Pawn);
-            //Log.Message("CheckNull");
-            
+            Pawn p = (dinfo.Instigator as Pawn); 
             ThingWithComps weapon = p.equipment.Primary;
-            //Log.Message("CheckComp");
             compPoisonable = weapon.TryGetComp<CompPoisonable>();
+            //if comp is null or can't be used. Makes a bunch of code from elsewhere redundant, which should be removed.
             if (compPoisonable == null ||compPoisonable.CanBeUsed==false)
             {
                 return;
             }
+            //Uses poison.
             compPoisonable.UsedOnce();
-                HediffDef h = compPoisonable.Props.hediffToApply;
-            Log.Message(h.ToString());
+            //gets from original comp to help cut down redundant code. Probably slightly worse for performance...
+            HediffDef h = compPoisonable.Props.hediffToApply;
+            //should be lumped in next if statement but its more readable
+            //Ends the method if the hediff is null
+            if(h==null)
+            { return; }
+            //gets the amount applied if the damage info has a different amount than default this is important
             float appliedAmount = dinfo.Amount;
             //lessons the poison by same amount toxic buildup does
             appliedAmount *= 0.028758334f;
             //multiplies by toxic sensitivity
             appliedAmount *= pawn.GetStatValue(StatDefOf.ToxicSensitivity);
-            // Log.Message("TEST");
+            //gets hit part
             BodyPartRecord targetPart = dinfo.HitPart;
+            //Applies to struck part if possible and told to do so. As a comptablity measure if its null it just defaults to whole body handling.
             if (compPoisonable.Props.applyToStruckPart&&targetPart!=null)
             {
-                //private static void hediffApplicationComparisons(Pawn p, HediffDef h, FloatRange hediffFactor, BodyPartRecord targetPart)
-                
-                
-                
+                //borrowed from the hediff handler from diamond shield. Checks if pawns dead first and the part is there
                 if (pawn.health.Dead || pawn.health.hediffSet.PartIsMissing(targetPart)) //If pawn dead or part missing..
                     return; //Abort.
                 bool found = false;

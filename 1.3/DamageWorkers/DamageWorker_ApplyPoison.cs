@@ -18,7 +18,7 @@ namespace DI_Harmacy
 
         protected override void ApplySpecialEffectsToPart(Pawn pawn, float totalDamage, DamageInfo dinfo, DamageResult result)
         {
-            Log.Message("This ran");
+            
             CompPoisonable compPoisonable = null;
             //(comp.ParentHolder as Pawn)
             //Log.Message("Var V");

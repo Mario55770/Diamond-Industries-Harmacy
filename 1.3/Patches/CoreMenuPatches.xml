@@ -6,4 +6,15 @@
 			<li>DIHPoisonPolicy</li>
 		</value>
 	</Operation>
+	<Operation Class="PatchOperationInsert">
+		<xpath>Defs/ThingDef[defName="Human"]</xpath>
+		<value>
+			<modExtensions>
+				<li Class="DI_Harmacy.PawnPoisonTrackerExtension">
+					<test>false</test>
+				</li>
+			</modExtensions>
+		</value>
+	</Operation>
+	
 </Patch>

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Verse;
+﻿// RimWorld.PawnColumnWorker_DrugPolicy
 using RimWorld;
 using UnityEngine;
+using Verse;
 using Verse.Sound;
-
 namespace DI_Harmacy
 {
-    class PawnColumnWorker_PoisonPolicy : PawnColumnWorker
-    {
+	public class PawnColumnWorker_PoisonPolicy : PawnColumnWorker
+	{
 		private const int TopAreaHeight = 65;
 
 		public const int ManageDrugPoliciesButtonHeight = 32;
@@ -23,7 +19,7 @@ namespace DI_Harmacy
 			Rect rect2 = new Rect(rect.x, rect.y + (rect.height - 65f), Mathf.Min(rect.width, 360f), 32f);
 			if (Widgets.ButtonText(rect2, "Manage poison policies"))//"ManageDrugPolicies".Translate()))
 			{
-				Find.WindowStack.Add(new Dialog_ManagePoisonPolicies(null));
+				Find.WindowStack.Add(new Dialog_ManageDrugPolicies(null));
 			}
 			UIHighlighter.HighlightOpportunity(rect2, "Manage poison policies");//"ManageDrugPolicies");
 			UIHighlighter.HighlightOpportunity(rect2, "ButtonAssignPoisons");//"ButtonAssignDrugs");
@@ -31,13 +27,12 @@ namespace DI_Harmacy
 
 		public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
 		{
-			Pawn_PoisonPolicyTracker pawn_PoisonPolicyTracker = pawn.def.GetModExtension<PawnPoisonTrackerExtension>().pawn_PoisonPolicyTracker;
+			Pawn_PoisonPolicyTracker pawn_PoisonPolicyTracker=pawn.def.GetModExtension<PawnPoisonTrackerExtension>().pawn_PoisonPolicyTracker;
 			//Log.Message("DocEll");
 			//if (pawn.drugs != null)
-			if (pawn_PoisonPolicyTracker != null)
+			if(pawn_PoisonPolicyTracker!=null)
 			{
-				Log.Error("NotImplementedDoCell");
-			//	PoisonPolicyUiUtility.DoAssignDrugPolicyButtons(rect, pawn);
+				PoisonPolicyUiUtility.DoAssignDrugPolicyButtons(rect, pawn);
 			}
 		}
 
@@ -67,18 +62,11 @@ namespace DI_Harmacy
 
 		private int GetValueToCompare(Pawn pawn)
 		{
-			Pawn_PoisonPolicyTracker pawn_PoisonPolicyTracker = pawn.def.GetModExtension<PawnPoisonTrackerExtension>().pawn_PoisonPolicyTracker;
-
-			if (pawn_PoisonPolicyTracker!=null)
-            {
-				Log.Error("GetValueToCompareNotImplemented");
-				//return pawn_PoisonPolicyTracker.
-            }
 			//Log.Message("GetValueToCompare");
-			//if (pawn.drugs != null && pawn.drugs.CurrentPolicy != null)
-			//{
-				//return pawn.drugs.CurrentPolicy.uniqueId;
-			//}
+			if (pawn.drugs != null && pawn.drugs.CurrentPolicy != null)
+			{
+				return pawn.drugs.CurrentPolicy.uniqueId;
+			}
 			return int.MinValue;
 		}
 	}

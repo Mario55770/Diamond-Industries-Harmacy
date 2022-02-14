@@ -8,6 +8,6 @@ namespace DI_Harmacy
 	{
 		public bool allowPleasureDrugs;
 
-		public List<DrugPolicyEntry> entries;
+		public List<PoisonPolicyEntry> entries;
 	}
 }

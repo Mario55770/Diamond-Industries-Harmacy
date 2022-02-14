@@ -49,7 +49,7 @@ namespace DI_Harmacy
 		private static IEnumerable<Widgets.DropdownMenuElement<PoisonPolicy>> Button_GenerateMenu(Pawn pawn)
 		{
 			//this will need to change to poison policy
-			foreach (RimWorld.DrugPolicy assignedDrugs in Current.Game.drugPolicyDatabase.AllPolicies)
+			foreach (PoisonPolicy assignedDrugs in StaticPoisonDatabase.poisonPolicyDatabase.AllPolicies)
 			{
 				yield return new Widgets.DropdownMenuElement<PoisonPolicy>
 				{

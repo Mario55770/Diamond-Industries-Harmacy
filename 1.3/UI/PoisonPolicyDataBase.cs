@@ -10,7 +10,6 @@ namespace DI_Harmacy
 		private List<PoisonPolicy> policies = new List<PoisonPolicy>();
 
 		public List<PoisonPolicy> AllPolicies => policies;
-
 		public PoisonPolicyDatabase()
 		{
 			GenerateStartingDrugPolicies();
@@ -25,7 +24,7 @@ namespace DI_Harmacy
 		{
 			if (policies.Count == 0)
 			{
-				MakeNewDrugPolicy();
+				MakeNewPoisonPolicy();
 			}
 			return policies[0];
 		}
@@ -63,19 +62,20 @@ namespace DI_Harmacy
 			return AcceptanceReport.WasAccepted;
 		}
 
-		public PoisonPolicy MakeNewDrugPolicy()
+		public PoisonPolicy MakeNewPoisonPolicy()
 		{
 			int uniqueId = ((!policies.Any()) ? 1 : (policies.Max((PoisonPolicy o) => o.uniqueId) + 1));
-			PoisonPolicy drugPolicy = new PoisonPolicy(uniqueId, "DrugPolicy".Translate() + " " + uniqueId.ToString());
-			policies.Add(drugPolicy);
-			return drugPolicy;
+			PoisonPolicy poisonPolicy = new PoisonPolicy(uniqueId, "DrugPolicy".Translate() + " " + uniqueId.ToString());
+			policies.Add(poisonPolicy);
+			return poisonPolicy;
 		}
 
 		public PoisonPolicy NewDrugPolicyFromDef(PoisonPolicyDef def)
 		{
-			PoisonPolicy drugPolicy = MakeNewDrugPolicy();
+			PoisonPolicy drugPolicy = MakeNewPoisonPolicy();
 			drugPolicy.label = def.LabelCap;
 			drugPolicy.sourceDef = def;
+			
 			if (def.allowPleasureDrugs)
 			{
 				for (int i = 0; i < drugPolicy.Count; i++)

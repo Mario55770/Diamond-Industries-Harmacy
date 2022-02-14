@@ -80,9 +80,9 @@ namespace DI_Harmacy
 			if (Widgets.ButtonText(rect, "SelectDrugPolicy".Translate()))
 			{
 				List<FloatMenuOption> list = new List<FloatMenuOption>();
-				foreach (DrugPolicy allPolicy in Current.Game.drugPolicyDatabase.AllPolicies)
+				foreach (PoisonPolicy allPolicy in StaticPoisonDatabase.poisonPolicyDatabase.AllPolicies)
 				{
-					DrugPolicy localAssignedDrugs = allPolicy;
+					PoisonPolicy localAssignedDrugs = allPolicy;
 					list.Add(new FloatMenuOption(localAssignedDrugs.label, delegate
 					{
 						SelectedPolicy = localAssignedDrugs;
@@ -95,7 +95,7 @@ namespace DI_Harmacy
 			num += 150f;
 			if (Widgets.ButtonText(rect2, "NewDrugPolicy".Translate()))
 			{
-				SelectedPolicy = Current.Game.drugPolicyDatabase.MakeNewDrugPolicy();
+				SelectedPolicy = StaticPoisonDatabase.poisonPolicyDatabase.MakeNewPoisonPolicy();
 			}
 			num += 10f;
 			Rect rect3 = new Rect(num, 0f, 150f, 35f);
@@ -103,12 +103,12 @@ namespace DI_Harmacy
 			if (Widgets.ButtonText(rect3, "DeleteDrugPolicy".Translate()))
 			{
 				List<FloatMenuOption> list2 = new List<FloatMenuOption>();
-				foreach (DrugPolicy allPolicy2 in Current.Game.drugPolicyDatabase.AllPolicies)
+				foreach (PoisonPolicy allPolicy2 in StaticPoisonDatabase.poisonPolicyDatabase.AllPolicies)
 				{
-					DrugPolicy localAssignedDrugs2 = allPolicy2;
+					PoisonPolicy localAssignedDrugs2 = allPolicy2;
 					list2.Add(new FloatMenuOption(localAssignedDrugs2.label, delegate
 					{
-						AcceptanceReport acceptanceReport = Current.Game.drugPolicyDatabase.TryDelete(localAssignedDrugs2);
+						AcceptanceReport acceptanceReport = StaticPoisonDatabase.poisonPolicyDatabase.TryDelete(localAssignedDrugs2);
 						if (!acceptanceReport.Accepted)
 						{
 							Messages.Message(acceptanceReport.Reason, MessageTypeDefOf.RejectInput, historical: false);
@@ -180,7 +180,7 @@ namespace DI_Harmacy
 			float height = (float)SelectedPolicy.Count * 35f;
 			Rect viewRect = new Rect(0f, 0f, rect3.width - 16f, height);
 			Widgets.BeginScrollView(rect3, ref scrollPosition, viewRect);
-			DrugPolicy selectedPolicy = SelectedPolicy;
+			PoisonPolicy selectedPolicy = SelectedPolicy;
 			for (int i = 0; i < selectedPolicy.Count; i++)
 			{
 				Rect rect5 = new Rect(0f, (float)i * 35f, viewRect.width, 35f);
@@ -249,31 +249,32 @@ namespace DI_Harmacy
 			Text.Anchor = TextAnchor.UpperLeft;
 		}
 
-		private void DoEntryRow(Rect rect, DrugPolicyEntry entry)
+		private void DoEntryRow(Rect rect, PoisonPolicyEntry entry)
 		{
-			CalculateColumnsWidths(rect, out var addictionWidth, out var allowJoyWidth, out var scheduledWidth, out var drugIconWidth, out var drugNameWidth, out var frequencyWidth, out var moodThresholdWidth, out var joyThresholdWidth, out var takeToInventoryWidth);
+			CalculateColumnsWidths(rect, out var addictionWidth, out var allowJoyWidth, out var scheduledWidth, out var poisonIconWidth, out var poisonNameWidth, out var frequencyWidth, out var moodThresholdWidth, out var joyThresholdWidth, out var takeToInventoryWidth);
 			Text.Anchor = TextAnchor.MiddleLeft;
 			float x = rect.x;
-			float num = (rect.height - drugIconWidth) / 2f;
-			Widgets.ThingIcon(new Rect(x, rect.y + num, drugIconWidth, drugIconWidth), entry.drug);
-			x += drugIconWidth;
-			Widgets.Label(new Rect(x, rect.y, drugNameWidth, rect.height).ContractedBy(4f), entry.drug.LabelCap);
-			Widgets.InfoCardButton(x + Text.CalcSize(entry.drug.LabelCap).x + 5f, rect.y + (rect.height - 24f) / 2f, entry.drug);
-			x += drugNameWidth;
+			float num = (rect.height - poisonIconWidth) / 2f;
+			Widgets.ThingIcon(new Rect(x, rect.y + num, poisonIconWidth, poisonIconWidth), entry.poison);
+			x += poisonIconWidth;
+			Widgets.Label(new Rect(x, rect.y, poisonNameWidth, rect.height).ContractedBy(4f), entry.poison.LabelCap);
+			Widgets.InfoCardButton(x + Text.CalcSize(entry.poison.LabelCap).x + 5f, rect.y + (rect.height - 24f) / 2f, entry.poison);
+			x += poisonNameWidth;
 			Widgets.TextFieldNumeric(new Rect(x, rect.y, takeToInventoryWidth, rect.height).ContractedBy(4f), ref entry.takeToInventory, ref entry.takeToInventoryTempBuffer, 0f, 15f);
 			x += takeToInventoryWidth;
-			if (entry.drug.IsAddictiveDrug)
+			if (entry.poison.IsAddictiveDrug)
 			{
 				Widgets.Checkbox(x, rect.y, ref entry.allowedForAddiction, 24f, disabled: false, paintable: true);
 			}
 			x += addictionWidth;
-			if (entry.drug.IsPleasureDrug)
+			if (entry.poison.IsPleasureDrug)
 			{
 				Widgets.Checkbox(x, rect.y, ref entry.allowedForJoy, 24f, disabled: false, paintable: true);
 			}
 			x += allowJoyWidth;
 			Widgets.Checkbox(x, rect.y, ref entry.allowScheduled, 24f, disabled: false, paintable: true);
 			x += scheduledWidth;
+			
 			if (entry.allowScheduled)
 			{
 				entry.daysFrequency = Widgets.FrequencyHorizontalSlider(new Rect(x, rect.y, frequencyWidth, rect.height).ContractedBy(4f), entry.daysFrequency, 0.1f, 25f, roundToInt: true);
@@ -283,6 +284,7 @@ namespace DI_Harmacy
 				entry.onlyIfJoyBelow = Widgets.HorizontalSlider(label: (!(entry.onlyIfJoyBelow < 1f)) ? ((string)"NoDrugUseRequirement".Translate()) : entry.onlyIfJoyBelow.ToStringPercent(), rect: new Rect(x, rect.y, joyThresholdWidth, rect.height).ContractedBy(4f), value: entry.onlyIfJoyBelow, leftValue: 0.01f, rightValue: 1f, middleAlignment: true);
 				x += joyThresholdWidth;
 			}
+			
 			else
 			{
 				x += frequencyWidth + moodThresholdWidth + joyThresholdWidth;

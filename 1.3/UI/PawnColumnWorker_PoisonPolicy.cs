@@ -37,7 +37,7 @@ namespace DI_Harmacy
 			if (pawn_PoisonPolicyTracker != null)
 			{
 				Log.Error("NotImplementedDoCell");
-			//	PoisonPolicyUiUtility.DoAssignDrugPolicyButtons(rect, pawn);
+				PoisonPolicyUiUtility.DoAssignDrugPolicyButtons(rect, pawn);
 			}
 		}
 
@@ -69,10 +69,10 @@ namespace DI_Harmacy
 		{
 			Pawn_PoisonPolicyTracker pawn_PoisonPolicyTracker = pawn.def.GetModExtension<PawnPoisonTrackerExtension>().pawn_PoisonPolicyTracker;
 
-			if (pawn_PoisonPolicyTracker!=null)
+			if (pawn_PoisonPolicyTracker!=null &&pawn_PoisonPolicyTracker.CurrentPolicy!=null)
             {
 				Log.Error("GetValueToCompareNotImplemented");
-				//return pawn_PoisonPolicyTracker.
+				return pawn_PoisonPolicyTracker.CurrentPolicy.uniqueId;
             }
 			//Log.Message("GetValueToCompare");
 			//if (pawn.drugs != null && pawn.drugs.CurrentPolicy != null)

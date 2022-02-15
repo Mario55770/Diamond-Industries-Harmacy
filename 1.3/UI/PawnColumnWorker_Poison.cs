@@ -69,7 +69,7 @@ namespace DI_Harmacy
 				yield return new Widgets.DropdownMenuElement<int>
 				{
 					option = new FloatMenuOption(i.ToString(), delegate
-					{
+					{	
 						pawn_InventoryStockTracker.SetCountForGroup(group, localI);
 					}),
 					payload = i

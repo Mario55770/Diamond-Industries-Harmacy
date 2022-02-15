@@ -7,6 +7,6 @@
 			<li>DIH_BrickKnockoutPoisonVial</li>
 			<li>DIH_MidnightMurderVial</li>
 		</thingDefs>
-		<defaultThingDef>DIH_SnakeVenomVial</defaultThingDef>
+		<defaultThingDef>DIH_MidnightMurderVial</defaultThingDef>
 	</InventoryStockGroupDef>
 </Defs>

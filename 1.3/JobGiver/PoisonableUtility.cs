@@ -40,7 +40,12 @@ namespace DI_Harmacy
 			return null;
 		}
 		IntRange desiredQuantity = new IntRange(comp.MinAmmoNeeded(forceReload), comp.MaxAmmoNeeded(forceReload));
-		return RefuelWorkGiverUtility.FindEnoughReservableThings(pawn, rootCell, desiredQuantity, (Thing t) => t.def == comp.AmmoDef);
+			comp.updatePoisons()
+			ThingDef ammoToUse=pawn.GetComp<CompPawnPoisonTracker>().pawn_InventoryStockTracker.GetDesiredThingForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup);
+			if (ammoToUse != null)
+				return RefuelWorkGiverUtility.FindEnoughReservableThings(pawn, rootCell, desiredQuantity, (Thing t) => t.def == ammoToUse);//comp.AmmoDef);
+			else
+				return null;
 	}
 
 	public static IEnumerable<Pair<CompPoisonable, Thing>> FindPotentiallyReloadableGear(Pawn pawn, List<Thing> potentialAmmo)

@@ -6,15 +6,21 @@
 			<li>DIHPoisonPolicy</li>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationInsert">
-		<xpath>Defs/ThingDef[defName="Human"]</xpath>
-		<value>
-			<modExtensions>
-				<li Class="DI_Harmacy.PawnPoisonTrackerExtension">
-					<test>false</test>
-				</li>
-			</modExtensions>
-		</value>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Human"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
 	</Operation>
-	
+		<Operation Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
+			<value>
+				<li>
+					<compClass>DI_Harmacy.CompPawnPoisonTracker</compClass>
+				</li>
+				</value>
+		</Operation>
 </Patch>

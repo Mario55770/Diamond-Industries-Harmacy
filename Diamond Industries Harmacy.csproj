@@ -78,6 +78,7 @@
   <ItemGroup>
     <Content Include="1.3\Defs\DamageDefs\PoisonDamageDefs.xml" />
     <Content Include="1.3\Defs\HediffDefs\BrickKnockoutPoison.xml" />
+    <Content Include="1.3\Defs\InventoryStockGroupDefs\PoisonStockGroupDef.xml" />
     <Content Include="1.3\Defs\JobDefs\JobsDefs.xml" />
     <Content Include="1.3\Defs\ThingDefs\TestItems.xml" />
     <Content Include="1.3\Defs\ThingDefs\ThingCategories.xml" />
@@ -104,6 +105,7 @@
     <Compile Include="1.3\Comps\CompPoisonable.cs" />
     <Compile Include="1.3\Comps\CompProperties_Poisonable.cs" />
     <None Include="1.3\Comps\GizmoPoisonAmmoStatus.cs" />
+    <Compile Include="1.3\Defs\InventoryStockGroupDefs\DIH_PoisonStockGroups.cs" />
     <Compile Include="1.3\Defs\RecipeDefs\RecipeAssignment.cs" />
     <Compile Include="1.3\Comps\AdvanceNecrosis.cs" />
     <Compile Include="1.3\DamageWorkers\DamageWorker_ApplyPoison.cs" />
@@ -113,7 +115,7 @@
     <Compile Include="1.3\JobGiver\JobDriver_Poison.cs" />
     <Compile Include="1.3\JobGiver\JobGiver_Poison.cs" />
     <Compile Include="1.3\JobGiver\PoisonableUtility.cs" />
-    <Compile Include="1.3\ModExtensions\PawnPoisonTrackerExtension.cs" />
+    <Compile Include="1.3\Comps\CompPawnPoisonTracker.cs" />
     <Compile Include="1.3\ModExtensions\PoisonProps.cs" />
     <Compile Include="1.3\Patches\HarmonyPatching.cs" />
     <Compile Include="1.3\Patches\RangedHarmonyPatch.cs" />

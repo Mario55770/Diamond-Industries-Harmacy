@@ -28,7 +28,7 @@ public class CompPoisonable : ThingComp, IVerbOwner
 
 
 		//public Pawn Wearer => PoisonableUtility.WearerOf(this);
-		public Pawn Wearer => PoisonableUtility.WearerOf(this);
+		public Pawn weilderOf => PoisonableUtility.WearerOf(this);
 		
 		public List<VerbProperties> VerbProperties => parent.def.Verbs;
 
@@ -36,7 +36,7 @@ public class CompPoisonable : ThingComp, IVerbOwner
 
 	public ImplementOwnerTypeDef ImplementOwnerTypeDef => ImplementOwnerTypeDefOf.NativeVerb;
 
-	public Thing ConstantCaster => Wearer;
+	public Thing ConstantCaster => weilderOf;
 
 	public VerbTracker VerbTracker
 	{
@@ -54,9 +54,9 @@ public class CompPoisonable : ThingComp, IVerbOwner
 
 	public List<Verb> AllVerbs => VerbTracker.AllVerbs;
 
-		internal void updatePoisons(Pawn pawn)
+		internal void updatePoisons()
 		{
-
+			Pawn pawn = weilderOf;
 			ThingDef ammoToUse = pawn.GetComp<CompPawnPoisonTracker>().pawn_InventoryStockTracker.GetDesiredThingForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup);
 			if (ammoToUse == null || AmmoDef == ammoToUse)
 			{
@@ -90,7 +90,7 @@ public class CompPoisonable : ThingComp, IVerbOwner
 
 	public bool VerbsStillUsableBy(Pawn p)
 	{
-		return Wearer == p;
+		return weilderOf == p;
 	}
 
 	public override void PostPostMake()
@@ -156,7 +156,7 @@ public class CompPoisonable : ThingComp, IVerbOwner
 		{
 			yield return item;
 		}
-		bool drafted = Wearer.Drafted;
+		bool drafted = weilderOf.Drafted;
 		if ((drafted && !Props.displayGizmoWhileDrafted) || (!drafted && !Props.displayGizmoWhileUndrafted))
 		{
 			yield break;
@@ -202,13 +202,13 @@ public class CompPoisonable : ThingComp, IVerbOwner
 			command_Poisonable.iconOffset = gear.def.uiIconOffset;
 			command_Poisonable.defaultIconColor = gear.DrawColor;
 		}
-		if (!Wearer.IsColonistPlayerControlled)
+		if (!weilderOf.IsColonistPlayerControlled)
 		{
 			command_Poisonable.Disable();
 		}
-		else if (verb.verbProps.violent && Wearer.WorkTagIsDisabled(WorkTags.Violent))
+		else if (verb.verbProps.violent && weilderOf.WorkTagIsDisabled(WorkTags.Violent))
 		{
-			command_Poisonable.Disable("IsIncapableOfViolenceLower".Translate(Wearer.LabelShort, Wearer).CapitalizeFirst() + ".");
+			command_Poisonable.Disable("IsIncapableOfViolenceLower".Translate(weilderOf.LabelShort, weilderOf).CapitalizeFirst() + ".");
 		}
 		else if (!CanBeUsed)
 		{
@@ -238,6 +238,8 @@ public class CompPoisonable : ThingComp, IVerbOwner
 			{
 				return remainingCharges == 0;
 			}
+				updatePoisons();
+				
 			return RemainingCharges != MaxCharges;
 		}
 		return RemainingCharges != MaxCharges;
@@ -270,7 +272,7 @@ public class CompPoisonable : ThingComp, IVerbOwner
 		}
 		if (Props.soundReload != null)
 		{
-			Props.soundReload.PlayOneShot(new TargetInfo(Wearer.Position, Wearer.Map));
+			Props.soundReload.PlayOneShot(new TargetInfo(weilderOf.Position, weilderOf.Map));
 		}
 	}
 

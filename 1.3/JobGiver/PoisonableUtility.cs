@@ -40,7 +40,7 @@ namespace DI_Harmacy
 			return null;
 		}
 		IntRange desiredQuantity = new IntRange(comp.MinAmmoNeeded(forceReload), comp.MaxAmmoNeeded(forceReload));
-			comp.updatePoisons(pawn);
+			comp.updatePoisons();
 				return RefuelWorkGiverUtility.FindEnoughReservableThings(pawn, rootCell, desiredQuantity, (Thing t) => t.def == comp.AmmoDef);
 			
 	}

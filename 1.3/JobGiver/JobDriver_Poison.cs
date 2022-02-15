@@ -28,7 +28,7 @@ namespace DI_Harmacy
             this.FailOn(() => comp == null);
 
 
-            this.FailOn(() => comp.Wearer != pawn);
+            this.FailOn(() => comp.weilderOf != pawn);
             this.FailOn(() => !comp.NeedsReload(allowForcedReload: true));
             this.FailOnDestroyedOrNull(TargetIndex.A);
             //Log.Message("Item Destroyed");

@@ -14,7 +14,7 @@ namespace DI_Harmacy
 		public int ammoCountToRefill;
 
 		public int ammoCountPerCharge;
-		public HediffDef hediffToApply=null;
+		//public HediffDef hediffToApply=null;
 		public bool applyToStruckPart = false;
 		public bool destroyOnEmpty;
 

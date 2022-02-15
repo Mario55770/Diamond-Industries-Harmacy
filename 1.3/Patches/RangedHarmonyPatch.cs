@@ -48,7 +48,7 @@ namespace DI_Harmacy
             //gets the comp
             CompPoisonable compPoisonable = equipment.TryGetComp<CompPoisonable>();
             //if null, cant be used, or hediff is null, end the method. Shouldn't really be impactful once the code is set up but hey its there now
-            if (compPoisonable == null || compPoisonable.Props.hediffToApply == null || compPoisonable.CanBeUsed == false)
+            if (compPoisonable == null || compPoisonable.hediffToApply == null || compPoisonable.CanBeUsed == false)
                 return;
             //if the list is empty or null DO NOT MAKE THIS A LOCAL VARIABLE.
             if (__instance.def.projectile.extraDamages.NullOrEmpty<ExtraDamage>())

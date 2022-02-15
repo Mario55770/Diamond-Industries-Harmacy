@@ -10,5 +10,6 @@ namespace DI_Harmacy
     {
         public HediffDef poisonInflicts = null;
         public int ammoCountPerCharge = 20;
+        public int maxCharges = 5;
     }
 }

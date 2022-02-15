@@ -32,7 +32,7 @@ namespace DI_Harmacy
             //Uses poison.
             compPoisonable.UsedOnce();
             //gets from original comp to help cut down redundant code. Probably slightly worse for performance...
-            HediffDef h = compPoisonable.Props.hediffToApply;
+            HediffDef h = compPoisonable.hediffToApply;
             //should be lumped in next if statement but its more readable
             //Ends the method if the hediff is null
             if(h==null)

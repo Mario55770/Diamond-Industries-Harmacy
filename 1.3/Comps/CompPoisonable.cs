@@ -20,6 +20,7 @@ public class CompPoisonable : ThingComp, IVerbOwner
 	public int RemainingCharges => remainingCharges;
 		
 		public int MaxCharges => Props.maxCharges;
+		public HediffDef hediffToApply;
 
 	public ThingDef AmmoDef => Props.ammoDef;
 
@@ -53,7 +54,36 @@ public class CompPoisonable : ThingComp, IVerbOwner
 
 	public List<Verb> AllVerbs => VerbTracker.AllVerbs;
 
-	public string UniqueVerbOwnerID()
+		internal void updatePoisons(Pawn pawn)
+		{
+
+			ThingDef ammoToUse = pawn.GetComp<CompPawnPoisonTracker>().pawn_InventoryStockTracker.GetDesiredThingForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup);
+			if (ammoToUse == null || AmmoDef == ammoToUse)
+			{
+				return;
+			}
+			PoisonProps poisonProps = ammoToUse.GetModExtension<PoisonProps>();
+			if (poisonProps == null)
+			{
+				return;
+			}
+			Props.ammoDef = ammoToUse;
+			Props.ammoCountPerCharge = poisonProps.ammoCountPerCharge;
+			Props.maxCharges = poisonProps.ammoCountPerCharge;
+			if (hediffToApply != poisonProps.poisonInflicts)
+			{
+				hediffToApply = poisonProps.poisonInflicts;
+				remainingCharges = 0;
+				return;
+			}
+				if(remainingCharges>MaxCharges)
+            {
+				remainingCharges = MaxCharges;
+            }
+			
+		}
+
+		public string UniqueVerbOwnerID()
 	{
 		return "Reloadable_" + parent.ThingID;
 	}
@@ -86,7 +116,8 @@ public class CompPoisonable : ThingComp, IVerbOwner
 		}
 		//previously statcatagorydefof.apparel
 		yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadChargesRemaining_Name".Translate(Props.ChargeNounArgument), LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(Props.ChargeNounArgument), 2749);
-	}
+		
+		}
 
 		//currently only used on melee damage. Made partly redundant by changes in handling.
         public IEnumerable<DamageInfo> applyPoison(IEnumerable<DamageInfo> damageInfos)
@@ -97,7 +128,7 @@ public class CompPoisonable : ThingComp, IVerbOwner
 				yield return dInfo;
 			}
 			//ends method if theres no hediff to use.
-			if(Props.hediffToApply==null)
+			if(hediffToApply==null)
 			{ yield break; }
 			DamageInfo copyFrom = damageInfos.RandomElement<DamageInfo>();
 			DamageInfo poisonDamageInfo = new DamageInfo(DIH_DamageDefs.DIH_PoisonDamageBase, copyFrom.Amount, instigator: copyFrom.Instigator) ;
@@ -109,7 +140,10 @@ public class CompPoisonable : ThingComp, IVerbOwner
 	{
 		base.PostExposeData();
 		Scribe_Values.Look(ref remainingCharges, "remainingCharges", -999);
+			Scribe_Values.Look(ref hediffToApply, "HediffToApply", null);
+			
 		Scribe_Deep.Look(ref verbTracker, "verbTracker", this);
+			
 		if (Scribe.mode == LoadSaveMode.PostLoadInit && remainingCharges == -999)
 		{
 			remainingCharges = MaxCharges;
@@ -259,7 +293,7 @@ public class CompPoisonable : ThingComp, IVerbOwner
 		{
 			return 0;
 		}
-		if (Props.ammoCountToRefill != 0)
+				if (Props.ammoCountToRefill != 0)
 		{
 			return Props.ammoCountToRefill;
 		}

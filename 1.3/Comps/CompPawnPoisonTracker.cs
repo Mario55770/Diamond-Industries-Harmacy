@@ -8,11 +8,17 @@ namespace DI_Harmacy
 {
     public class CompPawnPoisonTracker : ThingComp
     {
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref pawn_InventoryStockTracker, "pawn_InventoryStockTracker", null);
+            
+        }
         public override void CompTick()
         {
             //Log.Error("Let's error on every tick!");
         }
-        public Pawn_InventoryStockTracker pawn_InventoryStockTracker = null;
+        public Pawn_InventoryStockTracker pawn_InventoryStockTracker;
         public CompPropertiesPawnPoisonTracker Props => (CompPropertiesPawnPoisonTracker)this.props;
 
         }

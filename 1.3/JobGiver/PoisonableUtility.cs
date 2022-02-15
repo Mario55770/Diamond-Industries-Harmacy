@@ -12,25 +12,20 @@ namespace DI_Harmacy
 	public static CompPoisonable FindSomeReloadableComponent(Pawn pawn, bool allowForcedReload)
 	{
 			var pawnsWeapon =pawn.equipment.Primary;
+			
 			CompPoisonable compPoisonable = pawnsWeapon.TryGetComp<CompPoisonable>();
-			if (compPoisonable != null&&compPoisonable.NeedsReload(allowForcedReload))
+			
+			if (compPoisonable == null)
 			{
-				return compPoisonable;
+				return null;
 			}
-				/**if (pawn.apparel == null)
-		{
+			compPoisonable.updatePoisons(pawn);
+			if(compPoisonable.NeedsReload(allowForcedReload))
+            {
+				return compPoisonable;
+            }
+			
 			return null;
-		}
-		List<Apparel> wornApparel = pawn.apparel.WornApparel;
-		for (int i = 0; i < wornApparel.Count; i++)
-		{
-			CompPoisonable compPoisonable = wornApparel[i].TryGetComp<CompPoisonable>();
-			if (compPoisonable != null && compPoisonable.NeedsReload(allowForcedReload))
-			{
-				return compPoisonable;
-			}
-		}**/
-		return null;
 	}
 
 	public static List<Thing> FindEnoughAmmo(Pawn pawn, IntVec3 rootCell, CompPoisonable comp, bool forceReload)
@@ -40,7 +35,7 @@ namespace DI_Harmacy
 			return null;
 		}
 		IntRange desiredQuantity = new IntRange(comp.MinAmmoNeeded(forceReload), comp.MaxAmmoNeeded(forceReload));
-			comp.updatePoisons();
+			
 				return RefuelWorkGiverUtility.FindEnoughReservableThings(pawn, rootCell, desiredQuantity, (Thing t) => t.def == comp.AmmoDef);
 			
 	}

@@ -54,10 +54,14 @@ public class CompPoisonable : ThingComp, IVerbOwner
 
 	public List<Verb> AllVerbs => VerbTracker.AllVerbs;
 
-		internal void updatePoisons()
+		public void updatePoisons(Pawn pawn)
 		{
-			Pawn pawn = weilderOf;
-			ThingDef ammoToUse = pawn.GetComp<CompPawnPoisonTracker>().pawn_InventoryStockTracker.GetDesiredThingForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup);
+			CompPawnPoisonTracker compPawnPoisonTracker = pawn.GetComp<CompPawnPoisonTracker>();
+			if(compPawnPoisonTracker==null|| compPawnPoisonTracker.pawn_InventoryStockTracker==null)
+            {
+				return;
+            }				
+			ThingDef ammoToUse = compPawnPoisonTracker.pawn_InventoryStockTracker.GetDesiredThingForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup);
 			if (ammoToUse == null || AmmoDef == ammoToUse)
 			{
 				return;
@@ -114,9 +118,12 @@ public class CompPoisonable : ThingComp, IVerbOwner
 				yield return item;
 			}
 		}
-		//previously statcatagorydefof.apparel
-		yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadChargesRemaining_Name".Translate(Props.ChargeNounArgument), LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(Props.ChargeNounArgument), 2749);
-		
+			//previously statcatagorydefof.apparel
+			if (hediffToApply != null)
+			{
+				//yield return new StatDrawEntry(StatCategoryDef.Weapon, "Weapon Inflicts", hediffToApply.Named());
+				yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadChargesRemaining_Name".Translate(Props.ChargeNounArgument), LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(Props.ChargeNounArgument), 2749);
+			}
 		}
 
 		//currently only used on melee damage. Made partly redundant by changes in handling.
@@ -143,7 +150,7 @@ public class CompPoisonable : ThingComp, IVerbOwner
 			Scribe_Values.Look(ref hediffToApply, "HediffToApply", null);
 			
 		Scribe_Deep.Look(ref verbTracker, "verbTracker", this);
-			
+		
 		if (Scribe.mode == LoadSaveMode.PostLoadInit && remainingCharges == -999)
 		{
 			remainingCharges = MaxCharges;
@@ -238,7 +245,6 @@ public class CompPoisonable : ThingComp, IVerbOwner
 			{
 				return remainingCharges == 0;
 			}
-				updatePoisons();
 				
 			return RemainingCharges != MaxCharges;
 		}

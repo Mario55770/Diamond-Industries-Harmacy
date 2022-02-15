@@ -20,6 +20,7 @@ namespace DI_Harmacy
 			if (c.pawn_InventoryStockTracker==null)
 			{
 				c.pawn_InventoryStockTracker = new Pawn_InventoryStockTracker(pawn);
+				
 			}
 			Pawn_InventoryStockTracker pawn_InventoryStockTracker = c.pawn_InventoryStockTracker;
 			//formerly pawn.inventory
@@ -28,8 +29,8 @@ namespace DI_Harmacy
 				float num = rect.width - 4f;
 				int num2 = Mathf.FloorToInt(num * 0.333333343f);
 				float x = rect.x;
-				InventoryStockGroupDef group = InventoryStockGroupDefOf.Medicine;
-				//InventoryStockGroupDef group=DIH_PoisonStockGroups.DIH_PoisonStockGroup
+				//InventoryStockGroupDef group = InventoryStockGroupDefOf.Medicine;
+				InventoryStockGroupDef group = DIH_PoisonStockGroups.DIH_PoisonStockGroup;
 				/**InventoryStockGroupDef group = new InventoryStockGroupDef();
 					group.thingDefs = PoisonItemFinder.poisonItemList;
 				group.max = 3;*/
@@ -102,7 +103,7 @@ namespace DI_Harmacy
 			Pawn_InventoryStockTracker pawn_InventoryStockTracker = c.pawn_InventoryStockTracker;
 			if (pawn_InventoryStockTracker!= null)
 			{
-				return pawn_InventoryStockTracker.GetDesiredCountForGroup(InventoryStockGroupDefOf.Medicine);
+				return pawn_InventoryStockTracker.GetDesiredCountForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup); //InventoryStockGroupDefOf.Medicine);
 			}
 			return int.MinValue;
 		}

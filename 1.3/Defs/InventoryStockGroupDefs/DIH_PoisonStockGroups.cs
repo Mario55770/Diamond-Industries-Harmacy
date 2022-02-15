@@ -9,6 +9,6 @@ namespace DI_Harmacy
 {
     public static class DIH_PoisonStockGroups
     {
-        public static InventoryStockGroupDef DIH_PoisonStockGroup;
+        public static InventoryStockGroupDef DIH_PoisonStockGroup= (InventoryStockGroupDef)GenDefDatabase.GetDef(typeof(InventoryStockGroupDef), "DIH_PoisonStockGroup");
     }
 }

@@ -49,9 +49,6 @@
 		<!--the descritpion of the item-->
 		<description>Full of venom either directly from a snake or designed to emulate it. Either way, it'll work the same, by making someones life worse.</description>
 		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
-		<graphicData>
-			<color>(255,255,255)</color>
-		</graphicData>
 		<statBases>
 			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
 			<MarketValue>30</MarketValue>
@@ -59,7 +56,7 @@
 		<modExtensions>
 			<li Class="DI_Harmacy.PoisonProps">
 				<poisonInflicts>DIH_SnakeVenom</poisonInflicts>
-				<ammoCountPerCharge>20</ammoCountPerCharge>
+				<ammoCountPerCharge>1</ammoCountPerCharge>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -72,7 +69,8 @@
 		<description>A vial of an anesthetic as potent as being hit in the face with a brick</description>
 		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
 		<graphicData>
-			<color>(0,0,255)</color>
+			<texPath>DIHarmacy/Things/Item/Resource/BrickKnockout</texPath>
+		
 		</graphicData>
 		<statBases>
 			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
@@ -81,7 +79,7 @@
 		<modExtensions>
 			<li Class="DI_Harmacy.PoisonProps">
 				<poisonInflicts>DIH_BrickKnockoutPoison</poisonInflicts>
-				<ammoCountPerCharge>20</ammoCountPerCharge>
+				<ammoCountPerCharge>1</ammoCountPerCharge>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -94,7 +92,8 @@
 		<description>A vial of a poison designed for combat usage.</description>
 		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
 		<graphicData>
-			<color>(255,0,0)</color>
+			<texPath>DIHarmacy/Things/Item/Resource/MidnightMurder</texPath>
+			
 		</graphicData>
 		<statBases>
 			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
@@ -104,7 +103,7 @@
 		<modExtensions>
 			<li Class="DI_Harmacy.PoisonProps">
 				<poisonInflicts>DIH_MidnightMurder</poisonInflicts>
-				<ammoCountPerCharge>20</ammoCountPerCharge>
+				<ammoCountPerCharge>1</ammoCountPerCharge>
 			</li>
 		</modExtensions>
 	</ThingDef>

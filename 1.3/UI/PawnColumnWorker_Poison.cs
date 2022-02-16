@@ -8,7 +8,7 @@ namespace DI_Harmacy
 
 	public class PawnColumnWorker_Poison : PawnColumnWorker
 	{
-		private const int TopAreaHeight = 65/2;
+		private const int TopAreaHeight = 65*2;
 
 		public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
 		{

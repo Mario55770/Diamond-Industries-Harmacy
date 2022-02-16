@@ -6,7 +6,8 @@
 			<li>DIH_SnakeVenomVial</li>
 			<li>DIH_BrickKnockoutPoisonVial</li>
 			<li>DIH_MidnightMurderVial</li>
+			<li>DIH_ApplyNoPoison</li>
 		</thingDefs>
-		<defaultThingDef>DIH_MidnightMurderVial</defaultThingDef>
+		<defaultThingDef>DIH_ApplyNoPoison</defaultThingDef>
 	</InventoryStockGroupDef>
 </Defs>

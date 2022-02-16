@@ -2,8 +2,8 @@
 <Defs>
 <PawnColumnDef>
 	<defName>DIHPoisonPolicy</defName>
-	<label>poison policy</label>
-	<workerClass>DI_Harmacy.PawnColumnWorker_PoisonPolicy</workerClass>
+	<label>poison</label>
+	<workerClass>DI_Harmacy.PawnColumnWorker_Poison</workerClass>
 	<sortable>true</sortable>
 </PawnColumnDef>
 </Defs>

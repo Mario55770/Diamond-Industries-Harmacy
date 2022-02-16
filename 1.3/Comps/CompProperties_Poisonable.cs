@@ -14,9 +14,8 @@ namespace DI_Harmacy
 		public int ammoCountToRefill;
 
 		public int ammoCountPerCharge;
-		public HediffDef hediffToApply=null;
+		
 		public bool applyToStruckPart = false;
-		public bool destroyOnEmpty;
 
 		public int baseReloadTicks = 60;
 
@@ -44,14 +43,14 @@ namespace DI_Harmacy
 			{
 				yield return item;
 			}
-			if (ammoDef != null && ammoCountToRefill == 0 && ammoCountPerCharge == 0)
+			/**if (ammoDef != null && ammoCountToRefill == 0 && ammoCountPerCharge == 0)
 			{
 				yield return "Reloadable component has ammoDef but one of ammoCountToRefill or ammoCountPerCharge must be set";
 			}
 			if (ammoCountToRefill != 0 && ammoCountPerCharge != 0)
 			{
 				yield return "Reloadable component: specify only one of ammoCountToRefill and ammoCountPerCharge";
-			}
+			}**/
 		}
 
 		public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
@@ -76,10 +75,7 @@ namespace DI_Harmacy
 					yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadPerCharge_Name".Translate(ChargeNounArgument), $"{ammoCountPerCharge} {ammoDef.label}", "Stat_Thing_ReloadPerCharge_Desc".Translate(ChargeNounArgument), 2749);
 				}
 			}
-			if (destroyOnEmpty)
-			{
-				yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadDestroyOnEmpty_Name".Translate(ChargeNounArgument), "Yes".Translate(), "Stat_Thing_ReloadDestroyOnEmpty_Desc".Translate(ChargeNounArgument), 2749);
-			}
+		
 		}
 	}
 }

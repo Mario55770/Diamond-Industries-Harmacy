@@ -58,40 +58,13 @@
         <li>CraftingSpot</li>
       </recipeUsers>
     </recipeMaker>
-
 	  <comps>
 		  <li Class="DI_Harmacy.CompProperties_Poisonable">
-			  <!--<li Class="CompProperties_Reloadable">-->
-			  <maxCharges>5</maxCharges>
-			  <ammoDef>Chemfuel</ammoDef>
-			  <ammoCountPerCharge>20</ammoCountPerCharge>
 			  <baseReloadTicks>60</baseReloadTicks>
 			  <soundReload>Standard_Reload</soundReload>
-			  <!--<hotKey>Misc4</hotKey>
-			  <chargeNoun>jump</chargeNoun>
-			  <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
-			  --><hediffToApply>DIH_SnakeVenom</hediffToApply>
 			  <applyToStruckPart>false</applyToStruckPart>
 		  </li>
 	  </comps>
-	  <!--<verbs>
-		  <li>
-			  <verbClass>DI_Harmacy.VerbPoison_Jump</verbClass>
-			  <label>jump</label>
-			  <violent>false</violent>
-			  <hasStandardCommand>true</hasStandardCommand>
-			  <onlyManualCast>True</onlyManualCast>
-			  <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-			  <warmupTime>0.5</warmupTime>
-			  <warmupEffecter>JumpWarmupEffect</warmupEffecter>
-			  <requireLineOfSight>true</requireLineOfSight>
-			  <targetParams>
-				  <canTargetLocations>true</canTargetLocations>
-				  <canTargetPawns>false</canTargetPawns>
-				  <canTargetBuildings>false</canTargetBuildings>
-			  </targetParams>
-		  </li>
-	  </verbs>-->
   </ThingDef>
 	
 	
@@ -169,38 +142,14 @@
     <tickerType>Normal</tickerType>
 	  <comps>
 		  <li Class="DI_Harmacy.CompProperties_Poisonable">
-			  <!--<li Class="CompProperties_Reloadable">-->
-			  <maxCharges>5</maxCharges>
+			  <!--<maxCharges>5</maxCharges>
 			  <ammoDef>Chemfuel</ammoDef>
-			  <ammoCountPerCharge>20</ammoCountPerCharge>
+			  <ammoCountPerCharge>20</ammoCountPerCharge>-->
 			  <baseReloadTicks>60</baseReloadTicks>
 			  <soundReload>Standard_Reload</soundReload>
-			  <!--<hotKey>Misc4</hotKey>
-			  <chargeNoun>jump</chargeNoun>
-			  <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
-			  -->
-			  <hediffToApply>DIH_SnakeVenom</hediffToApply>
 			  <applyToStruckPart>false</applyToStruckPart>
 		  </li>
 	  </comps>
-    <!--<verbs>
-      <li>
-        <verbClass>Verb_Jump</verbClass>
-        <label>jump</label>
-        <violent>false</violent>
-        <hasStandardCommand>true</hasStandardCommand>
-        <onlyManualCast>True</onlyManualCast>
-        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-        <warmupTime>0.5</warmupTime>
-        <warmupEffecter>JumpWarmupEffect</warmupEffecter>
-        <requireLineOfSight>true</requireLineOfSight>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-          <canTargetPawns>false</canTargetPawns>
-          <canTargetBuildings>false</canTargetBuildings>
-        </targetParams>
-      </li>
-    </verbs>-->
    </ThingDef>
 
 

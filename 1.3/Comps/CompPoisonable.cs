@@ -115,7 +115,7 @@ namespace DI_Harmacy
                 
                 //yield return new StatDrawEntry(StatCategoryDef.Weapon, "Weapon Inflicts", hediffToApply.Named());
                 yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadChargesRemaining_Name".Translate(Props.ChargeNounArgument), LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(Props.ChargeNounArgument), 2749);
-                yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Poison Inflicts", hediffToApply.label, "This weapon applies this hediff", 2749);
+                yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Poison Inflicts", hediffToApply.label, "This weapon applies this hediff", 2750);
             }
         }
 

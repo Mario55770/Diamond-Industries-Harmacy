@@ -12,6 +12,10 @@ namespace DI_Harmacy
 
 		public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
 		{
+			if(pawn.WorkTagIsDisabled(WorkTags.Violent))
+            {
+				return;
+            }				
 			CompPawnPoisonTracker c = pawn.GetComp<CompPawnPoisonTracker>();
 			if(c==null)
             {
@@ -29,14 +33,9 @@ namespace DI_Harmacy
 				float num = rect.width - 4f;
 				int num2 = TopAreaHeight;//Mathf.FloorToInt(num * 0.333333343f);
 				float x = rect.x;
-				//InventoryStockGroupDef group = InventoryStockGroupDefOf.Medicine;
 				InventoryStockGroupDef group = DIH_PoisonStockGroups.DIH_PoisonStockGroup;
-				/**InventoryStockGroupDef group = new InventoryStockGroupDef();
-					group.thingDefs = PoisonItemFinder.poisonItemList;
-				group.max = 3;*/
 				
 				Widgets.Dropdown(new Rect(x, rect.y + 2f, num2, rect.height - 4f), pawn, (Pawn p) => p.inventoryStock.GetDesiredThingForGroup(group), (Pawn p) => GenerateThingButtons(p, group), null, pawn_InventoryStockTracker.GetDesiredThingForGroup(group).uiIcon, null, null, null, paintable: true);
-				//Widgets.Dropdown(new Rect(x + (float)num2 + 4f, width: Mathf.FloorToInt(num * (2f / 3f)), y: rect.y + 2f, height: rect.height - 4f), pawn, (Pawn p) => p.inventoryStock.GetDesiredCountForGroup(group), (Pawn p) => GenerateCountButtons(p, group), pawn_InventoryStockTracker.GetDesiredCountForGroup(group).ToString(), null, null, null, null, paintable: true);
 			}
 		}
 
@@ -103,7 +102,7 @@ namespace DI_Harmacy
 			Pawn_InventoryStockTracker pawn_InventoryStockTracker = c.pawn_InventoryStockTracker;
 			if (pawn_InventoryStockTracker!= null)
 			{
-				return pawn_InventoryStockTracker.GetDesiredCountForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup); //InventoryStockGroupDefOf.Medicine);
+				return pawn_InventoryStockTracker.GetDesiredCountForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup); 
 			}
 			return int.MinValue;
 		}

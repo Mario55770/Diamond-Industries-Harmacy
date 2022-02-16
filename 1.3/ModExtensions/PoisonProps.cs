@@ -6,7 +6,7 @@ using Verse;
 
 namespace DI_Harmacy
 {
-    class PoisonProps:DefModExtension
+    public class PoisonProps:DefModExtension
     {
         public HediffDef poisonInflicts = null;
         public int ammoCountPerCharge = 20;

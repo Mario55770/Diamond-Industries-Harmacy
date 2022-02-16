@@ -43,14 +43,14 @@ namespace DI_Harmacy
 			{
 				yield return item;
 			}
-			if (ammoDef != null && ammoCountToRefill == 0 && ammoCountPerCharge == 0)
+			/**if (ammoDef != null && ammoCountToRefill == 0 && ammoCountPerCharge == 0)
 			{
 				yield return "Reloadable component has ammoDef but one of ammoCountToRefill or ammoCountPerCharge must be set";
 			}
 			if (ammoCountToRefill != 0 && ammoCountPerCharge != 0)
 			{
 				yield return "Reloadable component: specify only one of ammoCountToRefill and ammoCountPerCharge";
-			}
+			}**/
 		}
 
 		public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)

@@ -16,7 +16,7 @@ namespace DI_Harmacy
 
         public CompProperties_Poisonable Props => props as CompProperties_Poisonable;
         public int RemainingCharges => remainingCharges;
-
+        public PoisonProps poisonProps;
         public int MaxCharges => Props.maxCharges;
 
         public HediffDef hediffToApply;
@@ -63,20 +63,14 @@ namespace DI_Harmacy
             {
                 return;
             }
-            PoisonProps poisonProps = ammoToUse.GetModExtension<PoisonProps>();
+            poisonProps = ammoToUse.GetModExtension<PoisonProps>();
             if (poisonProps == null)
             {
                 return;
             }
             Props.ammoDef = ammoToUse;
             Props.ammoCountPerCharge = poisonProps.ammoCountPerCharge;
-            Props.maxCharges = poisonProps.ammoCountPerCharge;
-            if (hediffToApply != poisonProps.poisonInflicts)
-            {
-                hediffToApply = poisonProps.poisonInflicts;
-                remainingCharges = 0;
-                return;
-            }
+
             if (remainingCharges > MaxCharges)
             {
                 remainingCharges = MaxCharges;
@@ -210,10 +204,10 @@ namespace DI_Harmacy
             {
                 command_Poisonable.Disable();
             }
-            else if (verb.verbProps.violent && weilderOf.WorkTagIsDisabled(WorkTags.Violent))
-            {
-                command_Poisonable.Disable("IsIncapableOfViolenceLower".Translate(weilderOf.LabelShort, weilderOf).CapitalizeFirst() + ".");
-            }
+            //else if (verb.verbProps.violent && weilderOf.WorkTagIsDisabled(WorkTags.Violent))
+            //{
+            //    command_Poisonable.Disable("IsIncapableOfViolenceLower".Translate(weilderOf.LabelShort, weilderOf).CapitalizeFirst() + ".");
+            //}
             else if (!CanBeUsed)
             {
                 command_Poisonable.Disable(DisabledReason(MinAmmoNeeded(allowForcedReload: false), MaxAmmoNeeded(allowForcedReload: false)));
@@ -236,6 +230,10 @@ namespace DI_Harmacy
             {
                 return false;
             }
+            if(hediffToApply!=AmmoDef.GetModExtension<PoisonProps>().poisonInflicts)
+            {
+                return true;
+            }
             if (Props.ammoCountToRefill != 0)
             {
                 if (!allowForcedReload)
@@ -254,8 +252,16 @@ namespace DI_Harmacy
             {
                 return;
             }
-            if (Props.ammoCountToRefill != 0)
+            if (hediffToApply != AmmoDef.GetModExtension<PoisonProps>().poisonInflicts)
             {
+                hediffToApply = AmmoDef.GetModExtension<PoisonProps>().poisonInflicts;
+                remainingCharges = 0;
+
+                Props.maxCharges = poisonProps.ammoCountPerCharge;
+            }
+            if (Props.ammoCountToRefill != 0 )
+            {
+               
                 if (ammo.stackCount < Props.ammoCountToRefill)
                 {
                     return;
@@ -285,6 +291,10 @@ namespace DI_Harmacy
             {
                 return 0;
             }
+            if (poisonProps.poisonInflicts != hediffToApply)
+            {
+                return poisonProps.ammoCountPerCharge;
+            }    
             if (Props.ammoCountToRefill != 0)
             {
                 return Props.ammoCountToRefill;
@@ -298,6 +308,10 @@ namespace DI_Harmacy
             {
                 return 0;
             }
+            if (poisonProps.poisonInflicts != hediffToApply)
+            {
+                return poisonProps.ammoCountPerCharge*poisonProps.maxCharges;
+            }
             if (Props.ammoCountToRefill != 0)
             {
                 return Props.ammoCountToRefill;
@@ -310,6 +324,12 @@ namespace DI_Harmacy
             if (AmmoDef == null)
             {
                 return 0;
+            }
+
+          
+            if (hediffToApply != poisonProps.poisonInflicts)
+            {
+                return poisonProps.ammoCountPerCharge * poisonProps.maxCharges;
             }
             if (Props.ammoCountToRefill == 0)
             {

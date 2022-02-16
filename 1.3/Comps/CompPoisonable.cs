@@ -146,7 +146,7 @@ namespace DI_Harmacy
             Scribe_Values.Look(ref remainingCharges, "remainingCharges", -999);
             Scribe_Defs.Look(ref hediffToApply, "HediffToApply");
 
-            Scribe_Deep.Look(ref verbTracker, "verbTracker", this);
+            //Scribe_Deep.Look(ref verbTracker, "verbTracker", this);
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit && remainingCharges == -999)
             {

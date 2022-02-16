@@ -16,7 +16,6 @@ namespace DI_Harmacy
 		public int ammoCountPerCharge;
 		
 		public bool applyToStruckPart = false;
-		
 
 		public int baseReloadTicks = 60;
 

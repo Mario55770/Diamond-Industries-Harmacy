@@ -14,9 +14,9 @@ namespace DI_Harmacy
 		public int ammoCountToRefill;
 
 		public int ammoCountPerCharge;
-		//public HediffDef hediffToApply=null;
+		
 		public bool applyToStruckPart = false;
-		public bool destroyOnEmpty;
+		
 
 		public int baseReloadTicks = 60;
 
@@ -76,10 +76,7 @@ namespace DI_Harmacy
 					yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadPerCharge_Name".Translate(ChargeNounArgument), $"{ammoCountPerCharge} {ammoDef.label}", "Stat_Thing_ReloadPerCharge_Desc".Translate(ChargeNounArgument), 2749);
 				}
 			}
-			if (destroyOnEmpty)
-			{
-				yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadDestroyOnEmpty_Name".Translate(ChargeNounArgument), "Yes".Translate(), "Stat_Thing_ReloadDestroyOnEmpty_Desc".Translate(ChargeNounArgument), 2749);
-			}
+		
 		}
 	}
 }

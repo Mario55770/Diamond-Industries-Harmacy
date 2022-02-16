@@ -8,7 +8,7 @@ namespace DI_Harmacy
 
 	public class PawnColumnWorker_Poison : PawnColumnWorker
 	{
-		private const int TopAreaHeight = 65;
+		private const int TopAreaHeight = 65/2;
 
 		public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
 		{
@@ -27,7 +27,7 @@ namespace DI_Harmacy
 			if (pawn_InventoryStockTracker != null)
 			{
 				float num = rect.width - 4f;
-				int num2 = Mathf.FloorToInt(num * 0.333333343f);
+				int num2 = TopAreaHeight;//Mathf.FloorToInt(num * 0.333333343f);
 				float x = rect.x;
 				//InventoryStockGroupDef group = InventoryStockGroupDefOf.Medicine;
 				InventoryStockGroupDef group = DIH_PoisonStockGroups.DIH_PoisonStockGroup;
@@ -36,7 +36,7 @@ namespace DI_Harmacy
 				group.max = 3;*/
 				
 				Widgets.Dropdown(new Rect(x, rect.y + 2f, num2, rect.height - 4f), pawn, (Pawn p) => p.inventoryStock.GetDesiredThingForGroup(group), (Pawn p) => GenerateThingButtons(p, group), null, pawn_InventoryStockTracker.GetDesiredThingForGroup(group).uiIcon, null, null, null, paintable: true);
-				Widgets.Dropdown(new Rect(x + (float)num2 + 4f, width: Mathf.FloorToInt(num * (2f / 3f)), y: rect.y + 2f, height: rect.height - 4f), pawn, (Pawn p) => p.inventoryStock.GetDesiredCountForGroup(group), (Pawn p) => GenerateCountButtons(p, group), pawn_InventoryStockTracker.GetDesiredCountForGroup(group).ToString(), null, null, null, null, paintable: true);
+				//Widgets.Dropdown(new Rect(x + (float)num2 + 4f, width: Mathf.FloorToInt(num * (2f / 3f)), y: rect.y + 2f, height: rect.height - 4f), pawn, (Pawn p) => p.inventoryStock.GetDesiredCountForGroup(group), (Pawn p) => GenerateCountButtons(p, group), pawn_InventoryStockTracker.GetDesiredCountForGroup(group).ToString(), null, null, null, null, paintable: true);
 			}
 		}
 

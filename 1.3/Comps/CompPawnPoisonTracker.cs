@@ -11,7 +11,8 @@ namespace DI_Harmacy
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look(ref pawn_InventoryStockTracker, "pawn_InventoryStockTracker", null);
+            Scribe_Deep.Look(ref pawn_InventoryStockTracker, "pawn_InventoryStockTracker", null);
+         
             
         }
         public override void CompTick()

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<RecipeDef Name="MakePoisonBase" Abstract="True">
+		<researchPrerequisite>DIH_PoisonProduction</researchPrerequisite>
+		<jobString>Creating poisons.</jobString>
+		<workAmount>1600</workAmount>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<workSkill>Intellectual</workSkill>
+		<effectWorking>CutStone</effectWorking>
+		<soundWorking>Recipe_Drug</soundWorking>
+		<targetCountAdjustment>20</targetCountAdjustment>
+		<recipeUsers>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+	</RecipeDef>
+	<RecipeDef ParentName="MakePoisonBase">
+		<defName>Make_StoneBlocksAny</defName>
+		<label>make any poison</label>
+		<description>Cut rock chunks into usable stone blocks.</description>
+		<!--<workerCounterClass>RecipeWorkerCounter_MakeStoneBlocks</workerCounterClass>-->
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>StoneChunks</li>
+					</categories>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>StoneChunks</li>
+			</categories>
+		</fixedIngredientFilter>
+		<specialProducts>
+			<li>Butchery</li>
+		</specialProducts>
+	</RecipeDef>
+</Defs>

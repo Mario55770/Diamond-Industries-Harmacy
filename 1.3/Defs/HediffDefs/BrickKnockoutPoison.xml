@@ -3,13 +3,14 @@
   <HediffDef>
     <defName>DIH_BrickKnockoutPoison</defName>
     <label>brick knockout</label>
-    <description>"Out like a light" never rings truer than when hit with bricks. This poison tends to safely knock individuals out.</description>
+    <description>"Out like a light" never rings truer than when hit with bricks. This poison tends to safely and humanely knock individuals out.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
     <!--<lethalSeverity>1</lethalSeverity>-->
     <makesSickThought>true</makesSickThought>
     <scenarioCanAdd>true</scenarioCanAdd>
     <taleOnVisible>ToxicityRevealed</taleOnVisible>
+	  <lethalSeverity>1.5</lethalSeverity>
     <comps>
       <li Class="HediffCompProperties_Immunizable">
         <severityPerDayNotImmune>-0.1</severityPerDayNotImmune>
@@ -23,17 +24,19 @@
       <li>
         <label>initial</label>
         <minSeverity>0.04</minSeverity>
-        <capMods>
+		  <capMods>
           <li>
             <capacity>Consciousness</capacity>
             <offset>-0.05</offset>
+			  
           </li>
         </capMods>
       </li>
       <li>
         <label>minor</label>
-        <minSeverity>0.2</minSeverity>
-        <painOffset>0.1</painOffset>
+        <minSeverity>0.3</minSeverity>
+		  <painFactor>0.9</painFactor>
+        
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
@@ -43,9 +46,9 @@
       </li>
       <li>
         <label>moderate</label>
-        <minSeverity>0.40</minSeverity>
+        <minSeverity>0.60</minSeverity>
         <vomitMtbDays>5</vomitMtbDays>
-        <painOffset>0.1</painOffset>
+		  <painFactor>0.6</painFactor>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
@@ -56,9 +59,9 @@
       </li>
       <li>
         <label>serious</label>
-        <minSeverity>0.60</minSeverity>
+        <minSeverity>0.90</minSeverity>
         <vomitMtbDays>1</vomitMtbDays>
-        <painOffset>0.3</painOffset>
+        <painFactor>0.4</painFactor>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
@@ -68,9 +71,9 @@
       </li>
       <li>
         <label>sedated</label>
-        <minSeverity>0.80</minSeverity>
+        <minSeverity>1.20</minSeverity>
         <vomitMtbDays>0.5</vomitMtbDays>
-        <painOffset>0.4</painOffset>
+		  <painFactor>0.1</painFactor>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>

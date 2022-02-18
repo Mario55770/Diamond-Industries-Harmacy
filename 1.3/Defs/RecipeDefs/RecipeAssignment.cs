@@ -46,7 +46,7 @@ namespace DI_Harmacy
             {
                 Log.Message("Created " + a + " bulk recipes for DIH Bulk Drug bench out of a detected possible " + t + ". If some bulk recipes from the default drug bench seem to be missing, try chaning load order" +
                     "if this message appears, it is not inherently an issue. We detect but cannot create a bulk version of some recipes in this version of the mod." +
-                    "For instance, we detect 13 and create 6 with vanilla.");
+                    "For instance, we detect 16 and create 9 with vanilla.+DIH");
             }
         }
         private static RecipeDef recipeCloneAndParse(RecipeDef recipeToCopy)

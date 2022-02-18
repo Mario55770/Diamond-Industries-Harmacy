@@ -58,7 +58,7 @@ namespace DI_Harmacy
             float newWorkAmount = recipeToCopy.workAmount+0;
             if (newWorkAmount == -1)
             {
-                try
+                /**try
                 {
                     newWorkAmount = recipeToCopy.WorkAmountTotal(recipeToCopy.ProducedThingDef);
                     Log.Message("Managed to get work amount somewhat unexpectedly. This is a pleasant suprise, and one the mod dev would probably like to know about" +
@@ -68,7 +68,8 @@ namespace DI_Harmacy
                 {
                     //Log.Message("Recipe work amount not yet accessible. Ignoring it to avoid errors");
                     return null;
-                }
+                }**/
+                return null;
 
             }
             //as if it does not return null, this should run, outside if to prevent redundancy
@@ -91,11 +92,6 @@ namespace DI_Harmacy
                 tempItem.filter = item.filter;
                 newBase = newBase * 4;
                 tempItem.SetBaseCount(newBase);
-                //Log.Message(item.ToString());
-                //Log.Message(tempItem.ToString());
-                //Log.Message(newBase+"");
-                //Log.Message(tempItem.Equals(item).ToString());
-
                 clonedandparsed.ingredients.Add(tempItem);
                 }
                 //handles products by multiplying them by four andd copying the last item for a name.
@@ -103,8 +99,6 @@ namespace DI_Harmacy
                 foreach (var item in recipeToCopy.products)
                 {
                 ThingDefCount prod = new ThingDefCount(item.thingDef,item.count*4);
-                //Log.Message(item.count+"");
-                //item.count = item.count * 4;
 
                 newName = prod.ThingDef.label+" x"+prod.Count;
                 clonedandparsed.products.Add(prod);

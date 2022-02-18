@@ -6,7 +6,7 @@
 			<Nutrition>0.2</Nutrition>
 		</statBases>
 		<graphicData>
-			<texPath>DIHarmacy/Things/Plant/Poisonroot</texPath>
+			<texPath>DIHarmacy/Things/Plant/Harmroot</texPath>
 			<graphicClass>Graphic_Random</graphicClass>
 		</graphicData>
 		<selectable>true</selectable>
@@ -20,7 +20,7 @@
 			<dieIfLeafless>false</dieIfLeafless>
 			<harvestWork>400</harvestWork>
 			<harvestTag>Standard</harvestTag>
-			<harvestedThingDef>MedicineHerbal</harvestedThingDef>
+			<harvestedThingDef>DIH_HarmrootClipping</harvestedThingDef>
 			<harvestYield>1</harvestYield>
 			<topWindExposure>0.1</topWindExposure>
 			<visualSizeRange>0.3~1.0</visualSizeRange>
@@ -32,7 +32,7 @@
 	<ThingDef ParentName="HarmrootBase">
 		<defName>DIH_Plant_Harmroot</defName>
 		<label>harmroot</label>
-		<description>A slow-growing plant which yields a material useful to the creation of poisons when harvested. Sowing and harvesting harmroot are both very labor-intensive tasks because of its delicate shoots.\n\nHarmroot is a wild cousin of healroot, born from a mutated strand. Many inexperienced harvestors have mixed them up, to fatal results.</description>
+		<description>A slow-growing plant which yields a material useful to the creation of several poisons when harvested. Sowing and harvesting harmroot are both very labor-intensive tasks because of its delicate shoots.\n\nHarmroot is a wild cousin of healroot, born from a mutated strand. Many inexperienced harvestors have mixed them up, to fatal results.</description>
 		<plant>
 			<growDays>7</growDays>
 			<sowWork>800</sowWork>

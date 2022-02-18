@@ -4,7 +4,7 @@
   <ThingDef ParentName="BenchBase">
     <defName>DIH_BulkDrugLab</defName>
     <label>bulk drug lab</label>
-    <description>A larger scale workbench that allows producing bulk orders with slight labor savings. Works without power at a slightly slower speed.</description>
+    <description>A larger scale workbench that allows producing bulk orders with labor savings.</description>
     <thingClass>Building_WorkTable</thingClass>
     <graphicData>
       <texPath>Things/Building/Production/TableDrugLab</texPath>
@@ -57,8 +57,6 @@
     <building>
      
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
-      <!--In line directly with the electric tailor bench-->
-      <unpoweredWorkTableWorkSpeedFactor>0.8</unpoweredWorkTableWorkSpeedFactor>
     </building>
     <comps>
       <li Class="CompProperties_Power">

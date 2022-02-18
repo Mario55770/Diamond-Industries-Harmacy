@@ -2,7 +2,7 @@
 <Defs>
 <HediffDef>
   <defName>DIH_MidnightMurder</defName>
-  <label>midnight murder</label>
+  <label>Midnight Murder</label>
   <description>Poison in the bloodstream. This poison is named for an old superstition that lead to it mostly being made at midnight.
     \nThis poison is typically used for weapons, with a high effeciency of incapaciting victims, sometimes causing death.</description>
   <hediffClass>HediffWithComps</hediffClass>

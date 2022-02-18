@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="PlantBase" Name="HarmrootBase" Abstract="True">
+		<statBases>
+			<MaxHitPoints>60</MaxHitPoints>
+			<Nutrition>0.2</Nutrition>
+		</statBases>
+		<graphicData>
+			<texPath>DIHarmacy/Things/Plant/Harmroot</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+		</graphicData>
+		<selectable>true</selectable>
+		<pathCost>14</pathCost>
+		<ingestible />
+		<plant>
+			<sowResearchPrerequisites Inherit="False">
+				<li>DIH_PoisonProduction</li>
+			</sowResearchPrerequisites>
+			<growDays>10</growDays>
+			<dieIfLeafless>false</dieIfLeafless>
+			<harvestWork>400</harvestWork>
+			<harvestTag>Standard</harvestTag>
+			<harvestedThingDef>DIH_HarmrootClipping</harvestedThingDef>
+			<harvestYield>1</harvestYield>
+			<topWindExposure>0.1</topWindExposure>
+			<visualSizeRange>0.3~1.0</visualSizeRange>
+			<wildOrder>2</wildOrder>
+			<allowAutoCut>false</allowAutoCut>
+		</plant>
+	</ThingDef>
+
+	<ThingDef ParentName="HarmrootBase">
+		<defName>DIH_Plant_Harmroot</defName>
+		<label>harmroot</label>
+		<description>A slow-growing plant which yields a material useful to the creation of several poisons when harvested. Sowing and harvesting harmroot are both very labor-intensive tasks because of its delicate shoots.\n\nHarmroot is a wild cousin of healroot, born from a mutated strand. Many inexperienced harvestors have mixed them up, to fatal results.</description>
+		<plant>
+			<growDays>7</growDays>
+			<sowWork>800</sowWork>
+			<sowMinSkill>8</sowMinSkill>
+			<sowTags>
+				<li>Ground</li>
+				<li>Hydroponic</li>
+			</sowTags>
+			<purpose>Health</purpose>
+		</plant>
+	</ThingDef>
+</Defs>

@@ -10,7 +10,7 @@
   <ResearchProjectDef>
     <defName>DIH_BulkDrugProduction</defName>
     <label>bulk drug production</label>
-    <description>Enables producing drugs with new techniques and technologies, the first step to producing poisons from trace materials. As a nice side benefit, this tech should allow producing drugs with less labor.</description>
+    <description>Enables producing drugs with new techniques and technologies.This should enable large labor savings.</description>
     <tab>DIHarmacy</tab>
     <!--electricity+drug production itself-->
     <baseCost>2000</baseCost>
@@ -22,4 +22,20 @@
     <researchViewX>0.00</researchViewX>
     <researchViewY>0.00</researchViewY>
   </ResearchProjectDef>
+	<!--Poison Production-->
+	<ResearchProjectDef>
+		<defName>DIH_PoisonProduction</defName>
+		<label>poison production</label>
+		<description>Enables producing poisons for use in weapons.</description>
+		<tab>DIHarmacy</tab>
+		<!--electricity+drug production itself-->
+		<baseCost>1000</baseCost>
+		<techLevel>Neolithic</techLevel>
+		<!--<prerequisites>
+			<li>Electricity</li>
+			<li>DrugProduction</li>
+		</prerequisites>-->
+		<researchViewX>0.00</researchViewX>
+		<researchViewY>0.50</researchViewY>
+	</ResearchProjectDef>
 </Defs>

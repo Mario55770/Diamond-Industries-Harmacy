@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<RecipeDef Name="MakePoisonBase" Abstract="True">
+		<researchPrerequisite>DIH_PoisonProduction</researchPrerequisite>
+		<jobString>Creating poisons.</jobString>
+		<workAmount>1600</workAmount>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<workSkill>Intellectual</workSkill>
+		<effectWorking>CutStone</effectWorking>
+		<soundWorking>Recipe_Drug</soundWorking>
+		<targetCountAdjustment>20</targetCountAdjustment>
+		<recipeUsers>
+			<li>CraftingSpot</li>
+			<li>DrugLab</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>DIH_HarmrootClipping</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<!--<products>
+			<Steel>15</Steel>
+		</products>-->
+		<!--<specialProducts>
+			<li>Butchery</li>
+		</specialProducts>-->
+	</RecipeDef>
+	<RecipeDef ParentName="MakePoisonBase">
+		<defName>Make_BrickKnockoutVial</defName>
+		<label>make a vial of brick knockout poison</label>
+		<description>Synthesize brick knockout poison from plant matter.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>SmokeleafLeaves</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<products>
+			<DIH_BrickKnockoutPoisonVial>1</DIH_BrickKnockoutPoisonVial>
+		</products>
+	</RecipeDef>
+	<RecipeDef ParentName="MakePoisonBase">
+		<defName>Make_MidNightMurderVial</defName>
+		<label>make a vial of Midnight Murder poison</label>
+		<description>Synthesize Midnight Murder poison from plant matter.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>PsychoidLeaves</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<products>
+			<DIH_MidnightMurderVial>1</DIH_MidnightMurderVial>
+		</products>
+	</RecipeDef>
+	<RecipeDef ParentName="MakePoisonBase">
+		<defName>Make_SnakeVenomVial</defName>
+		<label>make a vial of synthetic snake venom</label>
+		<description>Synthesize synthetic snake venom from plant matter and Neutroamine.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Neutroamine</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<products>
+			<DIH_SnakeVenomVial>1</DIH_SnakeVenomVial>
+		</products>
+	</RecipeDef>
+</Defs>

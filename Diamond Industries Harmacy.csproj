@@ -76,11 +76,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1.3\Defs\CropDefs\PoisonPlantDefs.xml" />
     <Content Include="1.3\Defs\DamageDefs\PoisonDamageDefs.xml" />
     <Content Include="1.3\Defs\HediffDefs\BrickKnockoutPoison.xml" />
     <Content Include="1.3\Defs\InventoryStockGroupDefs\PoisonStockGroupDef.xml" />
     <Content Include="1.3\Defs\JobDefs\JobsDefs.xml" />
-    <Content Include="1.3\Defs\ThingDefs\TestItems.xml" />
+    <Content Include="1.3\Defs\RecipeDefs\PoisonRecipes.xml" />
+    <Content Include="1.3\Defs\ThingDefs\IngredientDefs.xml" />
     <Content Include="1.3\Defs\ThingDefs\ThingCategories.xml" />
     <Content Include="1.3\Defs\ThingDefs\PoisonVialDefs.xml" />
     <Content Include="1.3\Defs\UIDefs\PawnColumn.xml" />

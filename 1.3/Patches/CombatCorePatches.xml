@@ -27,5 +27,24 @@
 					</li>
 			</value>
 		</nomatch>
-	</Operation>	
+	</Operation>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="BaseWeapon"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="BaseWeapon"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BaseWeapon"]/comps</xpath>
+		<value>
+				<li Class="DI_Harmacy.CompProperties_Poisonable">
+					<baseReloadTicks>60</baseReloadTicks>
+					<soundReload>Standard_Reload</soundReload>
+					<applyToStruckPart>false</applyToStruckPart>
+				</li>
+		</value>
+	</Operation>
 	</Patch>

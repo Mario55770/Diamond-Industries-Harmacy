@@ -3,12 +3,6 @@
 	<!--the parent def of the poison vials. Just so I can have less redundant stats and junk-->
 	<ThingDef ParentName="ResourceBase" Name="PoisonBase" Abstract="True">
 		<!--<thingClass>Poison</thingClass>-->
-		<graphicData>
-			<!--<texPath>Things/Item/Resource/Neutroamine</texPath>-->
-			<texPath>DIHarmacy/Things/Item/Resource/GenericPoison</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-			<drawSize>0.90</drawSize>
-		</graphicData>	
 		<stackLimit>25</stackLimit>
 		<healthAffectsPrice>false</healthAffectsPrice>
 		<uiIconForStackCount>1</uiIconForStackCount>
@@ -17,7 +11,7 @@
 		<statBases>
 			<!--not all inclusive but covers some of the big ones. Change these to be the stats you want.-->
 			<MaxHitPoints>50</MaxHitPoints>
-			
+
 			<Mass>0.02</Mass>
 			<Flammability>0.7</Flammability>
 			<DeteriorationRate>1.0</DeteriorationRate>
@@ -27,7 +21,7 @@
 			<li>DIH_PoisonTab</li>
 		</thingCategories>
 	</ThingDef>
-  <!--<ThingDef ParentName="PoisonBase">
+	<!--<ThingDef ParentName="PoisonBase">
     
     <defName>DIH_GenericPoison</defName>
     
@@ -49,17 +43,21 @@
 		<!--the descritpion of the item-->
 		<description>Full of venom either directly from a snake or designed to emulate it. Either way, it'll work the same, by making someones life worse.</description>
 		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
-		<graphicData>
-			<color>(255,255,255)</color>
-		</graphicData>
 		<statBases>
 			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
 			<MarketValue>30</MarketValue>
 		</statBases>
+		<graphicData>
+			<!--<texPath>Things/Item/Resource/Neutroamine</texPath>-->
+			<texPath>DIHarmacy/Things/Item/Resource/GenericPoison</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.90</drawSize>
+		</graphicData>
 		<modExtensions>
 			<li Class="DI_Harmacy.PoisonProps">
 				<poisonInflicts>DIH_SnakeVenom</poisonInflicts>
-				<ammoCountPerCharge>20</ammoCountPerCharge>
+				<ammoCountPerCharge>1</ammoCountPerCharge>
+				<maxCharges>5</maxCharges>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -72,7 +70,9 @@
 		<description>A vial of an anesthetic as potent as being hit in the face with a brick</description>
 		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
 		<graphicData>
-			<color>(0,0,255)</color>
+			<texPath>DIHarmacy/Things/Item/Resource/BrickKnockout</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.90</drawSize>
 		</graphicData>
 		<statBases>
 			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
@@ -81,7 +81,8 @@
 		<modExtensions>
 			<li Class="DI_Harmacy.PoisonProps">
 				<poisonInflicts>DIH_BrickKnockoutPoison</poisonInflicts>
-				<ammoCountPerCharge>20</ammoCountPerCharge>
+				<ammoCountPerCharge>1</ammoCountPerCharge>
+				<maxCharges>5</maxCharges>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -94,18 +95,47 @@
 		<description>A vial of a poison designed for combat usage.</description>
 		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
 		<graphicData>
-			<color>(255,0,0)</color>
+			<texPath>DIHarmacy/Things/Item/Resource/MidnightMurder</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.90</drawSize>
 		</graphicData>
 		<statBases>
 			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
 			<MarketValue>30</MarketValue>
-			
+
 		</statBases>
 		<modExtensions>
 			<li Class="DI_Harmacy.PoisonProps">
 				<poisonInflicts>DIH_MidnightMurder</poisonInflicts>
-				<ammoCountPerCharge>20</ammoCountPerCharge>
+				<ammoCountPerCharge>1</ammoCountPerCharge>
+				<maxCharges>5</maxCharges>
 			</li>
 		</modExtensions>
 	</ThingDef>
+	<ThingDef ParentName="PoisonBase">
+		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
+		<defName>DIH_ApplyNoPoison</defName>
+		<!--This is the name displayed in game-->
+		<label>Use No Poison</label>
+		<!--the descritpion of the item-->
+		<description>If your seeing this, you either spawned this in dev mode, or I need to know. If your in dev mode, stop, if you're not...let me know how it happened.</description>
+		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
+		<statBases>
+			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
+			<MarketValue>30</MarketValue>
+		</statBases>
+		<graphicData>
+			<texPath>DIHarmacy/Things/Item/Resource/RedSlash</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.90</drawSize>
+		</graphicData>
+
+		<modExtensions>
+			<li Class="DI_Harmacy.PoisonProps">
+				<ammoCountPerCharge>1</ammoCountPerCharge>
+				<maxCharges>5</maxCharges>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
 </Defs>

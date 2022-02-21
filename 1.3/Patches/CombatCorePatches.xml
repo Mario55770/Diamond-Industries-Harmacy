@@ -21,7 +21,7 @@
 			<xpath>Defs/ThingDef[defName="Cobra"]/comps</xpath>
 			<value>
 					<li Class="CompProperties_Milkable">
-						<milkDef>DIH_SnakeVenomVial</milkDef>
+						<milkDef>DIH_SnakePoisonVial</milkDef>
 						<milkIntervalDays>10</milkIntervalDays>
 						<milkAmount>10</milkAmount>
 					</li>

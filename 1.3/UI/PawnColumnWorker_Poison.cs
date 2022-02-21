@@ -8,7 +8,7 @@ namespace DI_Harmacy
 
 	public class PawnColumnWorker_Poison : PawnColumnWorker
 	{
-		private const int TopAreaHeight = 65*2;
+		private const int TopAreaHeight = 65;
 
 		public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
 		{
@@ -31,7 +31,7 @@ namespace DI_Harmacy
 			if (pawn_InventoryStockTracker != null)
 			{
 				float num = rect.width - 4f;
-				int num2 = TopAreaHeight;//Mathf.FloorToInt(num * 0.333333343f);
+				int num2 = Mathf.FloorToInt(num * 0.333333343f);
 				float x = rect.x;
 				InventoryStockGroupDef group = DIH_PoisonStockGroups.DIH_PoisonStockGroup;
 				
@@ -57,25 +57,6 @@ namespace DI_Harmacy
 				};
 			}
 		}
-
-		private IEnumerable<Widgets.DropdownMenuElement<int>> GenerateCountButtons(Pawn pawn, InventoryStockGroupDef group)
-		{
-			CompPawnPoisonTracker c = pawn.GetComp<CompPawnPoisonTracker>();
-			Pawn_InventoryStockTracker pawn_InventoryStockTracker = c.pawn_InventoryStockTracker;
-			for (int i = group.min; i <= group.max; i++)
-			{
-				int localI = i;
-				yield return new Widgets.DropdownMenuElement<int>
-				{
-					option = new FloatMenuOption(i.ToString(), delegate
-					{	
-						pawn_InventoryStockTracker.SetCountForGroup(group, localI);
-					}),
-					payload = i
-				};
-			}
-		}
-
 		public override int GetMinWidth(PawnTable table)
 		{
 			return Mathf.Max(base.GetMinWidth(table), Mathf.CeilToInt(54f));

@@ -64,7 +64,7 @@
 			</li>
 		</ingredients>
 		<products>
-			<DIH_MidnightMurderVial>1</DIH_MidnightMurderVial>
+			<DIH_MidnightMurderPoisonVial>1</DIH_MidnightMurderPoisonVial>
 		</products>
 	</RecipeDef>
 	<RecipeDef ParentName="MakePoisonBase">
@@ -82,7 +82,7 @@
 			</li>
 		</ingredients>
 		<products>
-			<DIH_SnakeVenomVial>1</DIH_SnakeVenomVial>
+			<DIH_SnakePoisonVial>1</DIH_SnakePoisonVial>
 		</products>
 	</RecipeDef>
 </Defs>

@@ -125,7 +125,7 @@
     <Compile Include="1.3\UI\PawnColumnWorker_Poison.cs" />
     <Compile Include="1.3\Verbs\VerbPoison_Jump.cs" />
     <Compile Include="1.3\Verbs\Verbs.cs" />
-    <None Include="DIH\ModSettings.cs" />
+    <Compile Include="DIH\ModSettings.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />

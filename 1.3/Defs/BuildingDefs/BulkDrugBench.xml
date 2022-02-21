@@ -10,8 +10,8 @@
       <texPath>Things/Building/Production/TableDrugLab</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <shaderType>CutoutComplex</shaderType>
-      <!--Originally (3.5,1.5) not that it should matter when I get custom art. (7,4) is from high tech research bench-->
-      <drawSize>(6,4)</drawSize>
+      <!--Originally (3.5,1.5) not that it should matter when I get custom art. (7,4) is from Fabrication bench-->
+      <drawSize>(7,4)</drawSize>
       <damageData>
         <cornerTL>Damage/Corner</cornerTL>
         <cornerTR>Damage/Corner</cornerTR>

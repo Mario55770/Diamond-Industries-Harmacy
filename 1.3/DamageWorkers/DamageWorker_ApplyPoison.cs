@@ -12,13 +12,12 @@ namespace DI_Harmacy
     {
         protected override BodyPartRecord ChooseHitPart(DamageInfo dinfo, Pawn pawn)
         {
-           // Log.Message("ChooseHitPart");
+           
             return pawn.health.hediffSet.GetRandomNotMissingPart(dinfo.Def, dinfo.Height, BodyPartDepth.Outside);
         }
 
         protected override void ApplySpecialEffectsToPart(Pawn pawn, float totalDamage, DamageInfo dinfo, DamageResult result)
         {
-           // Log.Message("TEST");
             //get the variables
             CompPoisonable compPoisonable = null;
             Pawn p = (dinfo.Instigator as Pawn); 
@@ -41,6 +40,8 @@ namespace DI_Harmacy
             float appliedAmount = dinfo.Amount;
             //lessons the poison by same amount toxic buildup does
             appliedAmount *= 0.028758334f;
+            //multiplies by the setting.
+            appliedAmount *= DIHSettings.instance.poisonMultiplier;
             //multiplies by toxic sensitivity
             appliedAmount *= pawn.GetStatValue(StatDefOf.ToxicSensitivity);
             //gets hit part

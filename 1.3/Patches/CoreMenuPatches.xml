@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnTableDef[defName="Assign"]/columns</xpath>	
+		<xpath>Defs/PawnTableDef[defName="Assign"]/columns</xpath>
 		<value>
 			<li>DIHPoisonPolicy</li>
 		</value>
 	</Operation>
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
+
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Human"]</xpath>
 			<value>
@@ -15,12 +16,40 @@
 			</value>
 		</nomatch>
 	</Operation>
-		<Operation Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
-			<value>
-				<li>
-					<compClass>DI_Harmacy.CompPawnPoisonTracker</compClass>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>DI_Harmacy.CompPawnPoisonTracker</compClass>
+			</li>
+		</value>
+	</Operation>
+	<!--Deals with alien races-->
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Humanoid Alien Races</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[@ParentName="BasePawn"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/AlienRace.ThingDef_AlienRace[@ParentName="BasePawn"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
 				</li>
-				</value>
-		</Operation>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[@ParentName="BasePawn"]/comps</xpath>
+					<value>
+						<li>
+							<compClass>DI_Harmacy.CompPawnPoisonTracker</compClass>
+						</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
 </Patch>

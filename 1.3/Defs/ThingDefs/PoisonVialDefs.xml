@@ -21,20 +21,6 @@
 			<li>DIH_PoisonTab</li>
 		</thingCategories>
 	</ThingDef>
-	<!--<ThingDef ParentName="PoisonBase">
-    
-    <defName>DIH_GenericPoison</defName>
-    
-    <label>generic poison vial</label>
-    
-    <description>Generic poison vial. Shouldn't show up besides in dev mode with any luck.</description>
-      <graphicData>
-      <color>(180,173,150)</color>
-    </graphicData>
-	  <statBases>
-		  <MarketValue>30</MarketValue>
-	  </statBases>
-  </ThingDef>-->
 	<ThingDef ParentName="PoisonBase">
 		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
 		<defName>DIH_SnakeVenomVial</defName>
@@ -47,6 +33,9 @@
 			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
 			<MarketValue>30</MarketValue>
 		</statBases>
+		<tradeTags>
+			<li>DIH_Poison</li>
+		</tradeTags>
 		<graphicData>
 			<!--<texPath>Things/Item/Resource/Neutroamine</texPath>-->
 			<texPath>DIHarmacy/Things/Item/Resource/GenericPoison</texPath>

@@ -3,9 +3,9 @@
 	<InventoryStockGroupDef>
 		<defName>DIH_PoisonStockGroup</defName>
 		<thingDefs>
-			<li>DIH_SnakeVenomVial</li>
+			<li>DIH_SnakePoisonVial</li>
 			<li>DIH_BrickKnockoutPoisonVial</li>
-			<li>DIH_MidnightMurderVial</li>
+			<li>DIH_MidnightMurderPoisonVial</li>
 			<li>DIH_ApplyNoPoison</li>
 		</thingDefs>
 		<defaultThingDef>DIH_ApplyNoPoison</defaultThingDef>

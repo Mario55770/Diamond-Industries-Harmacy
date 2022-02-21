@@ -24,12 +24,6 @@
 				<count>1</count>
 			</li>
 		</ingredients>
-		<!--<products>
-			<Steel>15</Steel>
-		</products>-->
-		<!--<specialProducts>
-			<li>Butchery</li>
-		</specialProducts>-->
 	</RecipeDef>
 	<RecipeDef ParentName="MakePoisonBase">
 		<defName>Make_BrickKnockoutVial</defName>
@@ -64,11 +58,11 @@
 			</li>
 		</ingredients>
 		<products>
-			<DIH_MidnightMurderVial>1</DIH_MidnightMurderVial>
+			<DIH_MidnightMurderPoisonVial>1</DIH_MidnightMurderPoisonVial>
 		</products>
 	</RecipeDef>
 	<RecipeDef ParentName="MakePoisonBase">
-		<defName>Make_SnakeVenomVial</defName>
+		<defName>Make_SnakePoisonVial</defName>
 		<label>make a vial of synthetic snake venom</label>
 		<description>Synthesize synthetic snake venom from plant matter and Neutroamine.</description>
 		<ingredients>
@@ -82,7 +76,7 @@
 			</li>
 		</ingredients>
 		<products>
-			<DIH_SnakeVenomVial>1</DIH_SnakeVenomVial>
+			<DIH_SnakePoisonVial>1</DIH_SnakePoisonVial>
 		</products>
 	</RecipeDef>
 </Defs>

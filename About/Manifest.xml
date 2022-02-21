@@ -2,6 +2,10 @@
 <Manifest>
   <identifier>DiamondIndustryHarmacy</identifier>
   <version>0.0.5</version>
+	<suggests>
+		<li>DiamondShieldFramework</li>
+		<li>DiamondShieldTraps</li>
+	</suggests>
 	<loadAfter>
 		<li>Gameplay.Mods.LOMS</li>
 	</loadAfter>

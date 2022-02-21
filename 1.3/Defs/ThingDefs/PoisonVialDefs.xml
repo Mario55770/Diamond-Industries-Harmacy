@@ -23,7 +23,7 @@
 	</ThingDef>
 	<ThingDef ParentName="PoisonBase">
 		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
-		<defName>DIH_SnakeVenomVial</defName>
+		<defName>DIH_SnakePoisonVial</defName>
 		<!--This is the name displayed in game-->
 		<label>vial of snake venom</label>
 		<!--the descritpion of the item-->
@@ -69,7 +69,7 @@
 		</statBases>
 		<modExtensions>
 			<li Class="DI_Harmacy.PoisonProps">
-				<poisonInflicts>DIH_BrickKnockoutPoison</poisonInflicts>
+				<poisonInflicts>DIH_BrickKnockout</poisonInflicts>
 				<ammoCountPerCharge>1</ammoCountPerCharge>
 				<maxCharges>5</maxCharges>
 			</li>
@@ -77,7 +77,7 @@
 	</ThingDef>
 	<ThingDef ParentName="PoisonBase">
 		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
-		<defName>DIH_MidnightMurderVial</defName>
+		<defName>DIH_MidnightMurderPoisonVial</defName>
 		<!--This is the name displayed in game-->
 		<label>vial of midnight murder</label>
 		<!--the descritpion of the item-->

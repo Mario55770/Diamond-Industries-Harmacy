@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <HediffDef>
-    <defName>DIH_BrickKnockoutPoison</defName>
+    <defName>DIH_BrickKnockout</defName>
     <label>brick knockout</label>
     <description>"Out like a light" never rings truer than when hit with bricks. This poison tends to safely and humanely knock individuals out.</description>
     <hediffClass>HediffWithComps</hediffClass>

@@ -5,5 +5,6 @@
 	<label>poison</label>
 	<workerClass>DI_Harmacy.PawnColumnWorker_Poison</workerClass>
 	<sortable>true</sortable>
+	<width>65</width>
 </PawnColumnDef>
 </Defs>

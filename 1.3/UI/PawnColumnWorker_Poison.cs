@@ -50,7 +50,6 @@ namespace DI_Harmacy
 					option = new FloatMenuOption(thing.LabelCap, delegate
 					{
 						//this line updates the pawn to change its tracker
-						//pawn.def.GetModExtension<PawnPoisonTrackerExtension>().poisonToUse = thing;
 						pawn_InventoryStockTracker.SetThingForGroup(group, thing);
 					}),
 					payload = thing

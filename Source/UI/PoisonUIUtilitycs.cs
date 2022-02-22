@@ -19,10 +19,13 @@ namespace DI_Harmacy
 		public const float CareSetterWidth = 140f;
 
 		private static bool medicalCarePainting;
-
+		static PoisonUIUtility()
+        {
+			Reset();
+        }
 		public static void Reset()
 		{
-			Log.Message("Reset");
+			//Log.Message("Reset");
 			LongEventHandler.ExecuteWhenFinished(delegate
 			{
 				careTextures = new Texture2D[5];
@@ -36,20 +39,20 @@ namespace DI_Harmacy
 		//from DraggableResultUtility, its the same, but I had to do it here as it was originally part of an internal class
 		public static bool AnyPressed(this Widgets.DraggableResult result)
 		{
-			Log.Message("AnyPressed");
+			//Log.Message("AnyPressed");
 			if (result != Widgets.DraggableResult.Pressed)
 			{
 				return result == Widgets.DraggableResult.DraggedThenPressed;
 			}
 			return true;
 		} 
-		public static void MedicalCareSetter(Rect rect, ref MedicalCareCategory medCare)
+		public static void MedicalCareSetter(Rect rect, ref PoisonUsagePolicy medCare)
 		{
-			Log.Message("MedicalCareSetter");
+			//Log.Message("MedicalCareSetter");
 			Rect rect2 = new Rect(rect.x, rect.y, rect.width / 5f, rect.height);
 			for (int i = 0; i < 5; i++)
 			{
-				MedicalCareCategory mc = (MedicalCareCategory)i;
+				PoisonUsagePolicy mc = (PoisonUsagePolicy)i;
 				Widgets.DrawHighlightIfMouseover(rect2);
 				MouseoverSounds.DoRegion(rect2);
 				GUI.DrawTexture(rect2, careTextures[i]);
@@ -79,26 +82,27 @@ namespace DI_Harmacy
 			}
 		}
 
-		public static string GetLabel(this MedicalCareCategory cat)
+		public static string GetLabel(this PoisonUsagePolicy cat)
 		{
-			Log.Message("GetLabel");
+			//Translate should be readdded when I can
+			//return ("PoisonUsagePolicy_" + cat);
 			return ("MedicalCareCategory_" + cat).Translate();
 		}
 
-		public static bool AllowsMedicine(this MedicalCareCategory cat, ThingDef meds)
+		public static bool AllowsMedicine(this PoisonUsagePolicy cat, ThingDef meds)
 		{
-			Log.Message("AllowsMedicine");
+			//Log.Message("AllowsMedicine");
 			switch (cat)
 			{
-				case MedicalCareCategory.NoCare:
+				case PoisonUsagePolicy.NoCare:
 					return false;
-				case MedicalCareCategory.NoMeds:
+				case PoisonUsagePolicy.NoMeds:
 					return false;
-				case MedicalCareCategory.HerbalOrWorse:
+				case PoisonUsagePolicy.HerbalOrWorse:
 					return meds.GetStatValueAbstract(StatDefOf.MedicalPotency) <= ThingDefOf.MedicineHerbal.GetStatValueAbstract(StatDefOf.MedicalPotency);
-				case MedicalCareCategory.NormalOrWorse:
+				case PoisonUsagePolicy.NormalOrWorse:
 					return meds.GetStatValueAbstract(StatDefOf.MedicalPotency) <= ThingDefOf.MedicineIndustrial.GetStatValueAbstract(StatDefOf.MedicalPotency);
-				case MedicalCareCategory.Best:
+				case PoisonUsagePolicy.Best:
 					return true;
 				default:
 					throw new InvalidOperationException();
@@ -107,27 +111,32 @@ namespace DI_Harmacy
 
 		public static void MedicalCareSelectButton(Rect rect, Pawn pawn)
 		{
-			Log.Message("MedicalCareSelectButton");
-			Widgets.Dropdown(rect, pawn, MedicalCareSelectButton_GetMedicalCare, MedicalCareSelectButton_GenerateMenu, null, careTextures[(uint)pawn.playerSettings.medCare], null, null, null, paintable: true);
+			//Log.Message("MedicalCareSelectButton");
+			Widgets.Dropdown(rect, pawn, MedicalCareSelectButton_GetMedicalCare, MedicalCareSelectButton_GenerateMenu, null, careTextures[(uint)pawn.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy], null, null, null, paintable: true);
+			
+			//	Widgets.Dropdown(rect, pawn, MedicalCareSelectButton_GetMedicalCare, MedicalCareSelectButton_GenerateMenu, null, careTextures[(uint)pawn.playerSettings.medCare], null, null, null, paintable: true);
+
 		}
 
-		private static MedicalCareCategory MedicalCareSelectButton_GetMedicalCare(Pawn pawn)
+		private static PoisonUsagePolicy MedicalCareSelectButton_GetMedicalCare(Pawn pawn)
 		{
-			Log.Message("MedicalCareSelectButtong_GetMedicalCare");
-			return pawn.playerSettings.medCare;
+			//Log.Message("MedicalCareSelectButtong_GetMedicalCare");
+			//return pawn.playerSettings.medCare;
+			return pawn.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy;
 		}
 
-		private static IEnumerable<Widgets.DropdownMenuElement<MedicalCareCategory>> MedicalCareSelectButton_GenerateMenu(Pawn p)
+		private static IEnumerable<Widgets.DropdownMenuElement<PoisonUsagePolicy>> MedicalCareSelectButton_GenerateMenu(Pawn p)
 		{
-			Log.Message("MedicalCareSelectButton_GenerateMenu");
+			//Log.Message("MedicalCareSelectButton_GenerateMenu");
 			for (int i = 0; i < 5; i++)
 			{
-				MedicalCareCategory mc = (MedicalCareCategory)i;
-				yield return new Widgets.DropdownMenuElement<MedicalCareCategory>
+				PoisonUsagePolicy mc = (PoisonUsagePolicy)i;
+				yield return new Widgets.DropdownMenuElement<PoisonUsagePolicy>
 				{
 					option = new FloatMenuOption(mc.GetLabel(), delegate
 					{
-						p.playerSettings.medCare = mc;
+						p.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy=mc;
+						//p.playerSettings.medCare = mc;
 					}),
 					payload = mc
 				};

@@ -31,7 +31,8 @@ namespace DI_Harmacy
 
 		public override int Compare(Pawn a, Pawn b)
 		{
-			return a.playerSettings.medCare.CompareTo(b.playerSettings.medCare);
+			return a.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy.CompareTo(b.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy);
+			//return a.playerSettings.medCare.CompareTo(b.playerSettings.medCare);
 		}
 	}
 

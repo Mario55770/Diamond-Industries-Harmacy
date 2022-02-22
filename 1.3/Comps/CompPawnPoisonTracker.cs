@@ -20,6 +20,7 @@ namespace DI_Harmacy
             //Log.Error("Let's error on every tick!");
         }
         public Pawn_InventoryStockTracker pawn_InventoryStockTracker;
+        public PoisonUsagePolicy poisonUsagePolicy;
         public CompPropertiesPawnPoisonTracker Props => (CompPropertiesPawnPoisonTracker)this.props;
 
         }

@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -6,8 +6,9 @@
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
     <AssemblyName>DIHarmacy</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -17,6 +18,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -25,6 +27,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <RootNamespace>DI_Harmacy</RootNamespace>
@@ -34,8 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Lib.Harmony.2.2.0\lib\net35\0Harmony.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>packages\Lib.Harmony.2.2.0\lib\net472\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
@@ -60,6 +62,14 @@
       <HintPath>..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\RimWorldWin64_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\RimWorldWin64_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
       <HintPath>..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>
@@ -73,13 +83,11 @@
     <None Include=".editorconfig" />
     <None Include=".vs\Diamond Industry Harmacy\DesignTimeBuild\.dtbcache.v2" />
     <None Include=".vs\Diamond Industry Harmacy\v16\.suo" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="1.3\Defs\CropDefs\PoisonPlantDefs.xml" />
     <Content Include="1.3\Defs\DamageDefs\PoisonDamageDefs.xml" />
     <Content Include="1.3\Defs\HediffDefs\BrickKnockoutPoison.xml" />
-    <Content Include="1.3\Defs\InventoryStockGroupDefs\PoisonStockGroupDef.xml" />
     <Content Include="1.3\Defs\JobDefs\JobsDefs.xml" />
     <Content Include="1.3\Defs\RecipeDefs\PoisonRecipes.xml" />
     <Content Include="1.3\Defs\ThingDefs\IngredientDefs.xml" />
@@ -104,27 +112,27 @@
     <Content Include="LoadFolders.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1.3\Comps\Command_Poisonable.cs" />
-    <Compile Include="1.3\Comps\CompPoisonable.cs" />
-    <Compile Include="1.3\Comps\CompProperties_Poisonable.cs" />
-    <None Include="1.3\Comps\GizmoPoisonAmmoStatus.cs" />
-    <Compile Include="1.3\Defs\InventoryStockGroupDefs\DIH_PoisonStockGroups.cs" />
-    <Compile Include="1.3\Defs\RecipeDefs\RecipeAssignment.cs" />
-    <Compile Include="1.3\Comps\AdvanceNecrosis.cs" />
-    <Compile Include="1.3\DamageWorkers\DamageWorker_ApplyPoison.cs" />
-    <Compile Include="1.3\Defs\DamageDefs\DIH_DamageDefs.cs" />
-    <Compile Include="1.3\Defs\HediffDefs\DIH_Hediffs.cs" />
-    <Compile Include="1.3\Defs\JobDefs\DIH_JobDefs.cs" />
-    <Compile Include="1.3\JobGiver\JobDriver_Poison.cs" />
-    <Compile Include="1.3\JobGiver\JobGiver_Poison.cs" />
-    <Compile Include="1.3\JobGiver\PoisonableUtility.cs" />
-    <Compile Include="1.3\Comps\CompPawnPoisonTracker.cs" />
-    <Compile Include="1.3\ModExtensions\PoisonProps.cs" />
-    <Compile Include="1.3\Patches\HarmonyPatching.cs" />
-    <Compile Include="1.3\Patches\RangedHarmonyPatch.cs" />
-    <Compile Include="1.3\UI\PawnColumnWorker_Poison.cs" />
-    <Compile Include="1.3\Verbs\VerbPoison_Jump.cs" />
-    <Compile Include="1.3\Verbs\Verbs.cs" />
+    <Compile Include="Source\Comps\Command_Poisonable.cs" />
+    <Compile Include="Source\Comps\CompPoisonable.cs" />
+    <Compile Include="Source\Comps\CompProperties_Poisonable.cs" />
+    <Compile Include="Source\UI\PoisonUIData.cs" />
+    <None Include="Source\Comps\GizmoPoisonAmmoStatus.cs" />
+    <Compile Include="Source\Other\RecipeAssignment.cs" />
+    <Compile Include="Source\Comps\AdvanceNecrosis.cs" />
+    <Compile Include="Source\DamageWorkers\DamageWorker_ApplyPoison.cs" />
+    <Compile Include="Source\DefOfs\DIH_DamageDefs.cs" />
+    <Compile Include="Source\DefOfs\DIH_Hediffs.cs" />
+    <Compile Include="Source\DefOfs\DIH_JobDefs.cs" />
+    <Compile Include="Source\JobGiver\JobDriver_Poison.cs" />
+    <Compile Include="Source\JobGiver\JobGiver_Poison.cs" />
+    <Compile Include="Source\JobGiver\PoisonableUtility.cs" />
+    <Compile Include="Source\Comps\CompPawnPoisonTracker.cs" />
+    <Compile Include="Source\ModExtensions\PoisonProps.cs" />
+    <Compile Include="Source\Patches\HarmonyPatching.cs" />
+    <Compile Include="Source\Patches\RangedHarmonyPatch.cs" />
+    <None Include="packages.config" />
+    <Compile Include="Source\UI\PawnColumnWorker_Poison.cs" />
+    <Compile Include="Source\UI\PoisonUIUtilitycs.cs" />
     <Compile Include="DIH\ModSettings.cs" />
   </ItemGroup>
   <ItemGroup />

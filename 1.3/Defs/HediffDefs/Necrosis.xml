@@ -14,7 +14,7 @@
       </li>
       <li Class="HediffCompProperties_Infecter">
         <!--Default was 0.30-->
-        <infectionChance>0.50</infectionChance>
+        <infectionChance>0.70</infectionChance>
        
       </li>
       <li Class="HediffCompProperties_GetsPermanent">

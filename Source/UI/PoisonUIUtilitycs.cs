@@ -88,6 +88,7 @@ namespace DI_Harmacy
         {
             //Log.Message("MedicalCareSelectButton");
             ThingDef assignedPoison = pawn.GetComp<CompPawnPoisonTracker>().assignedPoison;
+            if(!pawn.WorkTagIsDisabled(WorkTags.Violent))
             Widgets.Dropdown(rect: rect, target: pawn, iconColor: Color.white,(Pawn p) => MedicalCareSelectButton_GetMedicalCare(pawn), (Pawn p) => MedicalCareSelectButton_GenerateMenu(pawn),buttonIcon: GetTextures(assignedPoison), paintable:true);
             //Widgets.Dropdown(rect, pawn, MedicalCareSelectButton_GetMedicalCare, MedicalCareSelectButton_GenerateMenu, null, careTextures[(uint)pawn.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy], null, null, null, paintable: true);
 

@@ -20,8 +20,13 @@ namespace DI_Harmacy
         {
             PoisonUIData p = new PoisonUIData(null, "Use No Poisons");
             poisonUIDataList.Add(p);
-            p = new PoisonUIData((ThingDef)GenDefDatabase.GetDef(typeof(ThingDef), "DIH_SnakePoisonVial"), "TEST");
+            p = new PoisonUIData((ThingDef)GenDefDatabase.GetDef(typeof(ThingDef), "DIH_SnakePoisonVial"), "Use Snake Venom");
             poisonUIDataList.Add(p);
+            p = new PoisonUIData((ThingDef)GenDefDatabase.GetDef(typeof(ThingDef), "DIH_MidnightMurderPoisonVial"), "Use Midnight Murder");
+            poisonUIDataList.Add(p);
+            p = new PoisonUIData((ThingDef)GenDefDatabase.GetDef(typeof(ThingDef), "DIH_BrickKnockoutPoisonVial"), "Use Brick Knockout");
+            poisonUIDataList.Add(p);
+
         }
         public static string LabelValue(ThingDef thingdef)
         {

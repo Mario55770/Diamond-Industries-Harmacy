@@ -54,11 +54,11 @@ namespace DI_Harmacy
         public void updatePoisons(Pawn pawn)
         {
             CompPawnPoisonTracker compPawnPoisonTracker = pawn.GetComp<CompPawnPoisonTracker>();
-            if (compPawnPoisonTracker == null || compPawnPoisonTracker.pawn_InventoryStockTracker == null)
+            if (compPawnPoisonTracker == null || compPawnPoisonTracker.assignedPoison == null)
             {
                 return;
             }
-            ThingDef ammoToUse = compPawnPoisonTracker.pawn_InventoryStockTracker.GetDesiredThingForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup);
+            ThingDef ammoToUse = compPawnPoisonTracker.assignedPoison;//pawn_InventoryStockTracker.GetDesiredThingForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup);
             if (ammoToUse == null || AmmoDef == ammoToUse)
             {
                 return;

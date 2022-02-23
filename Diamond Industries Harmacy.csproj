@@ -133,8 +133,6 @@
     <None Include="packages.config" />
     <Compile Include="Source\UI\PawnColumnWorker_Poison.cs" />
     <Compile Include="Source\UI\PoisonUIUtilitycs.cs" />
-    <Compile Include="Source\Verbs\VerbPoison_Jump.cs" />
-    <Compile Include="Source\Verbs\Verbs.cs" />
     <Compile Include="DIH\ModSettings.cs" />
   </ItemGroup>
   <ItemGroup />

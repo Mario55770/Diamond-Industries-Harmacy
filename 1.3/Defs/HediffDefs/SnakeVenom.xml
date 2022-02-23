@@ -10,7 +10,7 @@
       \nIt can also slow movement and worsen manipulation and may cause necrosis(If you see this message it means I forgot to add necrosis or remove this message. Either way, go yell at me)</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
-    <lethalSeverity>1</lethalSeverity>
+    <lethalSeverity>1.5</lethalSeverity>
     <makesSickThought>true</makesSickThought>
     <scenarioCanAdd>true</scenarioCanAdd>
     <taleOnVisible>ToxicityRevealed</taleOnVisible>
@@ -31,7 +31,6 @@
       <li>
         <label>initial</label>
         <minSeverity>0.04</minSeverity>
-
         <capMods>
           <li>
             <!--As breathing down will affect everything else, I decreased breathing here only-->
@@ -43,7 +42,7 @@
       </li>
       <li>
         <label>minor</label>
-        <minSeverity>0.2</minSeverity>
+        <minSeverity>0.3</minSeverity>
         <capMods>
           <li>
             <capacity>Breathing</capacity>
@@ -58,7 +57,7 @@
       </li>
       <li>
         <label>moderate</label>
-        <minSeverity>0.40</minSeverity>
+        <minSeverity>0.50</minSeverity>
         <vomitMtbDays>5</vomitMtbDays>
         <capMods>
           <li>
@@ -87,7 +86,7 @@
       </li>
       <li>
         <label>serious</label>
-        <minSeverity>0.60</minSeverity>
+        <minSeverity>0.80</minSeverity>
         <vomitMtbDays>1</vomitMtbDays>
         <capMods>
           <li>
@@ -120,7 +119,7 @@
       </li>
       <li>
         <label>extreme</label>
-        <minSeverity>0.80</minSeverity>
+        <minSeverity>1.10</minSeverity>
         <vomitMtbDays>0.5</vomitMtbDays>
         <capMods>
           <li>

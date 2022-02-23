@@ -88,7 +88,6 @@
     <Content Include="1.3\Defs\CropDefs\PoisonPlantDefs.xml" />
     <Content Include="1.3\Defs\DamageDefs\PoisonDamageDefs.xml" />
     <Content Include="1.3\Defs\HediffDefs\BrickKnockoutPoison.xml" />
-    <Content Include="1.3\Defs\InventoryStockGroupDefs\PoisonStockGroupDef.xml" />
     <Content Include="1.3\Defs\JobDefs\JobsDefs.xml" />
     <Content Include="1.3\Defs\RecipeDefs\PoisonRecipes.xml" />
     <Content Include="1.3\Defs\ThingDefs\IngredientDefs.xml" />
@@ -118,25 +117,24 @@
     <Compile Include="Source\Comps\CompProperties_Poisonable.cs" />
     <Compile Include="Source\UI\PoisonUIData.cs" />
     <None Include="Source\Comps\GizmoPoisonAmmoStatus.cs" />
-    <Compile Include="1.3\Defs\InventoryStockGroupDefs\DIH_PoisonStockGroups.cs" />
-    <Compile Include="1.3\Defs\RecipeDefs\RecipeAssignment.cs" />
+    <Compile Include="Source\Other\RecipeAssignment.cs" />
     <Compile Include="Source\Comps\AdvanceNecrosis.cs" />
-    <Compile Include="1.3\DamageWorkers\DamageWorker_ApplyPoison.cs" />
-    <Compile Include="1.3\Defs\DamageDefs\DIH_DamageDefs.cs" />
-    <Compile Include="1.3\Defs\HediffDefs\DIH_Hediffs.cs" />
-    <Compile Include="1.3\Defs\JobDefs\DIH_JobDefs.cs" />
+    <Compile Include="Source\DamageWorkers\DamageWorker_ApplyPoison.cs" />
+    <Compile Include="Source\DefOfs\DIH_DamageDefs.cs" />
+    <Compile Include="Source\DefOfs\DIH_Hediffs.cs" />
+    <Compile Include="Source\DefOfs\DIH_JobDefs.cs" />
     <Compile Include="Source\JobGiver\JobDriver_Poison.cs" />
     <Compile Include="Source\JobGiver\JobGiver_Poison.cs" />
     <Compile Include="Source\JobGiver\PoisonableUtility.cs" />
     <Compile Include="Source\Comps\CompPawnPoisonTracker.cs" />
-    <Compile Include="1.3\ModExtensions\PoisonProps.cs" />
-    <Compile Include="1.3\Patches\HarmonyPatching.cs" />
-    <Compile Include="1.3\Patches\RangedHarmonyPatch.cs" />
+    <Compile Include="Source\ModExtensions\PoisonProps.cs" />
+    <Compile Include="Source\Patches\HarmonyPatching.cs" />
+    <Compile Include="Source\Patches\RangedHarmonyPatch.cs" />
     <None Include="packages.config" />
     <Compile Include="Source\UI\PawnColumnWorker_Poison.cs" />
     <Compile Include="Source\UI\PoisonUIUtilitycs.cs" />
-    <Compile Include="1.3\Verbs\VerbPoison_Jump.cs" />
-    <Compile Include="1.3\Verbs\Verbs.cs" />
+    <Compile Include="Source\Verbs\VerbPoison_Jump.cs" />
+    <Compile Include="Source\Verbs\Verbs.cs" />
     <Compile Include="DIH\ModSettings.cs" />
   </ItemGroup>
   <ItemGroup />

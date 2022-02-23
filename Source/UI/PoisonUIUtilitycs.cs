@@ -46,54 +46,13 @@ namespace DI_Harmacy
             }
             return true;
         }
-        /**public static void MedicalCareSetter(Rect rect, ref PoisonUsagePolicy medCare)
-		{
-			//Log.Message("MedicalCareSetter");
-			Rect rect2 = new Rect(rect.x, rect.y, rect.width / 5f, rect.height);
-			for (int i = 0; i < 5; i++)
-			{
-				PoisonUsagePolicy mc = (PoisonUsagePolicy)i;
-				Widgets.DrawHighlightIfMouseover(rect2);
-				MouseoverSounds.DoRegion(rect2);
-				GUI.DrawTexture(rect2, careTextures[i]);
-				Widgets.DraggableResult draggableResult = Widgets.ButtonInvisibleDraggable(rect2);
-				if (draggableResult == Widgets.DraggableResult.Dragged)
-				{
-					medicalCarePainting = true;
-				}
-				if ((medicalCarePainting && Mouse.IsOver(rect2) && medCare != mc) || draggableResult.AnyPressed())
-				{
-					medCare = mc;
-					SoundDefOf.Tick_High.PlayOneShotOnCamera();
-				}
-				if (medCare == mc)
-				{
-					Widgets.DrawBox(rect2, 3);
-				}
-				if (Mouse.IsOver(rect2))
-				{
-					TooltipHandler.TipRegion(rect2, () => mc.GetLabel(), 632165 + i * 17);
-				}
-				rect2.x += rect2.width;
-			}
-			if (!Input.GetMouseButton(0))
-			{
-				medicalCarePainting = false;
-			}
-		}**/
-
-
 
         public static void MedicalCareSelectButton(Rect rect, Pawn pawn)
         {
-            //Log.Message("MedicalCareSelectButton");
             ThingDef assignedPoison = pawn.GetComp<CompPawnPoisonTracker>().assignedPoison;
             if(!pawn.WorkTagIsDisabled(WorkTags.Violent))
             Widgets.Dropdown(rect: rect, target: pawn, iconColor: Color.white,(Pawn p) => MedicalCareSelectButton_GetMedicalCare(pawn), (Pawn p) => MedicalCareSelectButton_GenerateMenu(pawn),buttonIcon: GetTextures(assignedPoison), paintable:true);
-            //Widgets.Dropdown(rect, pawn, MedicalCareSelectButton_GetMedicalCare, MedicalCareSelectButton_GenerateMenu, null, careTextures[(uint)pawn.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy], null, null, null, paintable: true);
-
-            //Widgets.Dropdown(rect, pawn, MedicalCareSelectButton_GetMedicalCare, MedicalCareSelectButton_GenerateMenu, null, careTextures[(uint)pawn.playerSettings.medCare], null, null, null, paintable: true);
-        }
+         }
 
             private static Texture2D GetTextures(ThingDef thingDef)
             {
@@ -109,44 +68,13 @@ namespace DI_Harmacy
            
             }
 
-        //Widgets.DropdownMenuElement<ThingDef> 
         private static ThingDef MedicalCareSelectButton_GetMedicalCare(Pawn pawn)
             {
-                //Log.Message("MedicalCareSelectButtong_GetMedicalCare");
-                //return pawn.playerSettings.medCare;
-                // return pawn.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy;
-
+        
                 ThingDef mc = pawn.GetComp<CompPawnPoisonTracker>().assignedPoison;
             return mc;
-               /** return new Widgets.DropdownMenuElement<ThingDef>
-                {
-                    option = new FloatMenuOption(PoisonUIDataList.LabelValue(mc), delegate
-                    {
-                    //p.GetComp<CompPawnPoisonTracker>().assignedPoison = mc;
-                    //p.playerSettings.medCare = mc;
-                }),
-                    payload = mc
-                };**/
             }
-
-            /**private static IEnumerable<Widgets.DropdownMenuElement<PoisonUsagePolicy>> MedicalCareSelectButton_GenerateMenu(Pawn p)
-            {
-                //Log.Message("MedicalCareSelectButton_GenerateMenu");
-                for (int i = 0; i < 5; i++)
-                {
-                    PoisonUsagePolicy mc = (PoisonUsagePolicy)i;
-                    yield return new Widgets.DropdownMenuElement<PoisonUsagePolicy>
-                    {
-                        option = new FloatMenuOption(mc.GetLabel(), delegate
-                        {
-                            p.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy=mc;
-                            //p.playerSettings.medCare = mc;
-                        }),
-                        payload = mc
-                    };
-                }
-            }**/
-            private static IEnumerable<Widgets.DropdownMenuElement<ThingDef>> MedicalCareSelectButton_GenerateMenu(Pawn p)
+    private static IEnumerable<Widgets.DropdownMenuElement<ThingDef>> MedicalCareSelectButton_GenerateMenu(Pawn p)
             {
                 foreach (PoisonUIData poisonUIData in PoisonUIDataList.poisonUIDataList)
                 {

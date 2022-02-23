@@ -21,23 +21,9 @@
 			<li>DIH_PoisonTab</li>
 		</thingCategories>
 	</ThingDef>
-	<!--<ThingDef ParentName="PoisonBase">
-    
-    <defName>DIH_GenericPoison</defName>
-    
-    <label>generic poison vial</label>
-    
-    <description>Generic poison vial. Shouldn't show up besides in dev mode with any luck.</description>
-      <graphicData>
-      <color>(180,173,150)</color>
-    </graphicData>
-	  <statBases>
-		  <MarketValue>30</MarketValue>
-	  </statBases>
-  </ThingDef>-->
 	<ThingDef ParentName="PoisonBase">
 		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
-		<defName>DIH_SnakeVenomVial</defName>
+		<defName>DIH_SnakePoisonVial</defName>
 		<!--This is the name displayed in game-->
 		<label>vial of snake venom</label>
 		<!--the descritpion of the item-->
@@ -47,6 +33,9 @@
 			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
 			<MarketValue>30</MarketValue>
 		</statBases>
+		<tradeTags>
+			<li>DIH_Poison</li>
+		</tradeTags>
 		<graphicData>
 			<!--<texPath>Things/Item/Resource/Neutroamine</texPath>-->
 			<texPath>DIHarmacy/Things/Item/Resource/GenericPoison</texPath>
@@ -80,7 +69,7 @@
 		</statBases>
 		<modExtensions>
 			<li Class="DI_Harmacy.PoisonProps">
-				<poisonInflicts>DIH_BrickKnockoutPoison</poisonInflicts>
+				<poisonInflicts>DIH_BrickKnockout</poisonInflicts>
 				<ammoCountPerCharge>1</ammoCountPerCharge>
 				<maxCharges>5</maxCharges>
 			</li>
@@ -88,7 +77,7 @@
 	</ThingDef>
 	<ThingDef ParentName="PoisonBase">
 		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
-		<defName>DIH_MidnightMurderVial</defName>
+		<defName>DIH_MidnightMurderPoisonVial</defName>
 		<!--This is the name displayed in game-->
 		<label>vial of midnight murder</label>
 		<!--the descritpion of the item-->
@@ -112,18 +101,35 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
-	<ThingDef ParentName="PoisonBase">
+	<ThingDef ParentName="ResourceBase">
 		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
 		<defName>DIH_ApplyNoPoison</defName>
+		<!-- ParentName="NonExistentBase">-->
+		<stackLimit>25</stackLimit>
+		<healthAffectsPrice>false</healthAffectsPrice>
+		<uiIconForStackCount>1</uiIconForStackCount>
+		<soundInteract>Standard_Drop</soundInteract>
+		<soundDrop>Standard_Drop</soundDrop>
+		<statBases>
+			<!--not all inclusive but covers some of the big ones. Change these to be the stats you want.-->
+			<MaxHitPoints>50</MaxHitPoints>
+
+			<Mass>0.02</Mass>
+			<Flammability>0.7</Flammability>
+			<DeteriorationRate>1.0</DeteriorationRate>
+		</statBases>
+		<!--<thingCategories>
+			what catagory it is displayed as in game
+			<li>DIH_PoisonTab</li>
+		</thingCategories>-->
+
+
 		<!--This is the name displayed in game-->
 		<label>Use No Poison</label>
 		<!--the descritpion of the item-->
 		<description>If your seeing this, you either spawned this in dev mode, or I need to know. If your in dev mode, stop, if you're not...let me know how it happened.</description>
 		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
-		<statBases>
-			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
-			<MarketValue>30</MarketValue>
-		</statBases>
+	
 		<graphicData>
 			<texPath>DIHarmacy/Things/Item/Resource/RedSlash</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

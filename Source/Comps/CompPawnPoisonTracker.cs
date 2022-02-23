@@ -10,16 +10,16 @@ namespace DI_Harmacy
     {
         public override void PostExposeData()
         {
-            base.PostExposeData();
-            Scribe_Deep.Look(ref pawn_InventoryStockTracker, "pawn_InventoryStockTracker", null);
-         
-            
+            //base.PostExposeData();
+            //Scribe_Deep.Look(ref pawn_InventoryStockTracker, "pawn_InventoryStockTracker", null);
+            Scribe_Defs.Look(ref assignedPoison, "assignedPoison");  
         }
         public override void CompTick()
         {
             //Log.Error("Let's error on every tick!");
         }
-        public Pawn_InventoryStockTracker pawn_InventoryStockTracker;
+        //public Pawn_InventoryStockTracker pawn_InventoryStockTracker;
+        public ThingDef assignedPoison=null;
         public CompPropertiesPawnPoisonTracker Props => (CompPropertiesPawnPoisonTracker)this.props;
 
         }

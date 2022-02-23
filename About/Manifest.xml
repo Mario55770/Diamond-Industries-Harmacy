@@ -2,7 +2,15 @@
 <Manifest>
   <identifier>DiamondIndustryHarmacy</identifier>
   <version>0.0.5</version>
-
+	<suggests>
+		<li>DiamondShieldFramework</li>
+		<li>DiamondShieldTraps</li>
+	</suggests>
+	<loadAfter>
+		<li>Gameplay.Mods.LOMS</li>
+	</loadAfter>
+	<loadBefore>
+		<li>UI/Graphics.Mods.LOMS</li>
+	</loadBefore>
   <downloadUri>https://steamcommunity.com/sharedfiles/filedetails/?id=2652807142</downloadUri> 
-
 </Manifest>

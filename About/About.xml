@@ -1,34 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-  <name>Diamond Industry Harmacy</name>
-  <author>Mario55770</author>
-  <packageId>Mario.DIH</packageId>
-  <supportedVersions>
-    <li>1.3</li>
-  </supportedVersions>
-  <description>
-    Brought to you by the exclusive Diamond Industries, the harmacy. Featuring better drug production, poisons, medicines, and more, including antidotes.
-    For legal reasons, Diamond Industry executives require warnings informing users to not load poisons into the slot labeled poison, as that would create a chemical weapon.
-    Welcome to the Diamond Industry Harmacy Beta Release
-	Current features
-	Poison melee and ranged weapons. Poison consumed only on a hit. Automatically configured to use all weapons that are implemented correctly(in other words, should be cross mod compatible unless they did something weird)
-	New gui widget, under the assign tab, pick what poison a pawn should use, and they'll automatically apply it. 
-    Poison is consumed on a hit, make sure to keep stocked up.
-	Bulk Drug Lab. Automatically gets recipes and makes a bulk version, even if from other mods. Less work, and faster speeds, so your yayo and poison piles grow.
-	Milk snakes.
-	Cobras and toxic spikes and fangs have been swapped to use cobra venom and midnight murder respectively.
-	Three new poisons, Cobra Venom, Brick Knockout, and Midnight Murder.
-	
-	Bug reports require a hugslib at minimum, as well as a description of the problem.
-	Suggestions for other mods for me to add compatiblity with are welcome.
-	Pending features, toggle between a hit using poison or not.
-	Poison raiders.
-	Antivenoms, and possible rework of how the hediff applies. (Give it its own system, comparable to a hybrid of toxic buildup, and diseases)
-	Minor visual fixes(Incorrect capatalization, cosmetic bugs like that)
-	Otimization and balance.
-	
-	Discord  https://discord.gg/FqVaCUdPeK
-	
-    Github https://github.com/Mario55770/DShield-Trap-Framework
-  </description>
+	<name>Diamond Industry Harmacy</name>
+	<author>Mario55770</author>
+	<packageId>Mario.DIH</packageId>
+	<supportedVersions>
+		<li>1.3</li>
+	</supportedVersions>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+		</li>
+	</modDependencies>
+	<description>
+		Brought to you by the exclusive Diamond Industries, the harmacy. Featuring better drug production, poisons, medicines, and more, including antidotes.
+		For legal reasons, Diamond Industry executives require warnings informing users to not load poisons into the slot labeled poison, as that would create a chemical weapon.
+		Welcome to the Diamond Industry Harmacy Beta Release
+		Current features
+		Poison melee and ranged weapons. Poison consumed only on a hit. Automatically configured to use all weapons that are implemented correctly(in other words, should be cross mod compatible unless they did something weird)
+		New gui widget, under the assign tab, pick what poison a pawn should use, and they'll automatically apply it.
+		Poison is consumed on a hit, make sure to keep stocked up.
+		Bulk Drug Lab. Automatically gets recipes and makes a bulk version, even if from other mods. Less work, and faster speeds, so your yayo and poison piles grow.
+		Milk snakes.
+		Cobras and toxic spikes and fangs have been swapped to use cobra venom and midnight murder respectively.
+		Three new poisons, Cobra Venom, Brick Knockout, and Midnight Murder.
+		Cobra Venom is a potent poison which specializes in making everything worse. Causing necrosis in most open wounds, increasing the victims bleed rate, weakening most stats slightly, and rarely causing heart attacks.
+		Brick Knockout is an anesthetic, which confers primarly pain tolerance and a loss of consciousness. For those well versed in Rimworld...this might be sounding a bit familiar. This assists in capturing pawns.
+		Midnight Murder is a combat poison through and through. It excels in downing pawns, painfully and dangerously.
+		Bug reports require a hugslib at minimum, as well as a description of the problem.
+		Suggestions for other mods for me to add compatiblity with are welcome.
+		Pending features, toggle between a hit using poison or not.
+		Poison raiders.
+		Antivenoms, and possible rework of how the hediff applies. (Give it its own system, comparable to a hybrid of toxic buildup, and diseases)
+		Minor visual fixes(Incorrect capatalization, cosmetic bugs like that)
+		Otimization and balance.
+
+		Credit to Djeeshka for the harmroot plant's texture.
+		Discord  https://discord.gg/FqVaCUdPeK
+
+		Github https://github.com/Mario55770/DShield-Trap-Framework
+	</description>
 </ModMetaData>

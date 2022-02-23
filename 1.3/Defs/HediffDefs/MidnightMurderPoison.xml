@@ -7,7 +7,7 @@
     \nThis poison is typically used for weapons, with a high effeciency of incapaciting victims, sometimes causing death.</description>
   <hediffClass>HediffWithComps</hediffClass>
   <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
-  <lethalSeverity>1</lethalSeverity>
+  <lethalSeverity>1.5</lethalSeverity>
   <makesSickThought>true</makesSickThought>
   <scenarioCanAdd>true</scenarioCanAdd>
   <taleOnVisible>ToxicityRevealed</taleOnVisible>
@@ -33,7 +33,7 @@
     </li>
     <li>
       <label>minor</label>
-      <minSeverity>0.2</minSeverity>
+      <minSeverity>0.3</minSeverity>
       <painOffset>0.1</painOffset>
       <capMods>
         <li>
@@ -60,7 +60,7 @@
     </li>
     <li>
       <label>moderate</label>
-      <minSeverity>0.40</minSeverity>
+      <minSeverity>0.50</minSeverity>
       <vomitMtbDays>5</vomitMtbDays>
       <painOffset>0.1</painOffset>
       <capMods>
@@ -89,7 +89,7 @@
     </li>
     <li>
       <label>serious</label>
-      <minSeverity>0.60</minSeverity>
+      <minSeverity>0.80</minSeverity>
       <vomitMtbDays>1</vomitMtbDays>
       <painOffset>0.3</painOffset>
       <capMods>
@@ -117,7 +117,7 @@
     </li>
     <li>
       <label>extreme</label>
-      <minSeverity>0.80</minSeverity>
+      <minSeverity>1.10</minSeverity>
       <vomitMtbDays>0.5</vomitMtbDays>
       <painOffset>0.4</painOffset>
       <capMods>

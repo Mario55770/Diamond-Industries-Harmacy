@@ -6,7 +6,8 @@
 		<label>harmroot clippings</label>
 		<description>Clippings of a harmroot plant. Capable of being refined into potent poisons these leaves are powerful in their usage..</description>
 		<graphicData>
-			<texPath>Things/Item/Resource/PlantFoodRaw/PsychoidLeaves</texPath>
+			<texPath>DIHarmacy/Things/Item/Resource/HarmrootClippings</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>1.9</MarketValue>

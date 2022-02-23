@@ -116,6 +116,7 @@
     <Compile Include="1.3\Comps\Command_Poisonable.cs" />
     <Compile Include="1.3\Comps\CompPoisonable.cs" />
     <Compile Include="1.3\Comps\CompProperties_Poisonable.cs" />
+    <Compile Include="Source\UI\PoisonUIData.cs" />
     <None Include="1.3\Comps\GizmoPoisonAmmoStatus.cs" />
     <Compile Include="1.3\Defs\InventoryStockGroupDefs\DIH_PoisonStockGroups.cs" />
     <Compile Include="1.3\Defs\RecipeDefs\RecipeAssignment.cs" />
@@ -124,9 +125,9 @@
     <Compile Include="1.3\Defs\DamageDefs\DIH_DamageDefs.cs" />
     <Compile Include="1.3\Defs\HediffDefs\DIH_Hediffs.cs" />
     <Compile Include="1.3\Defs\JobDefs\DIH_JobDefs.cs" />
-    <Compile Include="1.3\JobGiver\JobDriver_Poison.cs" />
-    <Compile Include="1.3\JobGiver\JobGiver_Poison.cs" />
-    <Compile Include="1.3\JobGiver\PoisonableUtility.cs" />
+    <Compile Include="Source\JobGiver\JobDriver_Poison.cs" />
+    <Compile Include="Source\JobGiver\JobGiver_Poison.cs" />
+    <Compile Include="Source\JobGiver\PoisonableUtility.cs" />
     <Compile Include="1.3\Comps\CompPawnPoisonTracker.cs" />
     <Compile Include="1.3\ModExtensions\PoisonProps.cs" />
     <Compile Include="1.3\Patches\HarmonyPatching.cs" />

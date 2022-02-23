@@ -29,22 +29,15 @@ namespace DI_Harmacy
 			PoisonUIUtility.MedicalCareSelectButton(rect, pawn);
 		}
 
-		public override int Compare(Pawn a, Pawn b)
+		/**public override int Compare(Pawn a, Pawn b)
 		{
-			return a.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy.CompareTo(b.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy);
+			return a.GetComp<CompPawnPoisonTracker>().as.CompareTo(b.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy);
 			//return a.playerSettings.medCare.CompareTo(b.playerSettings.medCare);
-		}
+		}**/
 	}
 
 	// RimWorld.MedicalCareCategory
 	
-	public enum PoisonUsagePolicy : byte
-	{
-		NoCare,
-		NoMeds,
-		HerbalOrWorse,
-		NormalOrWorse,
-		Best
-	}
+	
 
 }

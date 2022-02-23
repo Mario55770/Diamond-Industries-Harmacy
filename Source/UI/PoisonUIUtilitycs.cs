@@ -88,41 +88,36 @@ namespace DI_Harmacy
         {
             //Log.Message("MedicalCareSelectButton");
             ThingDef assignedPoison = pawn.GetComp<CompPawnPoisonTracker>().assignedPoison;
-            Widgets.Dropdown(rect, pawn, ()=>MedicalCareSelectButton_GetMedicalCare(assignedPoison), ()=>MedicalCareSelectButton_GenerateMenu(pawn),null,()=>GetTextures());
+            Widgets.Dropdown(rect: rect, target: pawn, iconColor: Color.white,(Pawn p) => MedicalCareSelectButton_GetMedicalCare(pawn), (Pawn p) => MedicalCareSelectButton_GenerateMenu(pawn),buttonIcon: GetTextures(assignedPoison));
             //Widgets.Dropdown(rect, pawn, MedicalCareSelectButton_GetMedicalCare, MedicalCareSelectButton_GenerateMenu, null, careTextures[(uint)pawn.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy], null, null, null, paintable: true);
 
             //Widgets.Dropdown(rect, pawn, MedicalCareSelectButton_GetMedicalCare, MedicalCareSelectButton_GenerateMenu, null, careTextures[(uint)pawn.playerSettings.medCare], null, null, null, paintable: true);
         }
 
-            private static Texture2D[] GetTextures()
+            private static Texture2D GetTextures(ThingDef thingDef)
             {
-                Texture2D[] texture2D = new Texture2D[PoisonUIDataList.poisonUIDataList.Count];
-                //foreach (PoisonUIData poisonUIData in PoisonUIDataList.poisonUIDataList)
-                for (int i = 0; i < PoisonUIDataList.poisonUIDataList.Count; i++)
-                {
-                    PoisonUIData poisonUIData = PoisonUIDataList.poisonUIDataList[i];
-                    if (poisonUIData.thingDef == null)
-                    {
-
-                        texture2D[i] = ContentFinder<Texture2D>.Get("DIHarmacy/Things/Item/Resource/RedSlash");
-                    }
-                    else
-                    {
-                        texture2D[i] = poisonUIData.thingDef.uiIcon;
-                    }
-                }
-                return texture2D;
+            if(thingDef==null)
+            {
+               return ContentFinder<Texture2D>.Get("DIHarmacy/Things/Item/Resource/RedSlash");
+               
+            }
+            else
+            {
+                return thingDef.uiIcon;
+            }
+           
             }
 
-            
-            private static Widgets.DropdownMenuElement<ThingDef> MedicalCareSelectButton_GetMedicalCare(ThingDef thingdef)
+        //Widgets.DropdownMenuElement<ThingDef> 
+        private static ThingDef MedicalCareSelectButton_GetMedicalCare(Pawn pawn)
             {
                 //Log.Message("MedicalCareSelectButtong_GetMedicalCare");
                 //return pawn.playerSettings.medCare;
                 // return pawn.GetComp<CompPawnPoisonTracker>().poisonUsagePolicy;
 
-                ThingDef mc = thingdef;
-                return new Widgets.DropdownMenuElement<ThingDef>
+                ThingDef mc = pawn.GetComp<CompPawnPoisonTracker>().assignedPoison;
+            return mc;
+               /** return new Widgets.DropdownMenuElement<ThingDef>
                 {
                     option = new FloatMenuOption(PoisonUIDataList.LabelValue(mc), delegate
                     {
@@ -130,7 +125,7 @@ namespace DI_Harmacy
                     //p.playerSettings.medCare = mc;
                 }),
                     payload = mc
-                };
+                };**/
             }
 
             /**private static IEnumerable<Widgets.DropdownMenuElement<PoisonUsagePolicy>> MedicalCareSelectButton_GenerateMenu(Pawn p)

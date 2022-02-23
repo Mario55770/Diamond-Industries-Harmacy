@@ -8,7 +8,6 @@
 	</Operation>
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
-
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Human"]</xpath>
 			<value>
@@ -51,5 +50,6 @@
 				</li>
 			</operations>
 		</match>
+		<nomatch></nomatch>
 	</Operation>
 </Patch>

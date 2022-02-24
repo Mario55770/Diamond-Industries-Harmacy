@@ -8,12 +8,10 @@ using Verse;
 using Verse.Sound;
 namespace DI_Harmacy
 {
-    public class CompPoisonable : ThingComp, IVerbOwner
+    public class CompPoisonable : ThingComp
     {
+        
         private int remainingCharges;
-
-        private VerbTracker verbTracker;
-
         public CompProperties_Poisonable Props => props as CompProperties_Poisonable;
         public int RemainingCharges => remainingCharges;
         public PoisonProps poisonProps;
@@ -27,15 +25,15 @@ namespace DI_Harmacy
 
         public Pawn weilderOf => PoisonableUtility.WearerOf(this);
 
-        public List<VerbProperties> VerbProperties => parent.def.Verbs;
+       // public List<VerbProperties> VerbProperties => parent.def.Verbs;
 
-        public List<Tool> Tools => parent.def.tools;
+        //public List<Tool> Tools => parent.def.tools;
 
-        public ImplementOwnerTypeDef ImplementOwnerTypeDef => ImplementOwnerTypeDefOf.NativeVerb;
+        //public ImplementOwnerTypeDef ImplementOwnerTypeDef => ImplementOwnerTypeDefOf.NativeVerb;
 
-        public Thing ConstantCaster => weilderOf;
+        //public Thing ConstantCaster => weilderOf;
 
-        public VerbTracker VerbTracker
+      /**  public VerbTracker VerbTracker
         {
             get
             {
@@ -46,10 +44,10 @@ namespace DI_Harmacy
                 return verbTracker;
             }
         }
-
+      **/
         public string LabelRemaining => $"{RemainingCharges} / {MaxCharges}";
 
-        public List<Verb> AllVerbs => VerbTracker.AllVerbs;
+        //public List<Verb> AllVerbs => VerbTracker.AllVerbs;
 
         public void updatePoisons(Pawn pawn)
         {
@@ -79,16 +77,6 @@ namespace DI_Harmacy
                 remainingCharges = MaxCharges;
             }
 
-        }
-
-        public string UniqueVerbOwnerID()
-        {
-            return "Reloadable_" + parent.ThingID;
-        }
-
-        public bool VerbsStillUsableBy(Pawn p)
-        {
-            return weilderOf == p;
         }
 
         public override void PostPostMake()
@@ -184,7 +172,7 @@ namespace DI_Harmacy
             }
         }
        **/
-        private Command_Poisonable CreateVerbTargetCommand(Thing gear, Verb verb)
+        /**private Command_Poisonable CreateVerbTargetCommand(Thing gear, Verb verb)
         {
             Command_Poisonable command_Poisonable = new Command_Poisonable(this);
             command_Poisonable.defaultDesc = gear.def.description;
@@ -219,7 +207,7 @@ namespace DI_Harmacy
             }
             return command_Poisonable;
         }
-
+        **/
         public string DisabledReason(int minNeeded, int maxNeeded)
         {
             if (AmmoDef == null)
@@ -258,9 +246,11 @@ namespace DI_Harmacy
             {
                 return;
             }
-            if (hediffToApply != AmmoDef.GetModExtension<PoisonProps>().poisonInflicts)
+
+            HediffDef poisonInflicts = AmmoDef.GetModExtension<PoisonProps>().poisonInflicts;
+            if (hediffToApply != poisonInflicts)
             {
-                hediffToApply = AmmoDef.GetModExtension<PoisonProps>().poisonInflicts;
+                hediffToApply = poisonInflicts;
                 remainingCharges = 0;
 
                 Props.maxCharges = poisonProps.maxCharges;

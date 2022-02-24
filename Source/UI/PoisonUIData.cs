@@ -28,7 +28,7 @@ namespace DI_Harmacy
             poisonUIDataList.Add(p);
 
         }
-        public static string LabelValue(ThingDef thingdef)
+       /** public static string LabelValue(ThingDef thingdef)
         {
             foreach(PoisonUIData poisonUIData in poisonUIDataList)
             {
@@ -49,6 +49,6 @@ namespace DI_Harmacy
                 }
             }
             return null;
-        }
+        }**/
     }
 }

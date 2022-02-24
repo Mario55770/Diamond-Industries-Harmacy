@@ -13,11 +13,7 @@ namespace DI_Harmacy
             //Saves the poison that the pawn is currently assigned.
             Scribe_Defs.Look(ref assignedPoison, "assignedPoison");  
         }
-        public override void CompTick()
-        {
-            
-        }
-        //the poison currently equipped. Initialized to null
+     
         public ThingDef assignedPoison=null;
         public CompPropertiesPawnPoisonTracker Props => (CompPropertiesPawnPoisonTracker)this.props;
 

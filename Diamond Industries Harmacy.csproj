@@ -112,7 +112,6 @@
     <Content Include="LoadFolders.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\Comps\Command_Poisonable.cs" />
     <Compile Include="Source\Comps\CompPoisonable.cs" />
     <Compile Include="Source\Comps\CompProperties_Poisonable.cs" />
     <Compile Include="Source\UI\PoisonUIData.cs" />

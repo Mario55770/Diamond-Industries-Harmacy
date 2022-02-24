@@ -45,25 +45,28 @@ namespace DI_Harmacy
             //multiplies by toxic sensitivity
             appliedAmount *= pawn.GetStatValue(StatDefOf.ToxicSensitivity);
             //gets hit part
-            BodyPartRecord targetPart = dinfo.HitPart;
             //Applies to struck part if possible and told to do so. As a comptablity measure if its null it just defaults to whole body handling.
-            if (compPoisonable.Props.applyToStruckPart&&targetPart!=null)
+            if (compPoisonable.Props.applyToStruckPart)
             {
-                //borrowed from the hediff handler from diamond shield. Checks if pawns dead first and the part is there
-                if (pawn.health.Dead || pawn.health.hediffSet.PartIsMissing(targetPart)) //If pawn dead or part missing..
-                    return; //Abort.
-                bool found = false;
-                foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+                BodyPartRecord targetPart = dinfo.HitPart;
+                if (targetPart != null)
                 {
-                    if (hediff.def != h || hediff.Part != targetPart)
-                        continue;
-                    found = true;
-                    hediff.Severity += appliedAmount;
-                }
-                if (!found)
-                {
-                    h.initialSeverity = appliedAmount;
-                    pawn.health.AddHediff(h, targetPart);
+                    //borrowed from the hediff handler from diamond shield. Checks if pawns dead first and the part is there
+                    if (pawn.health.Dead || pawn.health.hediffSet.PartIsMissing(targetPart)) //If pawn dead or part missing..
+                        return; //Abort.
+                    bool found = false;
+                    foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+                    {
+                        if (hediff.def != h || hediff.Part != targetPart)
+                            continue;
+                        found = true;
+                        hediff.Severity += appliedAmount;
+                    }
+                    if (!found)
+                    {
+                        h.initialSeverity = appliedAmount;
+                        pawn.health.AddHediff(h, targetPart);
+                    }
                 }
             }
             else

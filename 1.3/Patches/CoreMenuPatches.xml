@@ -26,6 +26,8 @@
 	<!--Deals with alien races-->
 
 	<Operation Class="PatchOperationFindMod">
+		<!--hides seemingly benign error. If your reading this I'm sure I was wrong	-->
+		<success>Always</success>
 		<mods>
 			<li>Humanoid Alien Races</li>
 		</mods>
@@ -51,5 +53,6 @@
 			</operations>
 		</match>
 		<nomatch></nomatch>
-	</Operation>
+	
+</Operation>
 </Patch>

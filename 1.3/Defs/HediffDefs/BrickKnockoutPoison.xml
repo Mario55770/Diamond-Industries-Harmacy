@@ -19,7 +19,7 @@
     <stages>
       <li>
         <label>lightly sedated</label>
-        <becomeVisible>false</becomeVisible>
+        <becomeVisible>true</becomeVisible>
       </li>
       <li>
         <label>initial</label>

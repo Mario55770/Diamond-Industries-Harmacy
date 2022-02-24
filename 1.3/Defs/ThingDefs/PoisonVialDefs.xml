@@ -31,7 +31,7 @@
 		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
 		<statBases>
 			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
-			<MarketValue>30</MarketValue>
+			<MarketValue>20</MarketValue>
 		</statBases>
 		<tradeTags>
 			<li>DIH_Poison</li>

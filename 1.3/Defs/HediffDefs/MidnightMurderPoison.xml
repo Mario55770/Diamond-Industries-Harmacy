@@ -19,7 +19,7 @@
   <stages>
     <li>
       <label>initial</label>
-      <becomeVisible>false</becomeVisible>
+      <becomeVisible>true</becomeVisible>
     </li>
     <li>
       <label>initial</label>

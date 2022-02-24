@@ -31,7 +31,7 @@ namespace DI_Harmacy
             poisonDamage = new ExtraDamage
             {
                 chance = 1f,
-                amount = 1f
+                amount = 2f
             };
             poisonDamage.armorPenetration = 1f;
 

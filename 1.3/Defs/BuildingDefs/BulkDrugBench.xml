@@ -11,7 +11,7 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <shaderType>CutoutComplex</shaderType>
       <!--Originally (3.5,1.5) not that it should matter when I get custom art. (7,4) is from Fabrication bench-->
-      <drawSize>(7,4)</drawSize>
+      <drawSize>(3.5,1.5)</drawSize>
       <damageData>
         <cornerTL>Damage/Corner</cornerTL>
         <cornerTR>Damage/Corner</cornerTR>
@@ -43,7 +43,7 @@
       <WorkTableWorkSpeedFactor>1.2</WorkTableWorkSpeedFactor>
     </statBases>
     <!--default drug lab has size of (3,1). Set to (5,2) to match high tech research bench-->
-    <size>(5,2)</size>
+    <size>(3,1)</size>
     <designationCategory>Production</designationCategory>
     <passability>PassThroughOnly</passability>
     <pathCost>50</pathCost>

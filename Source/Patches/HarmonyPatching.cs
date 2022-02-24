@@ -44,7 +44,7 @@ namespace DI_Harmacy
 			//get the comp
 			CompPoisonable compPoisonable = weapon.TryGetComp<CompPoisonable>();
 			//if the comp exists, and can be used, apply poison
-			if (compPoisonable != null && compPoisonable.CanBeUsed)
+			if (compPoisonable != null && compPoisonable.CanBeUsed && compPoisonable.hediffToApply!=null)
 			{
 				return compPoisonable.applyPoison(__result);
 

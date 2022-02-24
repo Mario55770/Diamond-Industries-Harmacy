@@ -132,7 +132,7 @@
     <None Include="packages.config" />
     <Compile Include="Source\UI\PawnColumnWorker_Poison.cs" />
     <Compile Include="Source\UI\PoisonUIUtilitycs.cs" />
-    <Compile Include="DIH\ModSettings.cs" />
+    <Compile Include="Source\DIH\ModSettings.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />

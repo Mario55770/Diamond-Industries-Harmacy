@@ -20,6 +20,7 @@ namespace DI_Harmacy
 				return null;
 			}
 			compPoisonable.updatePoisons(pawn);
+			
 			if(compPoisonable.NeedsReload(allowForcedReload))
             {
 				return compPoisonable;

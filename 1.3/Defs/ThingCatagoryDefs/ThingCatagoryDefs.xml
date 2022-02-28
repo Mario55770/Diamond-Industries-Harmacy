@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingCategoryDef>
+		<defName>DIH_PoisonThingCatagoryDef</defName>
+		<label>poison</label>
+		<parent>Manufactured</parent>
+		<resourceReadoutRoot>true</resourceReadoutRoot>
+		<iconPath>DIHarmacy/Things/Item/Resource/GenericPoison</iconPath>
+	</ThingCategoryDef>
+</Defs>

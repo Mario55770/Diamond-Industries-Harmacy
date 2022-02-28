@@ -139,6 +139,7 @@ namespace DI_Harmacy
             {
                 remainingCharges = MaxCharges;
             }
+            updatePoisons(this.weilderOf);
         }
 
        /** public override IEnumerable<Gizmo> CompGetWornGizmosExtra()

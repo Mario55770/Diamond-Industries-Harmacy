@@ -24,7 +24,6 @@
 		</value>
 	</Operation>
 	<!--Deals with alien races-->
-
 	<Operation Class="PatchOperationFindMod">
 		<!--hides seemingly benign error. If your reading this I'm sure I was wrong	-->
 		<success>Always</success>
@@ -53,10 +52,39 @@
 			</operations>
 		</match>
 		<nomatch></nomatch>
-	
-</Operation>
-	<Operation Class="PatchOperationFindMod">
-		<!--hides seemingly benign error. If your reading this I'm sure I was wrong	-->
+		<!--Patches for annoyingly misformatted races.-->
+		<Operation Class="PatchOperationFindMod">
+			<!--hides seemingly benign error. If your reading this I'm sure I was wrong	-->
+			<success>Always</success>
+			<mods>
+				<li>NewRatkinPlus</li>
+			</mods>
+			<match Class="PatchOperationSequence">
+				<operations>
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef_AlienRace[@ParentName="RKBasePawnKind"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef_AlienRace[@ParentName="RKBasePawnKind"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef_AlienRace[@ParentName="RKBasePawnKind"]/comps</xpath>
+						<value>
+							<li>
+								<compClass>DI_Harmacy.CompPawnPoisonTracker</compClass>
+							</li>
+						</value>
+					</li>
+				</operations>
+			</match>
+			<nomatch></nomatch>
+
+		</Operation>
+	<!--<Operation Class="PatchOperationFindMod">
+		hides seemingly benign error. If your reading this I'm sure I was wrong
 		<success>Always</success>
 		<mods>
 			<li>Humanoid Alien Races</li>
@@ -84,5 +112,5 @@
 		</match>
 		<nomatch></nomatch>
 	
-</Operation>
+</Operation>-->
 </Patch>

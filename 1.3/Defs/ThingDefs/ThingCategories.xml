@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<!--Use this for new organizational tabs-->
+<ThingCategoryDef>
+  <!--set this to whatever you want it to be internally. You would use this on your items-->
+  <defName>DIH_PoisonTab</defName>
+  <!--This is what it will display as in game-->
+  <label>poisons</label>
+</ThingCategoryDef>
+</Defs>

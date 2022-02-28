@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Verse;
-using RimWorld;
 namespace DI_Harmacy
 {
     public class CompPawnPoisonTracker : ThingComp
@@ -11,17 +7,17 @@ namespace DI_Harmacy
         public override void PostExposeData()
         {
             //Saves the poison that the pawn is currently assigned.
-            Scribe_Defs.Look(ref assignedPoison, "assignedPoison");  
+            Scribe_Defs.Look(ref assignedPoison, "assignedPoison");
         }
-     
-        public ThingDef assignedPoison=null;
+
+        public ThingDef assignedPoison = null;
         public CompPropertiesPawnPoisonTracker Props => (CompPropertiesPawnPoisonTracker)this.props;
 
-        }
+    }
 
     public class CompPropertiesPawnPoisonTracker : CompProperties
     {
-        
+
         public CompPropertiesPawnPoisonTracker()
         {
             this.compClass = typeof(CompPawnPoisonTracker);

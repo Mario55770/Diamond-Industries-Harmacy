@@ -12,17 +12,20 @@ namespace DI_Harmacy
         {
             //Saves the poison that the pawn is currently assigned.
             Building_WorkTable workTable= (this.ParentHolder as Building_WorkTable);
-
-            List<RecipeDef> allRecipes = workTable.def.AllRecipes;
-            String[] recipeList=new string[allRecipes.Count];
-            foreach(RecipeDef recipeDef in allRecipes)
+            /**Scribe_Collections.Look(ref allRecipes,"BulkDrugLabRecipeNames");
+            if (Scribe.mode==LoadSaveMode.PostLoadInit)
             {
-                Log.Message(recipeDef.ToString());
-            }
-            Scribe_Collections.Look(ref recipeList);
+                foreach (string recipeName in recipeList)
+                {
+                    RecipeDef recipeDef = (RecipeDef)GenDefDatabase.GetDefSilentFail(typeof(RecipeDef), recipeName);
+                    if (recipeDef != null)
+                    {
+                        allRecipes.Add(recipeDef);
+                    }
+                }
+            }**/
         }
 
-        public ThingDef assignedPoison = null;
         public CompPropertiesBulkBench Props => (CompPropertiesBulkBench)this.props;
 
     }

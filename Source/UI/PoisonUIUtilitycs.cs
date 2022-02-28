@@ -1,10 +1,7 @@
 ﻿// RimWorld.MedicalCareUtility
-using System;
 using System.Collections.Generic;
-using RimWorld;
 using UnityEngine;
 using Verse;
-using Verse.Sound;
 
 namespace DI_Harmacy
 {
@@ -53,8 +50,8 @@ namespace DI_Harmacy
                     option = new FloatMenuOption(poisonUIData.optionLabel, delegate
                     {
                         p.GetComp<CompPawnPoisonTracker>().assignedPoison = mc;
-                            //p.playerSettings.medCare = mc;
-                        }),
+                        //p.playerSettings.medCare = mc;
+                    }),
                     payload = mc
                 };
             }

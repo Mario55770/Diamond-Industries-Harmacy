@@ -1,9 +1,5 @@
 ﻿// Verse.DamageWorker
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using RimWorld;
-using UnityEngine;
 using Verse;
 namespace DI_Harmacy
 {
@@ -12,7 +8,7 @@ namespace DI_Harmacy
     {
         protected override BodyPartRecord ChooseHitPart(DamageInfo dinfo, Pawn pawn)
         {
-           
+
             return pawn.health.hediffSet.GetRandomNotMissingPart(dinfo.Def, dinfo.Height, BodyPartDepth.Outside);
         }
 
@@ -20,11 +16,11 @@ namespace DI_Harmacy
         {
             //get the variables
             CompPoisonable compPoisonable = null;
-            Pawn p = (dinfo.Instigator as Pawn); 
+            Pawn p = (dinfo.Instigator as Pawn);
             ThingWithComps weapon = p.equipment.Primary;
             compPoisonable = weapon.TryGetComp<CompPoisonable>();
             //if comp is null or can't be used. Makes a bunch of code from elsewhere redundant, which should be removed.
-            if (compPoisonable == null ||compPoisonable.CanBeUsed==false)
+            if (compPoisonable == null || compPoisonable.CanBeUsed == false)
             {
                 return;
             }
@@ -34,7 +30,7 @@ namespace DI_Harmacy
             HediffDef h = compPoisonable.hediffToApply;
             //should be lumped in next if statement but its more readable
             //Ends the method if the hediff is null
-            if(h==null)
+            if (h == null)
             { return; }
             //gets the amount applied if the damage info has a different amount than default this is important
             float appliedAmount = dinfo.Amount;
@@ -73,7 +69,7 @@ namespace DI_Harmacy
             {
                 HealthUtility.AdjustSeverity(pawn, h, appliedAmount);
             }
-            
+
         }
     }
 

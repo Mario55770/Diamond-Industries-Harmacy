@@ -18,7 +18,7 @@
 		</statBases>
 		<thingCategories>
 			<!--what catagory it is displayed as in game-->
-			<li>DIH_PoisonTab</li>
+			<li>DIH_PoisonThingCatagoryDef</li>
 		</thingCategories>
 	</ThingDef>
 	<ThingDef ParentName="PoisonBase">
@@ -101,47 +101,4 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
-	<ThingDef ParentName="ResourceBase">
-		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
-		<defName>DIH_ApplyNoPoison</defName>
-		<!-- ParentName="NonExistentBase">-->
-		<stackLimit>25</stackLimit>
-		<healthAffectsPrice>false</healthAffectsPrice>
-		<uiIconForStackCount>1</uiIconForStackCount>
-		<soundInteract>Standard_Drop</soundInteract>
-		<soundDrop>Standard_Drop</soundDrop>
-		<statBases>
-			<!--not all inclusive but covers some of the big ones. Change these to be the stats you want.-->
-			<MaxHitPoints>50</MaxHitPoints>
-
-			<Mass>0.02</Mass>
-			<Flammability>0.7</Flammability>
-			<DeteriorationRate>1.0</DeteriorationRate>
-		</statBases>
-		<!--<thingCategories>
-			what catagory it is displayed as in game
-			<li>DIH_PoisonTab</li>
-		</thingCategories>-->
-
-
-		<!--This is the name displayed in game-->
-		<label>Use No Poison</label>
-		<!--the descritpion of the item-->
-		<description>If your seeing this, you either spawned this in dev mode, or I need to know. If your in dev mode, stop, if you're not...let me know how it happened.</description>
-		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
-	
-		<graphicData>
-			<texPath>DIHarmacy/Things/Item/Resource/RedSlash</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>0.90</drawSize>
-		</graphicData>
-
-		<modExtensions>
-			<li Class="DI_Harmacy.PoisonProps">
-				<ammoCountPerCharge>1</ammoCountPerCharge>
-				<maxCharges>5</maxCharges>
-			</li>
-		</modExtensions>
-	</ThingDef>
-
 </Defs>

@@ -1,19 +1,16 @@
 ﻿// RimWorld.CompReloadable
-using System;
+using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
-using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
 namespace DI_Harmacy
 {
-    public class CompPoisonable : ThingComp, IVerbOwner
+    public class CompPoisonable : ThingComp
     {
+
         private int remainingCharges;
-
-        private VerbTracker verbTracker;
-
         public CompProperties_Poisonable Props => props as CompProperties_Poisonable;
         public int RemainingCharges => remainingCharges;
         public PoisonProps poisonProps;
@@ -27,42 +24,45 @@ namespace DI_Harmacy
 
         public Pawn weilderOf => PoisonableUtility.WearerOf(this);
 
-        public List<VerbProperties> VerbProperties => parent.def.Verbs;
+        // public List<VerbProperties> VerbProperties => parent.def.Verbs;
 
-        public List<Tool> Tools => parent.def.tools;
+        //public List<Tool> Tools => parent.def.tools;
 
-        public ImplementOwnerTypeDef ImplementOwnerTypeDef => ImplementOwnerTypeDefOf.NativeVerb;
+        //public ImplementOwnerTypeDef ImplementOwnerTypeDef => ImplementOwnerTypeDefOf.NativeVerb;
 
-        public Thing ConstantCaster => weilderOf;
+        //public Thing ConstantCaster => weilderOf;
 
-        public VerbTracker VerbTracker
-        {
-            get
-            {
-                if (verbTracker == null)
-                {
-                    verbTracker = new VerbTracker(this);
-                }
-                return verbTracker;
-            }
-        }
-
+        /**  public VerbTracker VerbTracker
+          {
+              get
+              {
+                  if (verbTracker == null)
+                  {
+                      verbTracker = new VerbTracker(this);
+                  }
+                  return verbTracker;
+              }
+          }
+        **/
         public string LabelRemaining => $"{RemainingCharges} / {MaxCharges}";
 
-        public List<Verb> AllVerbs => VerbTracker.AllVerbs;
+        //public List<Verb> AllVerbs => VerbTracker.AllVerbs;
 
         public void updatePoisons(Pawn pawn)
         {
             CompPawnPoisonTracker compPawnPoisonTracker = pawn.GetComp<CompPawnPoisonTracker>();
-            if (compPawnPoisonTracker == null || compPawnPoisonTracker.assignedPoison == null)
+            if (compPawnPoisonTracker == null)// || compPawnPoisonTracker.assignedPoison == null)
             {
                 return;
             }
             ThingDef ammoToUse = compPawnPoisonTracker.assignedPoison;//pawn_InventoryStockTracker.GetDesiredThingForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup);
-            if (ammoToUse == null || AmmoDef == ammoToUse)
+            if (AmmoDef == ammoToUse)
             {
                 return;
             }
+            Props.ammoDef = ammoToUse;
+            if (ammoToUse == null)
+                return;
             poisonProps = ammoToUse.GetModExtension<PoisonProps>();
             if (poisonProps == null)
             {
@@ -70,7 +70,7 @@ namespace DI_Harmacy
             }
             Props.ammoDef = ammoToUse;
             Props.ammoCountPerCharge = poisonProps.ammoCountPerCharge;
-
+            Props.maxCharges = poisonProps.maxCharges;
             if (remainingCharges > MaxCharges)
             {
                 remainingCharges = MaxCharges;
@@ -78,20 +78,10 @@ namespace DI_Harmacy
 
         }
 
-        public string UniqueVerbOwnerID()
-        {
-            return "Reloadable_" + parent.ThingID;
-        }
-
-        public bool VerbsStillUsableBy(Pawn p)
-        {
-            return weilderOf == p;
-        }
-
         public override void PostPostMake()
         {
             base.PostPostMake();
-            remainingCharges = MaxCharges;
+            // remainingCharges = MaxCharges;
         }
 
         public override string CompInspectStringExtra()
@@ -112,7 +102,7 @@ namespace DI_Harmacy
             //previously statcatagorydefof.apparel
             if (hediffToApply != null && remainingCharges != 0)
             {
-                
+
                 //yield return new StatDrawEntry(StatCategoryDef.Weapon, "Weapon Inflicts", hediffToApply.Named());
                 yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadChargesRemaining_Name".Translate(Props.ChargeNounArgument), LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(Props.ChargeNounArgument), 2749);
                 yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Poison Inflicts", hediffToApply.LabelCap, "This weapon applies this hediff", 2750);
@@ -128,9 +118,9 @@ namespace DI_Harmacy
                 yield return dInfo;
             }
             //ends method if theres no hediff to use.
-            if (hediffToApply == null)
-            { yield break; }
-            DamageInfo copyFrom = damageInfos.RandomElement<DamageInfo>();
+            //if (hediffToApply == null)
+            //{ yield break; }
+            DamageInfo copyFrom = damageInfos.ElementAt(0);//damageInfos.ElementAt(Rand.Range(0, damageInfos.Count()));//damageInfos.RandomElement<DamageInfo>();
             DamageInfo poisonDamageInfo = new DamageInfo(DIH_DamageDefs.DIH_PoisonDamageBase, copyFrom.Amount, instigator: copyFrom.Instigator);
             yield return poisonDamageInfo;
 
@@ -150,38 +140,38 @@ namespace DI_Harmacy
             }
         }
 
-        public override IEnumerable<Gizmo> CompGetWornGizmosExtra()
-        {
-            foreach (Gizmo item in base.CompGetWornGizmosExtra())
-            {
-                yield return item;
-            }
-            bool drafted = weilderOf.Drafted;
-            if ((drafted && !Props.displayGizmoWhileDrafted) || (!drafted && !Props.displayGizmoWhileUndrafted))
-            {
-                yield break;
-            }
-            ThingWithComps gear = parent;
-            foreach (Verb allVerb in VerbTracker.AllVerbs)
-            {
-                if (allVerb.verbProps.hasStandardCommand)
-                {
-                    yield return CreateVerbTargetCommand(gear, allVerb);
-                }
-            }
-            if (Prefs.DevMode)
-            {
-                Command_Action command_Action = new Command_Action();
-                command_Action.defaultLabel = "Debug: Reload to full";
-                command_Action.action = delegate
-                {
-                    remainingCharges = MaxCharges;
-                };
-                yield return command_Action;
-            }
-        }
-
-        private Command_Poisonable CreateVerbTargetCommand(Thing gear, Verb verb)
+        /** public override IEnumerable<Gizmo> CompGetWornGizmosExtra()
+         {
+             foreach (Gizmo item in base.CompGetWornGizmosExtra())
+             {
+                 yield return item;
+             }
+             bool drafted = weilderOf.Drafted;
+             if ((drafted && !Props.displayGizmoWhileDrafted) || (!drafted && !Props.displayGizmoWhileUndrafted))
+             {
+                 yield break;
+             }
+             ThingWithComps gear = parent;
+             foreach (Verb allVerb in VerbTracker.AllVerbs)
+             {
+                 if (allVerb.verbProps.hasStandardCommand)
+                 {
+                     yield return CreateVerbTargetCommand(gear, allVerb);
+                 }
+             }
+             if (Prefs.DevMode)
+             {
+                 Command_Action command_Action = new Command_Action();
+                 command_Action.defaultLabel = "Debug: Reload to full";
+                 command_Action.action = delegate
+                 {
+                     remainingCharges = MaxCharges;
+                 };
+                 yield return command_Action;
+             }
+         }
+        **/
+        /**private Command_Poisonable CreateVerbTargetCommand(Thing gear, Verb verb)
         {
             Command_Poisonable command_Poisonable = new Command_Poisonable(this);
             command_Poisonable.defaultDesc = gear.def.description;
@@ -216,7 +206,7 @@ namespace DI_Harmacy
             }
             return command_Poisonable;
         }
-
+        **/
         public string DisabledReason(int minNeeded, int maxNeeded)
         {
             if (AmmoDef == null)
@@ -228,11 +218,12 @@ namespace DI_Harmacy
 
         public bool NeedsReload(bool allowForcedReload)
         {
+            //  Log.Message("Test");
             if (AmmoDef == null)
             {
                 return false;
             }
-            if(hediffToApply!=AmmoDef.GetModExtension<PoisonProps>().poisonInflicts)
+            if (hediffToApply != AmmoDef.GetModExtension<PoisonProps>().poisonInflicts)
             {
                 return true;
             }
@@ -254,16 +245,18 @@ namespace DI_Harmacy
             {
                 return;
             }
-            if (hediffToApply != AmmoDef.GetModExtension<PoisonProps>().poisonInflicts)
+
+            HediffDef poisonInflicts = AmmoDef.GetModExtension<PoisonProps>().poisonInflicts;
+            if (hediffToApply != poisonInflicts)
             {
-                hediffToApply = AmmoDef.GetModExtension<PoisonProps>().poisonInflicts;
+                hediffToApply = poisonInflicts;
                 remainingCharges = 0;
 
                 Props.maxCharges = poisonProps.maxCharges;
             }
-            if (Props.ammoCountToRefill != 0 )
+            if (Props.ammoCountToRefill != 0)
             {
-               
+
                 if (ammo.stackCount < Props.ammoCountToRefill)
                 {
                     return;
@@ -296,7 +289,7 @@ namespace DI_Harmacy
             if (poisonProps.poisonInflicts != hediffToApply)
             {
                 return poisonProps.ammoCountPerCharge;
-            }    
+            }
             if (Props.ammoCountToRefill != 0)
             {
                 return Props.ammoCountToRefill;
@@ -312,7 +305,7 @@ namespace DI_Harmacy
             }
             if (poisonProps.poisonInflicts != hediffToApply)
             {
-                return poisonProps.ammoCountPerCharge*poisonProps.maxCharges;
+                return poisonProps.ammoCountPerCharge * poisonProps.maxCharges;
             }
             if (Props.ammoCountToRefill != 0)
             {
@@ -328,7 +321,7 @@ namespace DI_Harmacy
                 return 0;
             }
 
-          
+
             if (hediffToApply != poisonProps.poisonInflicts)
             {
                 return poisonProps.ammoCountPerCharge * poisonProps.maxCharges;

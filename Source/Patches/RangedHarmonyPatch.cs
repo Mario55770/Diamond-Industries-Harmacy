@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using RimWorld;
+﻿using HarmonyLib;
+using System.Collections.Generic;
 using UnityEngine;
 using Verse;
-using HarmonyLib;
 namespace DI_Harmacy
 {
     [StaticConstructorOnStartup]
-    
+
     class RangedHarmonyPatch
     {
         static ExtraDamage poisonDamage;
@@ -53,9 +51,9 @@ namespace DI_Harmacy
             //if the list is empty or null DO NOT MAKE THIS A LOCAL VARIABLE.
             if (__instance.def.projectile.extraDamages.NullOrEmpty<ExtraDamage>())
             {
-                    ExtraDamage[] extradamageArr = { poisonDamage };
-                    List<ExtraDamage> extraDamages = new List<ExtraDamage>(extradamageArr);
-                    __instance.def.projectile.extraDamages = extraDamages;
+                ExtraDamage[] extradamageArr = { poisonDamage };
+                List<ExtraDamage> extraDamages = new List<ExtraDamage>(extradamageArr);
+                __instance.def.projectile.extraDamages = extraDamages;
             }
             else
             {

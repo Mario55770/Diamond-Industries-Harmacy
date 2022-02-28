@@ -40,7 +40,7 @@ namespace DI_Harmacy
             //Log.Message("YeildIngredient");
             foreach (Toil item in ReloadAsMuchAsPossible(comp))
             {
-               // Log.Message("loopone");
+                // Log.Message("loopone");
                 yield return item;
             }
             yield return Toils_JobTransforms.ExtractNextTargetFromQueue(TargetIndex.B);
@@ -49,7 +49,7 @@ namespace DI_Harmacy
             yield return Toils_Jump.JumpIf(getNextIngredient, () => !job.GetTargetQueue(TargetIndex.B).NullOrEmpty());
             foreach (Toil item2 in ReloadAsMuchAsPossible(comp))
             {
-             //   Log.Message("loop2");
+                //   Log.Message("loop2");
                 yield return item2;
             }
             Toil toil = new Toil();
@@ -62,13 +62,13 @@ namespace DI_Harmacy
                 }
             };
             toil.defaultCompleteMode = ToilCompleteMode.Instant;
-           // Log.Message("FINISH");
+            // Log.Message("FINISH");
             yield return toil;
         }
 
         private IEnumerable<Toil> ReloadAsMuchAsPossible(CompPoisonable comp)
         {
-           // Log.Message("ReloadAsMuchAsPossible");
+            // Log.Message("ReloadAsMuchAsPossible");
             Toil done = Toils_General.Label();
             yield return Toils_Jump.JumpIf(done, () => pawn.carryTracker.CarriedThing == null || pawn.carryTracker.CarriedThing.stackCount < comp.MinAmmoNeeded(allowForcedReload: true));
             yield return Toils_General.Wait(comp.Props.baseReloadTicks).WithProgressBarToilDelay(TargetIndex.A);

@@ -108,4 +108,5 @@
     </requiredCapacities>
     <prioritizeSustains>true</prioritizeSustains>
   </WorkGiverDef>
+	<compClass>DI_Harmacy.CompPawnPoisonTracker</compClass>
 </Defs>

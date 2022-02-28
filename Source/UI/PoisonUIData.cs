@@ -28,27 +28,27 @@ namespace DI_Harmacy
             poisonUIDataList.Add(p);
 
         }
-        public static string LabelValue(ThingDef thingdef)
-        {
-            foreach(PoisonUIData poisonUIData in poisonUIDataList)
-            {
-                if(poisonUIData.thingDef == thingdef)
-                {
-                    return poisonUIData.optionLabel;
-                }
-            }
-            return null;
-        }
-        public static PoisonUIData GetMatchingData(ThingDef thingdef)
-        {
-            foreach (PoisonUIData poisonUIData in poisonUIDataList)
-            {
-                if (poisonUIData.thingDef == thingdef)
-                {
-                    return poisonUIData;
-                }
-            }
-            return null;
-        }
+        /** public static string LabelValue(ThingDef thingdef)
+         {
+             foreach(PoisonUIData poisonUIData in poisonUIDataList)
+             {
+                 if(poisonUIData.thingDef == thingdef)
+                 {
+                     return poisonUIData.optionLabel;
+                 }
+             }
+             return null;
+         }
+         public static PoisonUIData GetMatchingData(ThingDef thingdef)
+         {
+             foreach (PoisonUIData poisonUIData in poisonUIDataList)
+             {
+                 if (poisonUIData.thingDef == thingdef)
+                 {
+                     return poisonUIData;
+                 }
+             }
+             return null;
+         }**/
     }
 }

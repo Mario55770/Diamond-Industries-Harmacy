@@ -71,7 +71,7 @@ namespace DI_Harmacy
             }
             Props.ammoDef = ammoToUse;
             Props.ammoCountPerCharge = poisonProps.ammoCountPerCharge;
-
+            Props.maxCharges = poisonProps.maxCharges;
             if (remainingCharges > MaxCharges)
             {
                 remainingCharges = MaxCharges;
@@ -139,7 +139,6 @@ namespace DI_Harmacy
             {
                 remainingCharges = MaxCharges;
             }
-            updatePoisons(this.weilderOf);
         }
 
        /** public override IEnumerable<Gizmo> CompGetWornGizmosExtra()

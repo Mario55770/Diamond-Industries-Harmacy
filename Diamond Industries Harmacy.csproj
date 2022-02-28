@@ -112,6 +112,7 @@
     <Content Include="LoadFolders.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Source\Comps\CompBulkBenchcs.cs" />
     <Compile Include="Source\Comps\CompPoisonable.cs" />
     <Compile Include="Source\Comps\CompProperties_Poisonable.cs" />
     <Compile Include="Source\UI\PoisonUIData.cs" />

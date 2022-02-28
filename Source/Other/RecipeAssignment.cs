@@ -81,7 +81,7 @@ namespace DI_Harmacy
             string newName = "";
             
                 clonedandparsed.adjustedCount = recipeToCopy.adjustedCount * 4;
-                clonedandparsed.defName = "DIH_BulkRecipes_" + recipeToCopy.defName + "*4";
+                clonedandparsed.defName = "DIH_BulkRecipes_" + recipeToCopy.defName + "timesFour";
                 //duplicates the values in recipe to copy, multiplies it by four, and then adds it to the cloned and parsed recipe list.
                 foreach (var item in recipeToCopy.ingredients)
                 {

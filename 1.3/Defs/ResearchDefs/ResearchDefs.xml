@@ -5,23 +5,6 @@
     <defName>DIHarmacy</defName>
     <label>Diamond Industry Harmacy</label>
   </ResearchTabDef>
-  
-  <!--effectively a prerequisite research. Unlocks the main bench and the rest of the research tree.-->
-  <ResearchProjectDef>
-    <defName>DIH_BulkDrugProduction</defName>
-    <label>bulk drug production</label>
-    <description>Enables producing drugs with new techniques and technologies.This should enable large labor savings.</description>
-    <tab>DIHarmacy</tab>
-    <!--electricity+drug production itself-->
-    <baseCost>2000</baseCost>
-    <techLevel>Industrial</techLevel>
-    <prerequisites>
-      <li>Electricity</li>
-      <li>DrugProduction</li>
-    </prerequisites>
-    <researchViewX>0.00</researchViewX>
-    <researchViewY>0.00</researchViewY>
-  </ResearchProjectDef>
 	<!--Poison Production-->
 	<ResearchProjectDef>
 		<defName>DIH_PoisonProduction</defName>
@@ -36,6 +19,6 @@
 			<li>DrugProduction</li>
 		</prerequisites>-->
 		<researchViewX>0.00</researchViewX>
-		<researchViewY>0.50</researchViewY>
+		<researchViewY>0.00</researchViewY>
 	</ResearchProjectDef>
 </Defs>

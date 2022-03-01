@@ -15,14 +15,15 @@
 		</li>
 	</modDependencies>
 	<description>
-		Brought to you by the exclusive Diamond Industries, the harmacy. Featuring better drug production, poisons, medicines, and more, including antidotes.
+		Brought to you by the exclusive Diamond Industries, the harmacy. Featuring poisons, medicines, and more, including antidotes.(note, currently just poisons are implemented)
 		For legal reasons, Diamond Industry executives require warnings informing users to not load poisons into the slot labeled poison, as that would create a chemical weapon.
 		Welcome to the Diamond Industry Harmacy Beta Release
 		Current features
 		Poison melee and ranged weapons. Poison consumed only on a hit. Automatically configured to use all weapons that are implemented correctly(in other words, should be cross mod compatible unless they did something weird)
 		New gui widget, under the assign tab, pick what poison a pawn should use, and they'll automatically apply it.
 		Poison is consumed on a hit, make sure to keep stocked up.
-		Bulk Drug Lab. Automatically gets recipes and makes a bulk version, even if from other mods. Less work, and faster speeds, so your yayo and poison piles grow.
+		
+		Toggle between using poison on a new gizmo. Turn it off for huntiing or fighting mechanoids. Turn it on for battle.
 		Milk snakes.
 		Cobras and toxic spikes and fangs have been swapped to use cobra venom and midnight murder respectively.
 		Three new poisons, Cobra Venom, Brick Knockout, and Midnight Murder.
@@ -31,7 +32,7 @@
 		Midnight Murder is a combat poison through and through. It excels in downing pawns, painfully and dangerously.
 		Bug reports require a hugslib at minimum, as well as a description of the problem.
 		Suggestions for other mods for me to add compatiblity with are welcome.
-		Pending features, toggle between a hit using poison or not.
+		Pending features
 		Poison raiders.
 		Antivenoms, and possible rework of how the hediff applies. (Give it its own system, comparable to a hybrid of toxic buildup, and diseases)
 		Minor visual fixes(Incorrect capatalization, cosmetic bugs like that)

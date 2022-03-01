@@ -19,6 +19,11 @@ namespace DI_Harmacy
             Pawn p = (dinfo.Instigator as Pawn);
             ThingWithComps weapon = p.equipment.Primary;
             compPoisonable = weapon.TryGetComp<CompPoisonable>();
+            CompPawnPoisonTracker poisonTracker = p.GetComp<CompPawnPoisonTracker>();
+            if (poisonTracker == null || !poisonTracker.applyPoisonActive)
+            {
+                return;
+            }
             //if comp is null or can't be used. Makes a bunch of code from elsewhere redundant, which should be removed.
             if (compPoisonable == null || compPoisonable.CanBeUsed == false)
             {

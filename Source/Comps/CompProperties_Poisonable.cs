@@ -18,12 +18,6 @@ namespace DI_Harmacy
 
         public int baseReloadTicks = 60;
 
-        public bool displayGizmoWhileUndrafted = true;
-
-        public bool displayGizmoWhileDrafted = true;
-
-        public KeyBindingDef hotKey;
-
         public SoundDef soundReload;
 
         [MustTranslate]
@@ -34,14 +28,6 @@ namespace DI_Harmacy
         public CompProperties_Poisonable()
         {
             compClass = typeof(CompPoisonable);
-        }
-
-        public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
-        {
-            foreach (string item in base.ConfigErrors(parentDef))
-            {
-                yield return item;
-            }
         }
 
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)

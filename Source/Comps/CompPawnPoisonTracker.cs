@@ -16,7 +16,7 @@ namespace DI_Harmacy
         public ThingDef assignedPoison = null;
         public CompPropertiesPawnPoisonTracker Props => (CompPropertiesPawnPoisonTracker)this.props;
         public bool applyPoisonActive = true;
-        
+        //adds gizmo to panel to toggle pawn if they have an assigned poison
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             foreach (Gizmo gizmo in base.CompGetGizmosExtra())
@@ -42,8 +42,7 @@ namespace DI_Harmacy
                 command_TogglePoison.isActive = () => applyPoisonActive;
                 command_TogglePoison.toggleAction=delegate
                {
-                   //applyPoisonActive = !applyPoisonActive;
-                   if (applyPoisonActive)
+                    if (applyPoisonActive)
                    {
                        applyPoisonActive = false;
                    }
@@ -54,23 +53,6 @@ namespace DI_Harmacy
                };
                 yield return command_TogglePoison;
             }
-            /**
-                command_ToggleLink.toggleAction = delegate
-                {
-                    isToggledOn = !isToggledOn;
-                    if (isToggledOn)
-                    {
-                        mapComponent.RegisterLink(this, true);
-                        parent.BroadcastCompSignal(AetherUtility.SIGNAL_LINK_ACTIVATED);
-                    }
-                    else
-                    {
-                        mapComponent.DeregisterLink(this, true);
-                        parent.BroadcastCompSignal(AetherUtility.SIGNAL_LINK_DEACTIVATED);
-                    }
-                };
-                yield return command_ToggleLink;**/
-
         }
     }
 

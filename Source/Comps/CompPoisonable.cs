@@ -24,29 +24,7 @@ namespace DI_Harmacy
 
         public Pawn weilderOf => PoisonableUtility.WearerOf(this);
 
-        // public List<VerbProperties> VerbProperties => parent.def.Verbs;
-
-        //public List<Tool> Tools => parent.def.tools;
-
-        //public ImplementOwnerTypeDef ImplementOwnerTypeDef => ImplementOwnerTypeDefOf.NativeVerb;
-
-        //public Thing ConstantCaster => weilderOf;
-
-        /**  public VerbTracker VerbTracker
-          {
-              get
-              {
-                  if (verbTracker == null)
-                  {
-                      verbTracker = new VerbTracker(this);
-                  }
-                  return verbTracker;
-              }
-          }
-        **/
         public string LabelRemaining => $"{RemainingCharges} / {MaxCharges}";
-
-        //public List<Verb> AllVerbs => VerbTracker.AllVerbs;
 
         public void updatePoisons(Pawn pawn)
         {
@@ -84,11 +62,6 @@ namespace DI_Harmacy
             // remainingCharges = MaxCharges;
         }
 
-       /* public override string CompInspectStringExtra()
-        {
-            return "ChargesRemaining".Translate(Props.ChargeNounArgument) + ": " + LabelRemaining;
-        }*/
-
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
         {
             IEnumerable<StatDrawEntry> enumerable = base.SpecialDisplayStats();
@@ -117,9 +90,6 @@ namespace DI_Harmacy
             {
                 yield return dInfo;
             }
-            //ends method if theres no hediff to use.
-            //if (hediffToApply == null)
-            //{ yield break; }
             DamageInfo copyFrom = damageInfos.ElementAt(0);//damageInfos.ElementAt(Rand.Range(0, damageInfos.Count()));//damageInfos.RandomElement<DamageInfo>();
             DamageInfo poisonDamageInfo = new DamageInfo(DIH_DamageDefs.DIH_PoisonDamageBase, copyFrom.Amount, instigator: copyFrom.Instigator);
             yield return poisonDamageInfo;
@@ -131,82 +101,12 @@ namespace DI_Harmacy
             base.PostExposeData();
             Scribe_Values.Look(ref remainingCharges, "remainingCharges", -999);
             Scribe_Defs.Look(ref hediffToApply, "HediffToApply");
-
-            //Scribe_Deep.Look(ref verbTracker, "verbTracker", this);
-
             if (Scribe.mode == LoadSaveMode.PostLoadInit && remainingCharges == -999)
             {
                 remainingCharges = MaxCharges;
             }
         }
 
-        /** public override IEnumerable<Gizmo> CompGetWornGizmosExtra()
-         {
-             foreach (Gizmo item in base.CompGetWornGizmosExtra())
-             {
-                 yield return item;
-             }
-             bool drafted = weilderOf.Drafted;
-             if ((drafted && !Props.displayGizmoWhileDrafted) || (!drafted && !Props.displayGizmoWhileUndrafted))
-             {
-                 yield break;
-             }
-             ThingWithComps gear = parent;
-             foreach (Verb allVerb in VerbTracker.AllVerbs)
-             {
-                 if (allVerb.verbProps.hasStandardCommand)
-                 {
-                     yield return CreateVerbTargetCommand(gear, allVerb);
-                 }
-             }
-             if (Prefs.DevMode)
-             {
-                 Command_Action command_Action = new Command_Action();
-                 command_Action.defaultLabel = "Debug: Reload to full";
-                 command_Action.action = delegate
-                 {
-                     remainingCharges = MaxCharges;
-                 };
-                 yield return command_Action;
-             }
-         }
-        **/
-        /**private Command_Poisonable CreateVerbTargetCommand(Thing gear, Verb verb)
-        {
-            Command_Poisonable command_Poisonable = new Command_Poisonable(this);
-            command_Poisonable.defaultDesc = gear.def.description;
-            command_Poisonable.hotKey = Props.hotKey;
-            command_Poisonable.defaultLabel = verb.verbProps.label;
-            command_Poisonable.verb = verb;
-            if (verb.verbProps.defaultProjectile != null && verb.verbProps.commandIcon == null)
-            {
-                command_Poisonable.icon = verb.verbProps.defaultProjectile.uiIcon;
-                command_Poisonable.iconAngle = verb.verbProps.defaultProjectile.uiIconAngle;
-                command_Poisonable.iconOffset = verb.verbProps.defaultProjectile.uiIconOffset;
-                command_Poisonable.overrideColor = verb.verbProps.defaultProjectile.graphicData.color;
-            }
-            else
-            {
-                command_Poisonable.icon = ((verb.UIIcon != BaseContent.BadTex) ? verb.UIIcon : gear.def.uiIcon);
-                command_Poisonable.iconAngle = gear.def.uiIconAngle;
-                command_Poisonable.iconOffset = gear.def.uiIconOffset;
-                command_Poisonable.defaultIconColor = gear.DrawColor;
-            }
-            if (!weilderOf.IsColonistPlayerControlled)
-            {
-                command_Poisonable.Disable();
-            }
-            //else if (verb.verbProps.violent && weilderOf.WorkTagIsDisabled(WorkTags.Violent))
-            //{
-            //    command_Poisonable.Disable("IsIncapableOfViolenceLower".Translate(weilderOf.LabelShort, weilderOf).CapitalizeFirst() + ".");
-            //}
-            else if (!CanBeUsed)
-            {
-                command_Poisonable.Disable(DisabledReason(MinAmmoNeeded(allowForcedReload: false), MaxAmmoNeeded(allowForcedReload: false)));
-            }
-            return command_Poisonable;
-        }
-        **/
         public string DisabledReason(int minNeeded, int maxNeeded)
         {
             if (AmmoDef == null)
@@ -320,7 +220,6 @@ namespace DI_Harmacy
             {
                 return 0;
             }
-
 
             if (hediffToApply != poisonProps.poisonInflicts)
             {

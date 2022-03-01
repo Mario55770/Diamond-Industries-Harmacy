@@ -9,8 +9,6 @@ namespace DI_Harmacy
 {
     public class JobGiver_Poison : ThinkNode_JobGiver
     {
-        private const bool forceReloadWhenLookingForWork = false;
-
         public override float GetPriority(Pawn pawn)
         {
             //Originally 5.9f
@@ -20,8 +18,6 @@ namespace DI_Harmacy
 
         protected override Job TryGiveJob(Pawn pawn)
         {
-            //Log.Message("TryGiveJob");
-
             CompPoisonable compPoisonable = PoisonableUtility.FindSomeReloadableComponent(pawn, allowForcedReload: false);
             if (compPoisonable == null)
             {
@@ -37,9 +33,6 @@ namespace DI_Harmacy
 
         public static Job MakeReloadJob(CompPoisonable comp, List<Thing> chosenAmmo)
         {
-
-            //Job job = JobMaker.MakeJob(JobDefOf.Reload, comp.parent);
-
             Job job = JobMaker.MakeJob(DIH_JobDefs.DIH_PoisonJob, comp.parent);
             job.targetQueueB = chosenAmmo.Select((Thing t) => new LocalTargetInfo(t)).ToList();
             job.count = chosenAmmo.Sum((Thing t) => t.stackCount);

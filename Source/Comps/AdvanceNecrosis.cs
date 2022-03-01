@@ -10,7 +10,6 @@ namespace DI_Harmacy
         Random r = new Random();
         public override void CompPostTick(ref float var)
         {
-
             if (i % 16 == 0)
             {
                 if (Pawn == null || Pawn.Dead || Pawn.health.hediffSet.GetInjuriesTendable() == null || Pawn.health.hediffSet.GetInjuriesTendable().Count() == 0)
@@ -50,10 +49,6 @@ namespace DI_Harmacy
                         Pawn.health.Notify_HediffChanged(necroticInjury);
                     }
                 }
-
-
-
-
             }
             if (i > 16)
             {

@@ -84,10 +84,10 @@ namespace DI_Harmacy
             // remainingCharges = MaxCharges;
         }
 
-        public override string CompInspectStringExtra()
+       /* public override string CompInspectStringExtra()
         {
             return "ChargesRemaining".Translate(Props.ChargeNounArgument) + ": " + LabelRemaining;
-        }
+        }*/
 
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
         {

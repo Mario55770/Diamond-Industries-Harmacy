@@ -14,7 +14,7 @@ namespace DI_Harmacy
         public override float GetPriority(Pawn pawn)
         {
             //Originally 5.9f
-            return 6.5f;
+            return 5.8f;
 
         }
 

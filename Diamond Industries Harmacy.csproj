@@ -98,7 +98,6 @@
     <Content Include="1.3\Patches\CoreMenuPatches.xml" />
     <Content Include="1.3\Patches\TradePatches.xml" />
     <Content Include="1.3_Royalty\Patches\RoyaltyPatches.xml" />
-    <Content Include="1.3\Defs\BuildingDefs\BulkDrugBench.xml" />
     <Content Include="1.3\Defs\DamageDefs\MidnightMurderDamageDefs.xml" />
     <Content Include="1.3\Defs\DamageDefs\VSnakeDamageDefs.xml" />
     <Content Include="1.3\Defs\HediffDefs\MidnightMurderPoison.xml" />
@@ -113,11 +112,10 @@
     <Content Include="LoadFolders.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Comps\CompBulkBenchcs.cs" />
     <Compile Include="Source\Comps\CompPoisonable.cs" />
     <Compile Include="Source\Comps\CompProperties_Poisonable.cs" />
+    <Compile Include="Source\UI\Pawn_PoisonController.cs" />
     <Compile Include="Source\UI\PoisonUIData.cs" />
-    <Compile Include="Source\Other\RecipeAssignment.cs" />
     <Compile Include="Source\Comps\AdvanceNecrosis.cs" />
     <Compile Include="Source\DamageWorkers\DamageWorker_ApplyPoison.cs" />
     <Compile Include="Source\DefOfs\DIH_DamageDefs.cs" />
@@ -135,7 +133,9 @@
     <Compile Include="Source\UI\PoisonUIUtilitycs.cs" />
     <Compile Include="Source\DIH\ModSettings.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="1.3\Defs\BuildingDefs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />

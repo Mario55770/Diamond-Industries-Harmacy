@@ -12,7 +12,6 @@ namespace DI_Harmacy
         static DamageDef poisonDamageDef;
         static RangedHarmonyPatch()
         {
-            // Log.Message("TEST LAUNCH ERROR");
             DoPatching();
         }
 

@@ -10,7 +10,6 @@ namespace DI_Harmacy
     {
         static HarmonyPatching()
         {
-            // Log.Message("TEST LAUNCH ERROR");
             DoPatching();
         }
         public static void DoPatching()
@@ -55,9 +54,6 @@ namespace DI_Harmacy
             }
             //Ends anything that reached this point.
             return __result;
-
-
-
         }
     }
 }

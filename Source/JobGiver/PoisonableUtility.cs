@@ -49,11 +49,6 @@ namespace DI_Harmacy
             {
                 yield break;
             }
-
-            /**if (comp?.AmmoDef == null)
-			{
-				continue;
-			}**/
             for (int j = 0; j < potentialAmmo.Count; j++)
             {
                 Thing thing = potentialAmmo[j];
@@ -62,36 +57,12 @@ namespace DI_Harmacy
                     yield return new Pair<CompPoisonable, Thing>(comp, thing);
                 }
             }
-            /**if (pawn.apparel == null)
-			{
-				yield break;
-			}
-			List<Apparel> worn = pawn.apparel.WornApparel;
-			for (int i = 0; i < worn.Count; i++)
-			{
-				CompPoisonable comp = worn[i].TryGetComp<CompPoisonable>();
-				if (comp?.AmmoDef == null)
-				{
-					continue;
-				}
-				for (int j = 0; j < potentialAmmo.Count; j++)
-				{
-					Thing thing = potentialAmmo[j];
-					if (thing.def == comp.Props.ammoDef)
-					{
-						yield return new Pair<CompPoisonable, Thing>(comp, thing);
-					}
-				}
-			
-		}**/
         }
 
         public static Pawn WearerOf(CompPoisonable comp)
         {
 
             return ((comp.ParentHolder as Pawn_EquipmentTracker)?.pawn);
-            //return (Thing.ParentHolder is Pawn pawn);
-            //return (comp.ParentHolder as Pawn_ApparelTracker)?.pawn;
         }
 
         public static int TotalChargesFromQueuedJobs(Pawn pawn, ThingWithComps gear)
@@ -103,7 +74,7 @@ namespace DI_Harmacy
                 foreach (Job item in pawn.jobs.AllJobs())
                 {
                     Verb verbToUse = item.verbToUse;
-                    if (verbToUse != null)// && compPoisonable == verbToUse.ReloadableCompSource)
+                    if (verbToUse != null)
                     {
                         num++;
                     }

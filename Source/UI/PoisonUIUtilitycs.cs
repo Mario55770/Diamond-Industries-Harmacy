@@ -50,7 +50,6 @@ namespace DI_Harmacy
                     option = new FloatMenuOption(poisonUIData.optionLabel, delegate
                     {
                         p.GetComp<CompPawnPoisonTracker>().assignedPoison = mc;
-                        //p.playerSettings.medCare = mc;
                     }),
                     payload = mc
                 };

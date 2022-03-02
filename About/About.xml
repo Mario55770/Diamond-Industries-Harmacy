@@ -15,33 +15,47 @@
 		</li>
 	</modDependencies>
 	<description>
-		Brought to you by the exclusive Diamond Industries, the harmacy. Featuring poisons, medicines, and more, including antidotes.(note, currently just poisons are implemented)
-		For legal reasons, Diamond Industry executives require warnings informing users to not load poisons into the slot labeled poison, as that would create a chemical weapon.
-		Welcome to the Diamond Industry Harmacy Beta Release
-		Current features
-		Poison melee and ranged weapons. Poison consumed only on a hit. Automatically configured to use all weapons that are implemented correctly(in other words, should be cross mod compatible unless they did something weird)
-		New gui widget, under the assign tab, pick what poison a pawn should use, and they'll automatically apply it.
-		Poison is consumed on a hit, make sure to keep stocked up.
-		
-		Toggle between using poison on a new gizmo. Turn it off for huntiing or fighting mechanoids. Turn it on for battle.
-		Milk snakes.
-		Cobras and toxic spikes and fangs have been swapped to use cobra venom and midnight murder respectively.
-		Three new poisons, Cobra Venom, Brick Knockout, and Midnight Murder.
-		Cobra Venom is a potent poison which specializes in making everything worse. Causing necrosis in most open wounds, increasing the victims bleed rate, weakening most stats slightly, and rarely causing heart attacks.
-		Brick Knockout is an anesthetic, which confers primarly pain tolerance and a loss of consciousness. For those well versed in Rimworld...this might be sounding a bit familiar. This assists in capturing pawns.
-		Midnight Murder is a combat poison through and through. It excels in downing pawns, painfully and dangerously.
-		Bug reports require a hugslib at minimum, as well as a description of the problem.
-		Suggestions for other mods for me to add compatiblity with are welcome.
-		Pending features
-		Poison raiders.
-		Antivenoms, and possible rework of how the hediff applies. (Give it its own system, comparable to a hybrid of toxic buildup, and diseases)
-		Minor visual fixes(Incorrect capatalization, cosmetic bugs like that)
-		Otimization and balance.
+Brought to you by the exclusive Diamond Industries, the harmacy. Featuring poisons, medicines, and more, including antidotes.(note, currently just poisons are implemented)
+For legal reasons, Diamond Industry executives require warnings informing users to not load poisons into the slot labeled poison, as that would create a chemical weapon.
 
-		Credit to Djeeshka for the harmroot plant's texture.
-		Thank you to Vex for the mod Preview
-		Discord  https://discord.gg/FqVaCUdPeK
+Welcome to the Diamond Industry Harmacy Beta Release
 
-		Github https://github.com/Mario55770/DShield-Trap-Framework
+
+Current features
+
+Poison melee and ranged weapons. Poison consumed only on a hit. Automatically configured to use all weapons that are implemented correctly(in other words, should be cross mod compatible unless they did something weird)
+
+New gui widget, under the assign tab, pick what poison a pawn should use, and they'll automatically apply it.
+
+Poison is consumed on a hit, make sure to keep stocked up.
+
+Toggle between using poison on a new gizmo. Turn it off for huntiing or fighting mechanoids. Turn it on for battle.
+
+Milk snakes.
+
+Cobras and toxic spikes and fangs have been swapped to use cobra venom and midnight murder respectively.
+
+Three new poisons, Cobra Venom, Brick Knockout, and Midnight Murder.
+
+Cobra Venom is a potent poison which specializes in making everything worse. Causing necrosis in most open wounds, increasing the victims bleed rate, weakening most stats slightly, and rarely causing heart attacks.
+
+Brick Knockout is an anesthetic, which confers primarly pain tolerance and a loss of consciousness. For those well versed in Rimworld...this might be sounding a bit familiar. This assists in capturing pawns.
+
+Midnight Murder is a combat poison through and through. It excels in downing pawns, painfully and dangerously.
+
+Antivenom. Use insect jelly of the toxin immune insectoids, to produce a drug that helps resist being poisoned.
+
+
+Bug reports require a hugslib at minimum, as well as a description of the problem.
+
+Suggestions for other mods for me to add compatiblity with are welcome.
+
+Credit to Djeeshka for the harmroot plant's texture.
+
+Thank you to Vex for the mod Preview
+
+Discord  https://discord.gg/FqVaCUdPeK
+
+Github https://github.com/Mario55770/Diamond-Industries-Harmacy
 	</description>
 </ModMetaData>

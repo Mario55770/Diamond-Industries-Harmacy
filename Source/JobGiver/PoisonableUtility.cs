@@ -8,8 +8,7 @@ namespace DI_Harmacy
 {
     public static class PoisonableUtility
     {
-        //formerlyCompReloadable. Will definitely have to be modified as the comp will be on weapons not apparel but is being left for a test.
-        public static CompPoisonable FindSomeReloadableComponent(Pawn pawn, bool allowForcedReload)
+       public static CompPoisonable FindSomeReloadableComponent(Pawn pawn, bool allowForcedReload)
         {
             var pawnsWeapon = pawn.equipment.Primary;
 
@@ -41,77 +40,10 @@ namespace DI_Harmacy
 
         }
 
-        public static IEnumerable<Pair<CompPoisonable, Thing>> FindPotentiallyReloadableGear(Pawn pawn, List<Thing> potentialAmmo)
-        {
-            var pawnsWeapon = pawn.equipment.Primary;
-            CompPoisonable comp = pawnsWeapon.TryGetComp<CompPoisonable>();
-            if (comp == null)
-            {
-                yield break;
-            }
-            for (int j = 0; j < potentialAmmo.Count; j++)
-            {
-                Thing thing = potentialAmmo[j];
-                if (thing.def == comp.Props.ammoDef)
-                {
-                    yield return new Pair<CompPoisonable, Thing>(comp, thing);
-                }
-            }
-        }
-
         public static Pawn WearerOf(CompPoisonable comp)
         {
 
             return ((comp.ParentHolder as Pawn_EquipmentTracker)?.pawn);
-        }
-
-        public static int TotalChargesFromQueuedJobs(Pawn pawn, ThingWithComps gear)
-        {
-            CompPoisonable compPoisonable = gear.TryGetComp<CompPoisonable>();
-            int num = 0;
-            if (compPoisonable != null && pawn != null)
-            {
-                foreach (Job item in pawn.jobs.AllJobs())
-                {
-                    Verb verbToUse = item.verbToUse;
-                    if (verbToUse != null)
-                    {
-                        num++;
-                    }
-                }
-                return num;
-            }
-            return num;
-        }
-
-        public static bool CanUseConsideringQueuedJobs(Pawn pawn, ThingWithComps gear, bool showMessage = true)
-        {
-            CompPoisonable compReloadable = gear.TryGetComp<CompPoisonable>();
-            if (compReloadable == null)
-            {
-                return true;
-            }
-            string text = null;
-            if (!Event.current.shift)
-            {
-                if (!compReloadable.CanBeUsed)
-                {
-                    text = compReloadable.DisabledReason(compReloadable.MinAmmoNeeded(allowForcedReload: false), compReloadable.MaxAmmoNeeded(allowForcedReload: false));
-                }
-            }
-            else if (TotalChargesFromQueuedJobs(pawn, gear) + 1 > compReloadable.RemainingCharges)
-            {
-                text = compReloadable.DisabledReason(compReloadable.MaxAmmoAmount(), compReloadable.MaxAmmoAmount());
-            }
-            if (text != null)
-            {
-                if (showMessage)
-                {
-                    Messages.Message(text, pawn, MessageTypeDefOf.RejectInput, historical: false);
-                }
-                return false;
-            }
-            return true;
         }
     }
 }

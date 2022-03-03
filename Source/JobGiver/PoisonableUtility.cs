@@ -1,14 +1,12 @@
 ﻿// RimWorld.ReloadableUtility
 using RimWorld;
 using System.Collections.Generic;
-using UnityEngine;
 using Verse;
-using Verse.AI;
 namespace DI_Harmacy
 {
     public static class PoisonableUtility
     {
-       public static CompPoisonable FindSomeReloadableComponent(Pawn pawn, bool allowForcedReload)
+        public static CompPoisonable FindSomeReloadableComponent(Pawn pawn, bool allowForcedReload)
         {
             var pawnsWeapon = pawn.equipment.Primary;
 

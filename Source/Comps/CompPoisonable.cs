@@ -14,18 +14,44 @@ namespace DI_Harmacy
         public CompProperties_Poisonable Props => props as CompProperties_Poisonable;
         public int RemainingCharges => remainingCharges;
         public PoisonProps poisonProps;
-        public bool applyToStruckPart=false;
+        public bool applyToStruckPart = false;
         public int MaxCharges => Props.maxCharges;
 
         public HediffDef hediffToApply;
-
-        public ThingDef AmmoDef => Props.ammoDef;
+        public ThingDef AmmoDef = null;// => Props.ammoDef;
         public bool CanBeUsed => remainingCharges > 0;
 
         public Pawn weilderOf => PoisonableUtility.WearerOf(this);
 
         public string LabelRemaining => $"{RemainingCharges} / {MaxCharges}";
 
+        public CompPoisonable()
+        {
+        }
+        //Raider Constructor.
+        public CompPoisonable(bool generatePoisons)
+        {
+            if (generatePoisons)
+            {
+                Log.Message("This Ran too");
+                ThingDef thing=PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
+                Log.Message("TEST");
+                if (Props == null)
+                    Log.Error("Props null");
+                AmmoDef = PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
+                Log.Message("AmmoDefDidnt Error");
+                poisonProps = AmmoDef.GetModExtension<PoisonProps>();
+                Log.Message("poisonProps didnt error");
+                Props.maxCharges = poisonProps.maxCharges;
+                Log.Message("maxChargesDidnterror");
+                remainingCharges = MaxCharges;
+                Log.Message("remainingCharges");
+                hediffToApply = poisonProps.poisonInflicts;
+                Log.Message("HEDIFF");
+                applyToStruckPart = poisonProps.applyToStruckPart;
+                Log.Message("StruckPart");
+            }
+        }
         //this updates what the weapon wants to be reloaded with. IT DOES NOT CHANGE CURRENT HEDIFF OR CHARGES. Least...it shouldn't
         public void updatePoisons(Pawn pawn)
         {
@@ -35,7 +61,7 @@ namespace DI_Harmacy
                 return;
             }
             ThingDef ammoToUse = compPawnPoisonTracker.assignedPoison;//pawn_InventoryStockTracker.GetDesiredThingForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup);
-           
+
             Props.ammoDef = ammoToUse;
             if (ammoToUse == null)
             {
@@ -47,11 +73,11 @@ namespace DI_Harmacy
             {
                 return;
             }
-            
-            Props.ammoDef = ammoToUse;
-            
+
+            AmmoDef = ammoToUse;
+
             Props.ammoCountPerCharge = poisonProps.ammoCountPerCharge;
-            
+
         }
 
         public override void PostPostMake()
@@ -102,12 +128,11 @@ namespace DI_Harmacy
             {
                 remainingCharges = MaxCharges;
             }
-          
+
         }
 
         public bool NeedsReload(bool allowForcedReload)
         {
-            //  Log.Message("Test");
             if (AmmoDef == null)
             {
                 return false;

@@ -10,7 +10,7 @@ namespace DI_Harmacy
             //Saves the poison that the pawn is currently assigned.
             Scribe_Defs.Look(ref assignedPoison, "assignedPoison");
             Scribe_Values.Look(ref applyPoisonActive, "ShouldUsePoison");
-           
+
         }
 
         public ThingDef assignedPoison = null;
@@ -20,7 +20,7 @@ namespace DI_Harmacy
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             foreach (Gizmo gizmo in base.CompGetGizmosExtra())
-            { 
+            {
                 yield return gizmo;
             }
             Pawn pawn = parent as Pawn;
@@ -40,17 +40,17 @@ namespace DI_Harmacy
                 //command_TogglePoison.hotKey = KeyBindingDefOf.Command_ItemForbid;
                 command_TogglePoison.icon = assignedPoison.uiIcon;
                 command_TogglePoison.isActive = () => applyPoisonActive;
-                command_TogglePoison.toggleAction=delegate
-               {
-                    if (applyPoisonActive)
-                   {
-                       applyPoisonActive = false;
-                   }
-                   else
-                   {
-                       applyPoisonActive = true;
-                   }
-               };
+                command_TogglePoison.toggleAction = delegate
+                 {
+                     if (applyPoisonActive)
+                     {
+                         applyPoisonActive = false;
+                     }
+                     else
+                     {
+                         applyPoisonActive = true;
+                     }
+                 };
                 yield return command_TogglePoison;
             }
         }

@@ -11,93 +11,78 @@
 		<statBases>
 			<!--not all inclusive but covers some of the big ones. Change these to be the stats you want.-->
 			<MaxHitPoints>50</MaxHitPoints>
-
 			<Mass>0.02</Mass>
 			<Flammability>0.7</Flammability>
 			<DeteriorationRate>1.0</DeteriorationRate>
-		</statBases>
-		<thingCategories>
-			<!--what catagory it is displayed as in game-->
-			<li>DIH_PoisonThingCatagoryDef</li>
-		</thingCategories>
-	</ThingDef>
-	<ThingDef ParentName="PoisonBase">
-		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
-		<defName>DIH_SnakePoisonVial</defName>
-		<!--This is the name displayed in game-->
-		<label>vial of snake venom</label>
-		<!--the descritpion of the item-->
-		<description>Full of venom either directly from a snake or designed to emulate it. Either way, it'll work the same, by making someones life worse.</description>
-		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
-		<statBases>
-			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
 			<MarketValue>20</MarketValue>
 		</statBases>
 		<tradeTags>
 			<li>DIH_Poison</li>
 		</tradeTags>
+		<thingCategories>
+			<li>DIH_PoisonThingCatagoryDef</li>
+		</thingCategories>
+	</ThingDef>
+	<ThingDef ParentName="PoisonBase">
+		<defName>DIH_SnakePoisonVial</defName>
+		<label>vial of snake venom</label>
+		<description>Full of venom either directly from a snake or designed to emulate it. Either way, it'll work the same, by making someones life worse.</description>
 		<graphicData>
-			<!--<texPath>Things/Item/Resource/Neutroamine</texPath>-->
 			<texPath>DIHarmacy/Things/Item/Resource/GenericPoison</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<drawSize>0.90</drawSize>
 		</graphicData>
+		<!--Add This mod Extension to make your item a poison-->
 		<modExtensions>
 			<li Class="DI_Harmacy.PoisonProps">
+				<!--This should be the hediff you want to apply-->
 				<poisonInflicts>DIH_SnakeVenom</poisonInflicts>
+				<!--Should the poison apply to the struck part-->
+				<applyToStruckPart>false</applyToStruckPart>
+				<!--How many of this item is required per charge. You can make it take ten to refill one charge, or just one, or whatever you want-->
 				<ammoCountPerCharge>1</ammoCountPerCharge>
+				<!--How many charges this should allow. I use five as a default, but it should work if you change it.-->
 				<maxCharges>5</maxCharges>
+				<!--What the assign menu should say for it. Use and the item label should be a decent idea. You should be able to delete this if you want.-->	
+				<assignMenuLabel>Use snake venom</assignMenuLabel>
 			</li>
 		</modExtensions>
 	</ThingDef>
 	<ThingDef ParentName="PoisonBase">
-		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
 		<defName>DIH_BrickKnockoutPoisonVial</defName>
-		<!--This is the name displayed in game-->
 		<label>vial of brick knockout</label>
-		<!--the descritpion of the item-->
 		<description>A vial of an anesthetic as potent as being hit in the face with a brick</description>
-		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
 		<graphicData>
 			<texPath>DIHarmacy/Things/Item/Resource/BrickKnockout</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<drawSize>0.90</drawSize>
 		</graphicData>
-		<statBases>
-			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
-			<MarketValue>30</MarketValue>
-		</statBases>
 		<modExtensions>
 			<li Class="DI_Harmacy.PoisonProps">
 				<poisonInflicts>DIH_BrickKnockout</poisonInflicts>
 				<ammoCountPerCharge>1</ammoCountPerCharge>
 				<maxCharges>5</maxCharges>
+				<applyToStruckPart>false</applyToStruckPart>
+				<assignMenuLabel>Use Brick Knockout</assignMenuLabel>
 			</li>
 		</modExtensions>
 	</ThingDef>
 	<ThingDef ParentName="PoisonBase">
-		<!--The name of the item. Should be consistent and unique once set so the game doesnt mess up-->
 		<defName>DIH_MidnightMurderPoisonVial</defName>
-		<!--This is the name displayed in game-->
 		<label>vial of midnight murder</label>
-		<!--the descritpion of the item-->
 		<description>A vial of a poison designed for combat usage.</description>
-		<!--currently uses the texture of neutroamine. Instructions covered under textures. Change the textpath to your texture-->
 		<graphicData>
 			<texPath>DIHarmacy/Things/Item/Resource/MidnightMurder</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<drawSize>0.90</drawSize>
 		</graphicData>
-		<statBases>
-			<!--not all inclusive but covers  some of the big ones. Change these to be the stats you want.-->
-			<MarketValue>30</MarketValue>
-
-		</statBases>
 		<modExtensions>
 			<li Class="DI_Harmacy.PoisonProps">
 				<poisonInflicts>DIH_MidnightMurder</poisonInflicts>
 				<ammoCountPerCharge>1</ammoCountPerCharge>
+				<applyToStruckPart>false</applyToStruckPart>
 				<maxCharges>5</maxCharges>
+				<assignMenuLabel>Use Midnight Murder</assignMenuLabel>
 			</li>
 		</modExtensions>
 	</ThingDef>

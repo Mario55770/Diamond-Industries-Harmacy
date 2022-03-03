@@ -32,10 +32,10 @@ namespace DI_Harmacy
             //Uses poison.
             compPoisonable.UsedOnce();
             //gets from original comp to help cut down redundant code. Probably slightly worse for performance...
-            HediffDef h = compPoisonable.hediffToApply;
+            HediffDef hediffToApply = compPoisonable.hediffToApply;
             //should be lumped in next if statement but its more readable
             //Ends the method if the hediff is null
-            if (h == null)
+            if (hediffToApply == null)
             { return; }
             //gets the amount applied if the damage info has a different amount than default this is important
             float appliedAmount = dinfo.Amount;
@@ -47,7 +47,7 @@ namespace DI_Harmacy
             appliedAmount *= pawn.GetStatValue(StatDefOf.ToxicSensitivity);
             //gets hit part
             //Applies to struck part if possible and told to do so. As a comptablity measure if its null it just defaults to whole body handling.
-            if (compPoisonable.Props.applyToStruckPart)
+            if (compPoisonable.applyToStruckPart)
             {
                 BodyPartRecord targetPart = dinfo.HitPart;
                 if (targetPart != null)
@@ -58,21 +58,21 @@ namespace DI_Harmacy
                     bool found = false;
                     foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
                     {
-                        if (hediff.def != h || hediff.Part != targetPart)
+                        if (hediff.def != hediffToApply || hediff.Part != targetPart)
                             continue;
                         found = true;
                         hediff.Severity += appliedAmount;
                     }
                     if (!found)
                     {
-                        h.initialSeverity = appliedAmount;
-                        pawn.health.AddHediff(h, targetPart);
+                        hediffToApply.initialSeverity = appliedAmount;
+                        pawn.health.AddHediff(hediffToApply, targetPart);
                     }
                 }
             }
             else
             {
-                HealthUtility.AdjustSeverity(pawn, h, appliedAmount);
+                HealthUtility.AdjustSeverity(pawn, hediffToApply, appliedAmount);
             }
 
         }

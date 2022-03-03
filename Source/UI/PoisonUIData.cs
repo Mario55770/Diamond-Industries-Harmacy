@@ -13,6 +13,7 @@ namespace DI_Harmacy
         }
 
     }
+    [StaticConstructorOnStartup]
     public static class PoisonUIDataList
     {
         public static List<PoisonUIData> poisonUIDataList = new List<PoisonUIData>();
@@ -20,35 +21,29 @@ namespace DI_Harmacy
         {
             PoisonUIData p = new PoisonUIData(null, "Use No Poisons");
             poisonUIDataList.Add(p);
-            p = new PoisonUIData((ThingDef)GenDefDatabase.GetDef(typeof(ThingDef), "DIH_SnakePoisonVial"), "Use Snake Venom");
+            foreach (ThingDef thingdef in DefDatabase<ThingDef>.AllDefsListForReading)
+            {
+                PoisonProps poisonProp = thingdef.GetModExtension<PoisonProps>();
+                if (poisonProp!=null)
+                {
+                    if (poisonProp.assignMenuLabel != null)
+                    {
+                        p = new PoisonUIData(thingdef, poisonProp.assignMenuLabel);
+                    }
+                    else
+                    {
+                        p = new PoisonUIData(thingdef, "Use " + thingdef.label);
+                    }
+                    poisonUIDataList.Add(p);
+                }
+            }    
+          /**  p = new PoisonUIData((ThingDef)GenDefDatabase.GetDef(typeof(ThingDef), "DIH_SnakePoisonVial"), "Use Snake Venom");
             poisonUIDataList.Add(p);
             p = new PoisonUIData((ThingDef)GenDefDatabase.GetDef(typeof(ThingDef), "DIH_MidnightMurderPoisonVial"), "Use Midnight Murder");
             poisonUIDataList.Add(p);
             p = new PoisonUIData((ThingDef)GenDefDatabase.GetDef(typeof(ThingDef), "DIH_BrickKnockoutPoisonVial"), "Use Brick Knockout");
-            poisonUIDataList.Add(p);
+            poisonUIDataList.Add(p);**/
 
         }
-        /** public static string LabelValue(ThingDef thingdef)
-         {
-             foreach(PoisonUIData poisonUIData in poisonUIDataList)
-             {
-                 if(poisonUIData.thingDef == thingdef)
-                 {
-                     return poisonUIData.optionLabel;
-                 }
-             }
-             return null;
-         }
-         public static PoisonUIData GetMatchingData(ThingDef thingdef)
-         {
-             foreach (PoisonUIData poisonUIData in poisonUIDataList)
-             {
-                 if (poisonUIData.thingDef == thingdef)
-                 {
-                     return poisonUIData;
-                 }
-             }
-             return null;
-         }**/
     }
 }

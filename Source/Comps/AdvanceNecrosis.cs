@@ -10,7 +10,6 @@ namespace DI_Harmacy
         Random r = new Random();
         public override void CompPostTick(ref float var)
         {
-
             if (i % 16 == 0)
             {
                 if (Pawn == null || Pawn.Dead || Pawn.health.hediffSet.GetInjuriesTendable() == null || Pawn.health.hediffSet.GetInjuriesTendable().Count() == 0)
@@ -23,9 +22,7 @@ namespace DI_Harmacy
                         return;
                     if (toCheck.ageTicks < 10 && !toCheck.def.Equals(DIH_Hediffs.DIH_NecroticTissue))
                     {
-                        //Log.Message(toCheck.Severity.ToString());
                         DamageInfo d = new DamageInfo();
-
                         d.SetAmount(toCheck.Severity / 2);
                         toCheck.Severity = toCheck.Severity / 2;
                         d.SetHitPart(toCheck.Part);
@@ -45,15 +42,10 @@ namespace DI_Harmacy
 
                     if ((float)r.NextDouble() < Pawn.health.hediffSet.GetFirstHediffOfDef(DIH_Hediffs.DIH_SnakeVenom).Severity)
                     {
-                        //Log.Message(Pawn.health.hediffSet.GetFirstHediffOfDef(DIH_Hediffs.DIH_SnakeVenom).Severity.ToString());
                         necroticInjury.Severity += 0.01f;
                         Pawn.health.Notify_HediffChanged(necroticInjury);
                     }
                 }
-
-
-
-
             }
             if (i > 16)
             {

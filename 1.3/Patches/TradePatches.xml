@@ -33,5 +33,37 @@
 			</li>
 		</value>
 	</Operation>
-	
+	<!--Antivenom-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_BulkGoods" or defName="Caravan_Neolithic_Slaver" or defName="Caravan_Neolithic_ShamanMerchant" or defName="Caravan_Outlander_BulkGoods" or defName="Empire_Caravan_TraderGeneral"]/stockGenerators</xpath>
+		<value>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>DIH_Antivenom</tradeTag>
+				<thingDefCountRange>0~3</thingDefCountRange>
+				<countRange>1~10</countRange>
+			</li>
+		</value>
+	</Operation>
+	<!--War trader. Will carry more doses, and will always have at least one. Outlanders don't carry drugs is of note. Ships have been given slightly increased inventory too-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_WarMerchant" or defName="Caravan_Outlander_CombatSupplier" or defName="Caravan_Outlander_PirateMerchant" or defName="Orbital_BulkGoods" or defName="Orbital_CombatSupplier" or defName="Orbital_Exotic" or defName="Orbital_PirateMerchant" or defName="Base_Empire_Standard" or defName="Orbital_Empire"]/stockGenerators</xpath>
+		<value>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>DIH_Antivenom</tradeTag>
+				<thingDefCountRange>1~3</thingDefCountRange>
+				<countRange>5~15</countRange>
+			</li>
+		</value>
+	</Operation>
+	<!--Faction Bases. Always carry more, but not always carry the poison.-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraderKindDef[defName="Base_Neolithic_Standard" or defName="Base_Neolithic_Standard"]/stockGenerators</xpath>
+		<value>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>DIH_Antivenom</tradeTag>
+				<thingDefCountRange>0~3</thingDefCountRange>
+				<countRange>10~20</countRange>
+			</li>
+		</value>
+	</Operation>
 </Patch>

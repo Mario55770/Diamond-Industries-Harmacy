@@ -24,18 +24,18 @@
       <li>
         <label>initial</label>
         <minSeverity>0.04</minSeverity>
+		  <painFactor>0.8</painFactor>
 		  <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <offset>-0.05</offset>
-			  
+            <offset>-0.05</offset>  
           </li>
         </capMods>
       </li>
       <li>
         <label>minor</label>
         <minSeverity>0.3</minSeverity>
-		  <painFactor>0.9</painFactor>
+		  <painFactor>0.6</painFactor>
         
         <capMods>
           <li>
@@ -48,7 +48,7 @@
         <label>moderate</label>
         <minSeverity>0.60</minSeverity>
         <vomitMtbDays>5</vomitMtbDays>
-		  <painFactor>0.6</painFactor>
+		  <painFactor>0.4</painFactor>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
@@ -61,7 +61,7 @@
         <label>serious</label>
         <minSeverity>0.90</minSeverity>
         <vomitMtbDays>1</vomitMtbDays>
-        <painFactor>0.4</painFactor>
+        <painFactor>0.2</painFactor>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>

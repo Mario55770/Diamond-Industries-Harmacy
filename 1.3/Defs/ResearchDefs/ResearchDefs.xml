@@ -21,4 +21,20 @@
 		<researchViewX>0.00</researchViewX>
 		<researchViewY>0.00</researchViewY>
 	</ResearchProjectDef>
+	
+	<!--Antivenom Production-->
+	<ResearchProjectDef>
+		<defName>DIH_AntiVenomProduction</defName>
+		<label>antivenom production</label>
+		<description>Enables producing antivenom for defense.</description>
+		<tab>DIHarmacy</tab>
+		<!--electricity+drug production itself-->
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>DrugProduction</li>
+		</prerequisites>
+		<researchViewX>0.00</researchViewX>
+		<researchViewY>0.50</researchViewY>
+	</ResearchProjectDef>
 </Defs>

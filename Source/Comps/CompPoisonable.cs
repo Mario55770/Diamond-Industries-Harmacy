@@ -14,18 +14,19 @@ namespace DI_Harmacy
         public CompProperties_Poisonable Props => props as CompProperties_Poisonable;
         public int RemainingCharges => remainingCharges;
         public PoisonProps poisonProps;
+        public bool applyToStruckPart=false;
         public int MaxCharges => Props.maxCharges;
 
         public HediffDef hediffToApply;
 
         public ThingDef AmmoDef => Props.ammoDef;
-
         public bool CanBeUsed => remainingCharges > 0;
 
         public Pawn weilderOf => PoisonableUtility.WearerOf(this);
 
         public string LabelRemaining => $"{RemainingCharges} / {MaxCharges}";
 
+        //this updates what the weapon wants to be reloaded with. IT DOES NOT CHANGE CURRENT HEDIFF OR CHARGES. Least...it shouldn't
         public void updatePoisons(Pawn pawn)
         {
             CompPawnPoisonTracker compPawnPoisonTracker = pawn.GetComp<CompPawnPoisonTracker>();
@@ -34,26 +35,23 @@ namespace DI_Harmacy
                 return;
             }
             ThingDef ammoToUse = compPawnPoisonTracker.assignedPoison;//pawn_InventoryStockTracker.GetDesiredThingForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup);
-            if (AmmoDef == ammoToUse)
-            {
-                return;
-            }
+           
             Props.ammoDef = ammoToUse;
             if (ammoToUse == null)
+            {
+                poisonProps = null;
                 return;
+            }
             poisonProps = ammoToUse.GetModExtension<PoisonProps>();
             if (poisonProps == null)
             {
                 return;
             }
+            
             Props.ammoDef = ammoToUse;
+            
             Props.ammoCountPerCharge = poisonProps.ammoCountPerCharge;
-            Props.maxCharges = poisonProps.maxCharges;
-            if (remainingCharges > MaxCharges)
-            {
-                remainingCharges = MaxCharges;
-            }
-
+            
         }
 
         public override void PostPostMake()
@@ -75,8 +73,6 @@ namespace DI_Harmacy
             //previously statcatagorydefof.apparel
             if (hediffToApply != null && remainingCharges != 0)
             {
-
-                //yield return new StatDrawEntry(StatCategoryDef.Weapon, "Weapon Inflicts", hediffToApply.Named());
                 yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadChargesRemaining_Name".Translate(Props.ChargeNounArgument), LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(Props.ChargeNounArgument), 2749);
                 yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Poison Inflicts", hediffToApply.LabelCap, "This weapon applies this hediff", 2750);
             }
@@ -101,19 +97,12 @@ namespace DI_Harmacy
             base.PostExposeData();
             Scribe_Values.Look(ref remainingCharges, "remainingCharges", -999);
             Scribe_Defs.Look(ref hediffToApply, "HediffToApply");
+            Scribe_Values.Look(ref applyToStruckPart, "applyToStruckPart", false);
             if (Scribe.mode == LoadSaveMode.PostLoadInit && remainingCharges == -999)
             {
                 remainingCharges = MaxCharges;
             }
-        }
-
-        public string DisabledReason(int minNeeded, int maxNeeded)
-        {
-            if (AmmoDef == null)
-            {
-                return "CommandReload_NoCharges".Translate(Props.ChargeNounArgument);
-            }
-            return TranslatorFormattedStringExtensions.Translate(arg3: ((Props.ammoCountToRefill == 0) ? ((minNeeded == maxNeeded) ? minNeeded.ToString() : $"{minNeeded}-{maxNeeded}") : Props.ammoCountToRefill.ToString()).Named("COUNT"), key: "CommandReload_NoAmmo", arg1: Props.ChargeNounArgument, arg2: NamedArgumentUtility.Named(AmmoDef, "AMMO"));
+          
         }
 
         public bool NeedsReload(bool allowForcedReload)
@@ -151,7 +140,7 @@ namespace DI_Harmacy
             {
                 hediffToApply = poisonInflicts;
                 remainingCharges = 0;
-
+                applyToStruckPart = poisonProps.applyToStruckPart;
                 Props.maxCharges = poisonProps.maxCharges;
             }
             if (Props.ammoCountToRefill != 0)
@@ -186,6 +175,8 @@ namespace DI_Harmacy
             {
                 return 0;
             }
+            if (poisonProps == null)
+                return 0;
             if (poisonProps.poisonInflicts != hediffToApply)
             {
                 return poisonProps.ammoCountPerCharge;
@@ -220,7 +211,8 @@ namespace DI_Harmacy
             {
                 return 0;
             }
-
+            if (poisonProps == null)
+                return 0;
             if (hediffToApply != poisonProps.poisonInflicts)
             {
                 return poisonProps.ammoCountPerCharge * poisonProps.maxCharges;

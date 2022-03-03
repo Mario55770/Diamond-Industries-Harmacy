@@ -32,11 +32,17 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<drawSize>0.90</drawSize>
 		</graphicData>
+		<!--Add This mod Extension to make your item a poison-->
 		<modExtensions>
 			<li Class="DI_Harmacy.PoisonProps">
+				<!--This should be the hediff you want to apply-->
 				<poisonInflicts>DIH_SnakeVenom</poisonInflicts>
+				<!--How many of this item is required per charge. You can make it take ten to refill one charge, or just one, or whatever you want-->
 				<ammoCountPerCharge>1</ammoCountPerCharge>
+				<!--How many charges this should allow. I use five as a default, but it should work if you change it.-->
 				<maxCharges>5</maxCharges>
+				<!--You can delete the assign menu label if you want it to read "Use "+this items label. Or you can override it.-->
+				<assignMenuLabel>Use snake venom</assignMenuLabel>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -54,6 +60,7 @@
 				<poisonInflicts>DIH_BrickKnockout</poisonInflicts>
 				<ammoCountPerCharge>1</ammoCountPerCharge>
 				<maxCharges>5</maxCharges>
+				<assignMenuLabel>Use Brick Knockout</assignMenuLabel>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -71,6 +78,7 @@
 				<poisonInflicts>DIH_MidnightMurder</poisonInflicts>
 				<ammoCountPerCharge>1</ammoCountPerCharge>
 				<maxCharges>5</maxCharges>
+				<assignMenuLabel>Use Midnight Murder</assignMenuLabel>
 			</li>
 		</modExtensions>
 	</ThingDef>

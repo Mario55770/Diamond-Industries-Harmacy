@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Cobra"]/tools/li[label="venom-fangs"]/capacities</xpath>
-    <value>
-      <capacities>
-        <li>DIH_VSnakeBite</li>
-      </capacities>
-    </value>
-  </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Cobra"]/tools/li[label="venom-fangs"]/capacities</xpath>
+		<value>
+			<capacities>
+				<li>DIH_VSnakeBite</li>
+			</capacities>
+		</value>
+	</Operation>
 	<Operation Class="PatchOperationInsert">
 		<xpath>
-			Defs/ThinkTreeDef[defName="MainColonistBehaviorCore"]/thinkRoot[@Class="ThinkNode_Tagger"]/subNodes/li[@Class="ThinkNode_PrioritySorter"]/subNodes/li[@Class="JobGiver_Reload"]</xpath>
-			<value>
-				<li Class="DI_Harmacy.JobGiver_Poison"/>
+			Defs/ThinkTreeDef[defName="MainColonistBehaviorCore"]/thinkRoot[@Class="ThinkNode_Tagger"]/subNodes/li[@Class="ThinkNode_PrioritySorter"]/subNodes/li[@Class="JobGiver_Reload"]
+		</xpath>
+		<value>
+			<li Class="DI_Harmacy.JobGiver_Poison"/>
 		</value>
 	</Operation>
 	<Operation Class="PatchOperationConditional">
@@ -20,11 +21,11 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Cobra"]/comps</xpath>
 			<value>
-					<li Class="CompProperties_Milkable">
-						<milkDef>DIH_SnakePoisonVial</milkDef>
-						<milkIntervalDays>10</milkIntervalDays>
-						<milkAmount>10</milkAmount>
-					</li>
+				<li Class="CompProperties_Milkable">
+					<milkDef>DIH_SnakePoisonVial</milkDef>
+					<milkIntervalDays>10</milkIntervalDays>
+					<milkAmount>10</milkAmount>
+				</li>
 			</value>
 		</nomatch>
 	</Operation>
@@ -40,11 +41,11 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="BaseWeapon"]/comps</xpath>
 		<value>
-				<li Class="DI_Harmacy.CompProperties_Poisonable">
-					<baseReloadTicks>60</baseReloadTicks>
-					<soundReload>Standard_Reload</soundReload>
-					<applyToStruckPart>false</applyToStruckPart>
-				</li>
+			<li Class="DI_Harmacy.CompProperties_Poisonable">
+				<baseReloadTicks>60</baseReloadTicks>
+				<soundReload>Standard_Reload</soundReload>
+				<applyToStruckPart>false</applyToStruckPart>
+			</li>
 		</value>
 	</Operation>
-	</Patch>
+</Patch>

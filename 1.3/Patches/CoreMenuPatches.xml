@@ -7,6 +7,7 @@
 		</value>
 	</Operation>
 	<Operation Class="PatchOperationConditional">
+		<success>Always</success>
 		<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Human"]</xpath>
@@ -14,6 +15,7 @@
 				<comps />
 			</value>
 		</nomatch>
+		<match></match>
 	</Operation>
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
@@ -33,6 +35,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class="PatchOperationConditional">
+					<success>Always</success>
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[@ParentName="BasePawn"]/comps</xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/AlienRace.ThingDef_AlienRace[@ParentName="BasePawn"]</xpath>
@@ -40,6 +43,7 @@
 							<comps />
 						</value>
 					</nomatch>
+					<match></match>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[@ParentName="BasePawn"]/comps</xpath>
@@ -53,34 +57,36 @@
 		</match>
 		<nomatch></nomatch>
 	</Operation>
-		<!--Patches for annoyingly misformatted races.-->
-		<Operation Class="PatchOperationFindMod">
-			<!--hides seemingly benign error. If your reading this I'm sure I was wrong	-->
-			<success>Always</success>
-			<mods>
-				<li>NewRatkinPlus</li>
-			</mods>
-			<match Class="PatchOperationSequence">
-				<operations>
-					<li Class="PatchOperationConditional">
-						<xpath>Defs/AlienRace.ThingDef_AlienRace[@ParentName="RK_PawnBase"]/comps</xpath>
-						<nomatch Class="PatchOperationAdd">
-							<xpath>Defs/AlienRace.ThingDef_AlienRace[@ParentName="RK_PawnBase"]</xpath>
-							<value>
-								<comps />
-							</value>
-						</nomatch>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/AlienRace.ThingDef_AlienRace[@ParentName="RK_PawnBase"]/comps</xpath>
+	<!--Patches for annoyingly misformatted races.-->
+	<Operation Class="PatchOperationFindMod">
+		<!--hides seemingly benign error. If your reading this I'm sure I was wrong	-->
+		<success>Always</success>
+		<mods>
+			<li>NewRatkinPlus</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationConditional">
+					<success>Always</success>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[@ParentName="RK_PawnBase"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/AlienRace.ThingDef_AlienRace[@ParentName="RK_PawnBase"]</xpath>
 						<value>
-							<li>
-								<compClass>DI_Harmacy.CompPawnPoisonTracker</compClass>
-							</li>
+							<comps />
 						</value>
-					</li>
-				</operations>
-			</match>
-			<nomatch></nomatch>
-		</Operation>
+					</nomatch>
+					<match></match>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[@ParentName="RK_PawnBase"]/comps</xpath>
+					<value>
+						<li>
+							<compClass>DI_Harmacy.CompPawnPoisonTracker</compClass>
+						</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+		<nomatch></nomatch>
+	</Operation>
 </Patch>

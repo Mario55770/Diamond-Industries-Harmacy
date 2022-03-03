@@ -27,7 +27,7 @@
 			</outcomeDoers>
 		</ingestible>
 		<tradeTags>
-			<li>Antivenom</li>
+			<li>DIH_Antivenom</li>
 		</tradeTags>
 		<thingCategories>
 			<!--what catagory it is displayed as in game-->
@@ -52,6 +52,7 @@
 			<texPath>DIHarmacy/Things/Item/Resource/GenericPoison</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<drawSize>0.90</drawSize>
+			<color>0,255,0</color>
 		</graphicData>
 		<recipeMaker>
 			<researchPrerequisite>DIH_AntiVenomProduction</researchPrerequisite>

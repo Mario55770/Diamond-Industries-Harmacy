@@ -105,6 +105,10 @@ namespace DI_Harmacy
             {
                 remainingCharges = MaxCharges;
             }
+            if(AmmoDef!=null && AmmoDef.GetModExtension<PoisonProps>()!=null)
+            {
+                Props.maxCharges = AmmoDef.GetModExtension<PoisonProps>().maxCharges;
+            }
         }
 
         public string DisabledReason(int minNeeded, int maxNeeded)

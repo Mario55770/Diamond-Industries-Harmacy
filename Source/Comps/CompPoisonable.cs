@@ -35,12 +35,12 @@ namespace DI_Harmacy
                 return;
             }
             ThingDef ammoToUse = compPawnPoisonTracker.assignedPoison;//pawn_InventoryStockTracker.GetDesiredThingForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup);
-            if (AmmoDef == ammoToUse)
+            //**if (AmmoDef == ammoToUse)
             {
                 poisonProps=AmmoDef.GetModExtension<PoisonProps>();
 
                 return;
-            }
+            }**/
             Props.ammoDef = ammoToUse;
             if (ammoToUse == null)
                 return;

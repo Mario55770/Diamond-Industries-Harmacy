@@ -37,11 +37,13 @@
 			<li Class="DI_Harmacy.PoisonProps">
 				<!--This should be the hediff you want to apply-->
 				<poisonInflicts>DIH_SnakeVenom</poisonInflicts>
+				<!--Should the poison apply to the struck part-->
+				<applyToStruckPart>false</applyToStruckPart>
 				<!--How many of this item is required per charge. You can make it take ten to refill one charge, or just one, or whatever you want-->
 				<ammoCountPerCharge>1</ammoCountPerCharge>
 				<!--How many charges this should allow. I use five as a default, but it should work if you change it.-->
 				<maxCharges>5</maxCharges>
-				<!--You can delete the assign menu label if you want it to read "Use "+this items label. Or you can override it.-->
+				<!--What the assign menu should say for it. Use and the item label should be a decent idea. You should be able to delete this if you want.-->	
 				<assignMenuLabel>Use snake venom</assignMenuLabel>
 			</li>
 		</modExtensions>
@@ -60,6 +62,7 @@
 				<poisonInflicts>DIH_BrickKnockout</poisonInflicts>
 				<ammoCountPerCharge>1</ammoCountPerCharge>
 				<maxCharges>5</maxCharges>
+				<applyToStruckPart>false</applyToStruckPart>
 				<assignMenuLabel>Use Brick Knockout</assignMenuLabel>
 			</li>
 		</modExtensions>
@@ -77,6 +80,7 @@
 			<li Class="DI_Harmacy.PoisonProps">
 				<poisonInflicts>DIH_MidnightMurder</poisonInflicts>
 				<ammoCountPerCharge>1</ammoCountPerCharge>
+				<applyToStruckPart>false</applyToStruckPart>
 				<maxCharges>5</maxCharges>
 				<assignMenuLabel>Use Midnight Murder</assignMenuLabel>
 			</li>

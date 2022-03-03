@@ -47,7 +47,7 @@ namespace DI_Harmacy
             appliedAmount *= pawn.GetStatValue(StatDefOf.ToxicSensitivity);
             //gets hit part
             //Applies to struck part if possible and told to do so. As a comptablity measure if its null it just defaults to whole body handling.
-            if (compPoisonable.Props.applyToStruckPart)
+            if (compPoisonable.applyToStruckPart)
             {
                 BodyPartRecord targetPart = dinfo.HitPart;
                 if (targetPart != null)

@@ -14,12 +14,13 @@ namespace DI_Harmacy
         public CompProperties_Poisonable Props => props as CompProperties_Poisonable;
         public int RemainingCharges => remainingCharges;
         public PoisonProps poisonProps;
+        public bool applyToStruckPart=false;
         public int MaxCharges => Props.maxCharges;
 
         public HediffDef hediffToApply;
 
         public ThingDef AmmoDef => Props.ammoDef;
-
+        public ThingDef AmmoDefToSave;
         public bool CanBeUsed => remainingCharges > 0;
 
         public Pawn weilderOf => PoisonableUtility.WearerOf(this);
@@ -36,6 +37,8 @@ namespace DI_Harmacy
             ThingDef ammoToUse = compPawnPoisonTracker.assignedPoison;//pawn_InventoryStockTracker.GetDesiredThingForGroup(DIH_PoisonStockGroups.DIH_PoisonStockGroup);
             if (AmmoDef == ammoToUse)
             {
+                poisonProps=AmmoDef.GetModExtension<PoisonProps>();
+
                 return;
             }
             Props.ammoDef = ammoToUse;
@@ -46,7 +49,9 @@ namespace DI_Harmacy
             {
                 return;
             }
+            
             Props.ammoDef = ammoToUse;
+            applyToStruckPart = poisonProps.applyToStruckPart;
             Props.ammoCountPerCharge = poisonProps.ammoCountPerCharge;
             Props.maxCharges = poisonProps.maxCharges;
             if (remainingCharges > MaxCharges)
@@ -98,17 +103,16 @@ namespace DI_Harmacy
 
         public override void PostExposeData()
         {
+            AmmoDefToSave = Props.ammoDef;
             base.PostExposeData();
             Scribe_Values.Look(ref remainingCharges, "remainingCharges", -999);
             Scribe_Defs.Look(ref hediffToApply, "HediffToApply");
+            Scribe_Values.Look(ref applyToStruckPart, "applyToStruckPart", false);
             if (Scribe.mode == LoadSaveMode.PostLoadInit && remainingCharges == -999)
             {
                 remainingCharges = MaxCharges;
             }
-            if(AmmoDef!=null && AmmoDef.GetModExtension<PoisonProps>()!=null)
-            {
-                Props.maxCharges = AmmoDef.GetModExtension<PoisonProps>().maxCharges;
-            }
+          
         }
 
         public string DisabledReason(int minNeeded, int maxNeeded)
@@ -190,6 +194,10 @@ namespace DI_Harmacy
             {
                 return 0;
             }
+            if (poisonProps == null)
+                updatePoisons(weilderOf);
+            if (poisonProps == null)
+                return 0;
             if (poisonProps.poisonInflicts != hediffToApply)
             {
                 return poisonProps.ammoCountPerCharge;
@@ -224,7 +232,10 @@ namespace DI_Harmacy
             {
                 return 0;
             }
-
+            if (poisonProps == null)
+                updatePoisons(weilderOf);
+            if (poisonProps == null)
+                return 0;
             if (hediffToApply != poisonProps.poisonInflicts)
             {
                 return poisonProps.ammoCountPerCharge * poisonProps.maxCharges;

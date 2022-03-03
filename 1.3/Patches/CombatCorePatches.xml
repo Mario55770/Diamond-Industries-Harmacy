@@ -44,7 +44,6 @@
 			<li Class="DI_Harmacy.CompProperties_Poisonable">
 				<baseReloadTicks>60</baseReloadTicks>
 				<soundReload>Standard_Reload</soundReload>
-				<applyToStruckPart>false</applyToStruckPart>
 			</li>
 		</value>
 	</Operation>

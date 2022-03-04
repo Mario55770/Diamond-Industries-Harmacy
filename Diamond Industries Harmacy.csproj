@@ -115,7 +115,6 @@
   <ItemGroup>
     <Compile Include="Source\Comps\CompPoisonable.cs" />
     <Compile Include="Source\Comps\CompProperties_Poisonable.cs" />
-    <Compile Include="Source\Patches\PoisonRaiderPatch.cs" />
     <Compile Include="Source\UI\PoisonUIData.cs" />
     <Compile Include="Source\Comps\AdvanceNecrosis.cs" />
     <Compile Include="Source\DamageWorkers\DamageWorker_ApplyPoison.cs" />

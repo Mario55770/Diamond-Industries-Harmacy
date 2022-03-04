@@ -23,6 +23,8 @@ Welcome to the Diamond Industry Harmacy Beta Release
 
 Current features
 
+Poison weilding raiders. Now any pawn belonging to another faction may spawn with poisoned weapons.
+
 Poison melee and ranged weapons. Poison consumed only on a hit. Automatically configured to use all weapons that are implemented correctly(in other words, should be cross mod compatible unless they did something weird)
 
 New gui widget, under the assign tab, pick what poison a pawn should use, and they'll automatically apply it.

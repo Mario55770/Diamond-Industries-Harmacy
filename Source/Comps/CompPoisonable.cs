@@ -19,6 +19,7 @@ namespace DI_Harmacy
 
         public HediffDef hediffToApply;
         public ThingDef AmmoDef = null;// => Props.ammoDef;
+        public bool shouldPoisonRaider = true;
         public bool CanBeUsed => remainingCharges > 0;
 
         public Pawn weilderOf => PoisonableUtility.WearerOf(this);
@@ -28,33 +29,36 @@ namespace DI_Harmacy
         public CompPoisonable()
         {
         }
-        //Raider Constructor.
-        public CompPoisonable(bool generatePoisons)
+        public void poisonRaider()
         {
-            if (generatePoisons)
+            if(!shouldPoisonRaider)
+            { return; }
+                ThingDef thing = PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
+            if (Props == null||thing==null)
             {
-                Log.Message("This Ran too");
-                ThingDef thing=PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
-                Log.Message("TEST");
-                if (Props == null)
-                    Log.Error("Props null");
-                AmmoDef = PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
-                Log.Message("AmmoDefDidnt Error");
-                poisonProps = AmmoDef.GetModExtension<PoisonProps>();
-                Log.Message("poisonProps didnt error");
-                Props.maxCharges = poisonProps.maxCharges;
-                Log.Message("maxChargesDidnterror");
-                remainingCharges = MaxCharges;
-                Log.Message("remainingCharges");
-                hediffToApply = poisonProps.poisonInflicts;
-                Log.Message("HEDIFF");
-                applyToStruckPart = poisonProps.applyToStruckPart;
-                Log.Message("StruckPart");
+                shouldPoisonRaider = false;
+                return;
+
             }
+                Props.ammoDef = thing;//(ThingDef)GenDefDatabase.GetDef(typeof(ThingDef), "DIH_SnakePoisonVial");// PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
+                
+                poisonProps = thing.GetModExtension<PoisonProps>();
+                Props.maxCharges = poisonProps.maxCharges;
+                remainingCharges = MaxCharges;
+                hediffToApply = poisonProps.poisonInflicts;
+                applyToStruckPart = poisonProps.applyToStruckPart;
+            shouldPoisonRaider = false;
+
+        }
+        public override void PostPostMake()
+        {
+            base.PostPostMake();
+            //shouldPoisonRaider=false;
         }
         //this updates what the weapon wants to be reloaded with. IT DOES NOT CHANGE CURRENT HEDIFF OR CHARGES. Least...it shouldn't
         public void updatePoisons(Pawn pawn)
         {
+            
             CompPawnPoisonTracker compPawnPoisonTracker = pawn.GetComp<CompPawnPoisonTracker>();
             if (compPawnPoisonTracker == null)// || compPawnPoisonTracker.assignedPoison == null)
             {
@@ -79,12 +83,7 @@ namespace DI_Harmacy
             Props.ammoCountPerCharge = poisonProps.ammoCountPerCharge;
 
         }
-
-        public override void PostPostMake()
-        {
-            base.PostPostMake();
-            // remainingCharges = MaxCharges;
-        }
+        
 
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
         {
@@ -98,7 +97,7 @@ namespace DI_Harmacy
             }
             //previously statcatagorydefof.apparel
             if (hediffToApply != null && remainingCharges != 0)
-            {
+            {   
                 yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadChargesRemaining_Name".Translate(Props.ChargeNounArgument), LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(Props.ChargeNounArgument), 2749);
                 yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Poison Inflicts", hediffToApply.LabelCap, "This weapon applies this hediff", 2750);
             }
@@ -124,6 +123,7 @@ namespace DI_Harmacy
             Scribe_Values.Look(ref remainingCharges, "remainingCharges", -999);
             Scribe_Defs.Look(ref hediffToApply, "HediffToApply");
             Scribe_Values.Look(ref applyToStruckPart, "applyToStruckPart", false);
+            Scribe_Values.Look(ref shouldPoisonRaider, "poisonRaider", true);
             if (Scribe.mode == LoadSaveMode.PostLoadInit && remainingCharges == -999)
             {
                 remainingCharges = MaxCharges;

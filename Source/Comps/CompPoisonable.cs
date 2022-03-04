@@ -50,9 +50,11 @@ namespace DI_Harmacy
             shouldPoisonRaider = false;
 
         }
+        
         public override void PostPostMake()
         {
             base.PostPostMake();
+            poisonRaider();
             //shouldPoisonRaider=false;
         }
         //this updates what the weapon wants to be reloaded with. IT DOES NOT CHANGE CURRENT HEDIFF OR CHARGES. Least...it shouldn't

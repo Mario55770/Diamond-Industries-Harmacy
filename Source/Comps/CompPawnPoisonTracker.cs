@@ -17,7 +17,7 @@ namespace DI_Harmacy
         public CompPropertiesPawnPoisonTracker Props => (CompPropertiesPawnPoisonTracker)this.props;
         public bool applyPoisonActive = true;
         //adds gizmo to panel to toggle pawn if they have an assigned poison
-        
+       
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             foreach (Gizmo gizmo in base.CompGetGizmosExtra())

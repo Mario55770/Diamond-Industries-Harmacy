@@ -31,11 +31,17 @@ namespace DI_Harmacy
         }
         public void poisonRaider()
         {
-            if(!shouldPoisonRaider)
+            if (weilderOf == null)
+            {
+                Log.Message("WeilderOF NULL");
+                return;
+            }
+                if(!shouldPoisonRaider)
             { return; }
                 ThingDef thing = PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
             if (Props == null||thing==null)
             {
+                Log.Message("Poison rolled null");
                 shouldPoisonRaider = false;
                 return;
 
@@ -49,13 +55,6 @@ namespace DI_Harmacy
                 applyToStruckPart = poisonProps.applyToStruckPart;
             shouldPoisonRaider = false;
 
-        }
-        
-        public override void PostPostMake()
-        {
-            base.PostPostMake();
-            poisonRaider();
-            //shouldPoisonRaider=false;
         }
         //this updates what the weapon wants to be reloaded with. IT DOES NOT CHANGE CURRENT HEDIFF OR CHARGES. Least...it shouldn't
         public void updatePoisons(Pawn pawn)

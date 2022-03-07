@@ -29,12 +29,12 @@ namespace DI_Harmacy
             var v = __result.First();
             Pawn pawn = (v.Instigator as Pawn);
             //if instator weapon is null, pawn null, or pawn isn't human end
-            if (pawn == null || !pawn.RaceProps.Humanlike||v.Weapon == null)
+            if (pawn == null || !pawn.RaceProps.Humanlike || v.Weapon == null)
             {
                 return __result;
             }
-            CompPawnPoisonTracker poisonTracker=pawn.GetComp<CompPawnPoisonTracker>();
-            if (poisonTracker==null||!poisonTracker.applyPoisonActive)
+            CompPawnPoisonTracker poisonTracker = pawn.GetComp<CompPawnPoisonTracker>();
+            if (poisonTracker == null || !poisonTracker.applyPoisonActive)
             {
                 return __result;
             }

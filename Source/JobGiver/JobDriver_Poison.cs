@@ -7,9 +7,6 @@ namespace DI_Harmacy
 {
     public class JobDriver_Poison : JobDriver
     {
-        /**private const TargetIndex GearInd = TargetIndex.A;
-
-        private const TargetIndex AmmoInd = TargetIndex.B;**/
 
         private Thing Gear => job.GetTarget(TargetIndex.A).Thing;
 
@@ -20,7 +17,7 @@ namespace DI_Harmacy
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
-        { 
+        {
             CompPoisonable comp = Gear?.TryGetComp<CompPoisonable>();
             this.FailOn(() => comp == null);
             this.FailOn(() => comp.weilderOf != pawn);

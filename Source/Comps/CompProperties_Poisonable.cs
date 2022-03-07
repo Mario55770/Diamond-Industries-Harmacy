@@ -27,19 +27,19 @@ namespace DI_Harmacy
         {
             compClass = typeof(CompPoisonable);
         }
-
+      
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
         {
             foreach (StatDrawEntry item in base.SpecialDisplayStats(req))
             {
                 yield return item;
             }
-            if (!req.HasThing)
+            if (!req.HasThing && ammoCountPerCharge != 0)
             {
                 //apparently all of these used to say apparel
                 yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadMaxCharges_Name".Translate(ChargeNounArgument), maxCharges.ToString(), "Stat_Thing_ReloadMaxCharges_Desc".Translate(ChargeNounArgument), 2749);
             }
-            if (ammoDef != null)
+            if (ammoDef != null && ammoCountPerCharge != 0)
             {
                 if (ammoCountToRefill != 0)
                 {

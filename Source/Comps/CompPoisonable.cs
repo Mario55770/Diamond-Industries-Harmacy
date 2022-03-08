@@ -25,24 +25,26 @@ namespace DI_Harmacy
         public Pawn weilderOf => PoisonableUtility.WearerOf(this);
 
         public string LabelRemaining => $"{RemainingCharges} / {MaxCharges}";
-        //public bool ideoStuff = ModsConfig.IdeologyActive;
+        public bool ideoStuff = ModsConfig.IdeologyActive;
         public CompPoisonable()
         {
         }
         public void poisonRaider(Faction faction)
         {
             //ends if weilder if null, should poison raider is false
-            if (weilderOf == null || !shouldPoisonRaider)//||ideoStuff&&weilderOf.ideo.Ideo.GetPrecept((PreceptDef)GenDefDatabase.GetDef(typeof(PreceptDef), "DIH_PoisonedWeaponDishonorable"))!=null)
+            if (weilderOf == null || !shouldPoisonRaider||ideoStuff&&weilderOf.ideo.Ideo.GetPrecept((PreceptDef)GenDefDatabase.GetDef(typeof(PreceptDef), "DIH_PoisonedWeaponDishonorable"))!=null)
             {
                 return;
             }
             ThingDef thing = PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
-            if (Props == null || thing == null && !faction.def.techLevel.IsNeolithicOrWorse())
+            //checks if the compprops or the rolled poison is null, and if so, ends if the tech level is above neolethic, unless they approve of poison
+            if (Props == null || thing == null && (!faction.def.techLevel.IsNeolithicOrWorse() || (ideoStuff && weilderOf.ideo.Ideo.GetPrecept((PreceptDef)GenDefDatabase.GetDef(typeof(PreceptDef), "DIH_PoisonedWeaponHonorable")) != null)))
             {
                 shouldPoisonRaider = false;
                 return;
             }
-            if (thing == null)
+            //rerolls the poison if ideology or tech level wish for more poison and it was null.
+            if(thing == null)
             {
                 thing = PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
                 if(thing==null)

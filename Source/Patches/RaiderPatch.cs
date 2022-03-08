@@ -33,7 +33,7 @@ namespace DI_Harmacy
                 CompPoisonable compPoisonable = pawn.equipment.Primary.GetComp<CompPoisonable>();
                 if(compPoisonable!=null)
                     {
-                        compPoisonable.poisonRaider();
+                        compPoisonable.poisonRaider(parms.faction);
                     }
             }
         }

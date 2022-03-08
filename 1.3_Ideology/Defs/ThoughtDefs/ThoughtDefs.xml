@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThoughtDef>
+		<defName>DIH_UsedPoisonWeaponDespised</defName>
+		<durationDays>1</durationDays>
+		<stages>
+			<li>
+				<label>used a poisoned weapon</label>
+				<description>I've used a poisoned weapon. Where's the honor?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	<ThoughtDef>
+		<defName>DIH_UsedPoisonWeaponHonored</defName>
+		<durationDays>1</durationDays>
+		<stages>
+			<li>
+				<label>used a poisoned weapon</label>
+				<description>I've used a poisoned weapon. Any means to win should be taken.</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

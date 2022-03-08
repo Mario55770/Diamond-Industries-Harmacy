@@ -74,6 +74,7 @@ namespace DI_Harmacy
             {
                 HealthUtility.AdjustSeverity(pawn, hediffToApply, appliedAmount);
             }
+            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(DIH_HistoryDefs.DIH_UsedPoisonWeapon, p.Named(HistoryEventArgsNames.Doer)));
 
         }
     }

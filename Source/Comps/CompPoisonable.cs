@@ -25,19 +25,18 @@ namespace DI_Harmacy
         public Pawn weilderOf => PoisonableUtility.WearerOf(this);
 
         public string LabelRemaining => $"{RemainingCharges} / {MaxCharges}";
-
+        //public bool ideoStuff = ModsConfig.IdeologyActive;
         public CompPoisonable()
         {
         }
-        public void poisonRaider()
+        public void poisonRaider(Faction faction)
         {
-            if (weilderOf == null)
+            //ends if weilder if null, should poison raider is false
+            if (weilderOf == null ||!shouldPoisonRaider)//||ideoStuff&&weilderOf.ideo.Ideo.GetPrecept((PreceptDef)GenDefDatabase.GetDef(typeof(PreceptDef), "DIH_PoisonedWeaponDishonorable"))!=null)
             {
                 return;
             }
-                if(!shouldPoisonRaider)
-            { return; }
-                ThingDef thing = PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
+            ThingDef thing = PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
             if (Props == null||thing==null)
             {
                 shouldPoisonRaider = false;

@@ -89,6 +89,7 @@
     <Content Include="1.3\Defs\CropDefs\PoisonPlantDefs.xml" />
     <Content Include="1.3\Defs\DamageDefs\PoisonDamageDefs.xml" />
     <Content Include="1.3\Defs\HediffDefs\BrickKnockoutPoison.xml" />
+    <Content Include="1.3\Defs\HistoryEventDefs\HistoryEventDefs.xml" />
     <Content Include="1.3\Defs\JobDefs\JobsDefs.xml" />
     <Content Include="1.3\Defs\RecipeDefs\PoisonRecipes.xml" />
     <Content Include="1.3\Defs\ThingCatagoryDefs\ThingCatagoryDefs.xml" />
@@ -98,6 +99,8 @@
     <Content Include="1.3\Defs\UIDefs\PawnColumn.xml" />
     <Content Include="1.3\Patches\CoreMenuPatches.xml" />
     <Content Include="1.3\Patches\TradePatches.xml" />
+    <Content Include="1.3_Ideology\Defs\Precepts\PoisonedWeaponPrecept.xml" />
+    <Content Include="1.3_Ideology\Defs\ThoughtDefs\ThoughtDefs.xml" />
     <Content Include="1.3_Royalty\Patches\RoyaltyPatches.xml" />
     <Content Include="1.3\Defs\DamageDefs\MidnightMurderDamageDefs.xml" />
     <Content Include="1.3\Defs\DamageDefs\VSnakeDamageDefs.xml" />
@@ -115,6 +118,7 @@
   <ItemGroup>
     <Compile Include="Source\Comps\CompPoisonable.cs" />
     <Compile Include="Source\Comps\CompProperties_Poisonable.cs" />
+    <Compile Include="Source\DefOfs\DIH_HistoryDefs.cs" />
     <Compile Include="Source\Patches\RaiderPatch.cs" />
     <Compile Include="Source\UI\PoisonUIData.cs" />
     <Compile Include="Source\Comps\AdvanceNecrosis.cs" />

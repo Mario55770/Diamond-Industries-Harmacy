@@ -32,18 +32,26 @@ namespace DI_Harmacy
         public void poisonRaider(Faction faction)
         {
             //ends if weilder if null, should poison raider is false
-            if (weilderOf == null ||!shouldPoisonRaider)//||ideoStuff&&weilderOf.ideo.Ideo.GetPrecept((PreceptDef)GenDefDatabase.GetDef(typeof(PreceptDef), "DIH_PoisonedWeaponDishonorable"))!=null)
+            if (weilderOf == null || !shouldPoisonRaider)//||ideoStuff&&weilderOf.ideo.Ideo.GetPrecept((PreceptDef)GenDefDatabase.GetDef(typeof(PreceptDef), "DIH_PoisonedWeaponDishonorable"))!=null)
             {
                 return;
             }
             ThingDef thing = PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
-            if (Props == null||thing==null)
+            if (Props == null || thing == null && !faction.def.techLevel.IsNeolithicOrWorse())
             {
                 shouldPoisonRaider = false;
                 return;
-
             }
-                Props.ammoDef = thing;//(ThingDef)GenDefDatabase.GetDef(typeof(ThingDef), "DIH_SnakePoisonVial");// PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
+            if (thing == null)
+            {
+                thing = PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
+                if(thing==null)
+                {
+                    shouldPoisonRaider=false;
+                    return;
+                }
+            }
+            Props.ammoDef = thing;//(ThingDef)GenDefDatabase.GetDef(typeof(ThingDef), "DIH_SnakePoisonVial");// PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
                 
                 poisonProps = thing.GetModExtension<PoisonProps>();
                 Props.maxCharges = poisonProps.maxCharges;

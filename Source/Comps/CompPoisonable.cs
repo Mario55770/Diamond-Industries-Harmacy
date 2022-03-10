@@ -36,7 +36,7 @@ namespace DI_Harmacy
             {
                 return;
             }
-            ThingDef thingDef = GetRandomPoisonThingDef();
+            ThingDef thingDef = PoisonUIDataList.GetRandomPoisonThingDef();
             //checks if the compprops or the rolled poison is null, and if so, ends if the tech level is above neolethic, unless they approve of poison
             if (Props == null || !factionWillReroll&&thingDef == null)
             {
@@ -47,7 +47,7 @@ namespace DI_Harmacy
             if (thingDef == null)
             {
                 
-                thingDef = GetRandomPoisonThingDef();
+                thingDef = PoisonUIDataList.GetRandomPoisonThingDef();
                 if (thingDef == null)
                 {
                     hasBeenInitialized = false;
@@ -64,12 +64,7 @@ namespace DI_Harmacy
 
         }
 
-        public static ThingDef GetRandomPoisonThingDef()
-        {
-            //theoretical optomization is marginably faster.
-            return PoisonUIDataList.poisonUIDataList[Mathf.RoundToInt(Rand.Value * (PoisonUIDataList.poisonUIDataList.Count - 1))].thingDef;
-            //return PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
-        }
+       
 
         //this updates what the weapon wants to be reloaded with. IT DOES NOT CHANGE CURRENT HEDIFF OR CHARGES. Least...it shouldn't
         public void updatePoisons(Pawn pawn)

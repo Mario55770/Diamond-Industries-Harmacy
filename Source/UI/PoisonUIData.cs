@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 namespace DI_Harmacy
 {
@@ -6,6 +7,7 @@ namespace DI_Harmacy
     {
         public ThingDef thingDef;
         public string optionLabel;
+        
         public PoisonUIData(ThingDef thing, string label)
         {
             this.thingDef = thing;
@@ -36,8 +38,15 @@ namespace DI_Harmacy
                     }
                     poisonUIDataList.Add(p);
                 }
+            
             }
-
+            
+        }
+        public static ThingDef GetRandomPoisonThingDef()
+        {
+            //theoretical optomization is marginably faster.
+            return poisonUIDataList[Mathf.RoundToInt(Rand.Value * (poisonUIDataList.Count - 1))].thingDef;
+            //return PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
         }
     }
 }

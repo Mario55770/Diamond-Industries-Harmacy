@@ -28,8 +28,11 @@ namespace DI_Harmacy
             if (parms.target is Map map)
             {
                 Faction faction = parms.faction;
-                foreach (Pawn pawn in map.mapPawns.FreeHumanlikesOfFaction(faction))
+                List<Pawn> pawns = map.mapPawns.FreeHumanlikesOfFaction(faction);
+
+                for (int i = 0; i < pawns.Count; ++i)
                 {
+                    Pawn pawn = pawns[i];
                     CompPoisonable compPoisonable = pawn.equipment.Primary.GetComp<CompPoisonable>();
                     if (compPoisonable != null)
                     {
@@ -40,3 +43,4 @@ namespace DI_Harmacy
         }
     }
 }
+

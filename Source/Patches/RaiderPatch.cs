@@ -26,15 +26,16 @@ namespace DI_Harmacy
         public static void poisonRaiderPostFix(IncidentParms parms)
         {
             if (parms.target is Map map)
-                
-                
-            foreach (Pawn pawn in map.mapPawns.FreeHumanlikesOfFaction(parms.faction))
             {
-                CompPoisonable compPoisonable = pawn.equipment.Primary.GetComp<CompPoisonable>();
-                if(compPoisonable!=null)
+                Faction faction = parms.faction;
+                foreach (Pawn pawn in map.mapPawns.FreeHumanlikesOfFaction(faction))
+                {
+                    CompPoisonable compPoisonable = pawn.equipment.Primary.GetComp<CompPoisonable>();
+                    if (compPoisonable != null)
                     {
-                        compPoisonable.poisonRaider(parms.faction);
+                        compPoisonable.poisonRaider(faction);
                     }
+                }
             }
         }
     }

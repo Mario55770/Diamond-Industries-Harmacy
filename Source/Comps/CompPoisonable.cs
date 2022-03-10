@@ -65,7 +65,7 @@ namespace DI_Harmacy
 
         }
 
-        private static ThingDef GetRandomPoisonThingDef()
+        public static ThingDef GetRandomPoisonThingDef()
         {
             //theoretical optomization is marginably faster.
             return PoisonUIDataList.poisonUIDataList[Mathf.RoundToInt(Rand.Value * (PoisonUIDataList.poisonUIDataList.Count - 1))].thingDef;

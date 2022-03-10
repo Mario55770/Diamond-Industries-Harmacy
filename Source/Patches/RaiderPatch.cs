@@ -23,6 +23,22 @@ namespace DI_Harmacy
             harmony.Patch(mOriginal, null, new HarmonyMethod(mPostfix));//new HarmonyMethod(mPrefix), new HarmonyMethod(mPostfix));
 
         }
+       /** private static List<Pawn> UncachedAllFreeHumanLikesOfFaction(Map map, Faction faction)
+        {
+
+            //based off FreeHumanLikesOfFaction, except basically skipping the caching cause it was seemingly always cleared
+            List<Pawn> returnPawnList = new List<Pawn>();
+            List<Pawn> allPawns = map.mapPawns.AllPawns;
+            for (int i = 0; i < allPawns.Count; i++)
+            {
+                if (allPawns[i].Faction == faction && (allPawns[i].HostFaction == null || allPawns[i].IsSlave) && allPawns[i].RaceProps.Humanlike)
+                {
+                    returnPawnList.Add(allPawns[i]);
+                }
+            }
+            return returnPawnList;
+        }
+       **/
         public static void poisonRaiderPostFix(IncidentParms parms)
         {
             if (parms.target is Map map)

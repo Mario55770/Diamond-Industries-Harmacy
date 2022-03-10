@@ -19,48 +19,57 @@ namespace DI_Harmacy
 
         public HediffDef hediffToApply;
         public ThingDef AmmoDef = null;// => Props.ammoDef;
-        public bool shouldPoisonRaider = true;
+        public bool hasBeenInitialized = true;
         public bool CanBeUsed => remainingCharges > 0;
 
-        public Pawn weilderOf => PoisonableUtility.WearerOf(this);
+        public Pawn weilderOf => RecoatingUtility.WearerOf(this);
 
         public string LabelRemaining => $"{RemainingCharges} / {MaxCharges}";
-
+        
         public CompPoisonable()
         {
         }
-        public void poisonRaider()
+        public void poisonRaider(bool factionWillReroll)
         {
-            if(!shouldPoisonRaider)
-            { return; }
-                ThingDef thing = PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
-            if (Props == null||thing==null)
+            //due to considerable rework, this just checks if thing has been initialized
+            if (!hasBeenInitialized)
             {
-                shouldPoisonRaider = false;
                 return;
-
             }
-                Props.ammoDef = thing;//(ThingDef)GenDefDatabase.GetDef(typeof(ThingDef), "DIH_SnakePoisonVial");// PoisonUIDataList.poisonUIDataList.RandomElement().thingDef;
+            ThingDef thingDef = PoisonUIDataList.GetRandomPoisonThingDef();
+            //checks if the compprops or the rolled poison is null, and if so, ends if the tech level is above neolethic, unless they approve of poison
+            if (Props == null || !factionWillReroll&&thingDef == null)
+            {
+                hasBeenInitialized = false;
+                return;
+            }
+            //rerolls the poison if ideology or tech level wish for more poison and it was null.
+            if (thingDef == null)
+            {
                 
-                poisonProps = thing.GetModExtension<PoisonProps>();
-                Props.maxCharges = poisonProps.maxCharges;
-                remainingCharges = MaxCharges;
-                hediffToApply = poisonProps.poisonInflicts;
-                applyToStruckPart = poisonProps.applyToStruckPart;
-            shouldPoisonRaider = false;
+                thingDef = PoisonUIDataList.GetRandomPoisonThingDef();
+                if (thingDef == null)
+                {
+                    hasBeenInitialized = false;
+                    return;
+                }
+            }
+            Props.ammoDef = thingDef;
+            poisonProps = thingDef.GetModExtension<PoisonProps>();
+            Props.maxCharges = poisonProps.maxCharges;
+            remainingCharges = MaxCharges;
+            hediffToApply = poisonProps.poisonInflicts;
+            applyToStruckPart = poisonProps.applyToStruckPart;
+            hasBeenInitialized = false;
 
         }
-        
-        public override void PostPostMake()
-        {
-            base.PostPostMake();
-            poisonRaider();
-            //shouldPoisonRaider=false;
-        }
+
+       
+
         //this updates what the weapon wants to be reloaded with. IT DOES NOT CHANGE CURRENT HEDIFF OR CHARGES. Least...it shouldn't
         public void updatePoisons(Pawn pawn)
         {
-            
+
             CompPawnPoisonTracker compPawnPoisonTracker = pawn.GetComp<CompPawnPoisonTracker>();
             if (compPawnPoisonTracker == null)// || compPawnPoisonTracker.assignedPoison == null)
             {
@@ -85,7 +94,7 @@ namespace DI_Harmacy
             Props.ammoCountPerCharge = poisonProps.ammoCountPerCharge;
 
         }
-        
+
 
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
         {
@@ -99,7 +108,7 @@ namespace DI_Harmacy
             }
             //previously statcatagorydefof.apparel
             if (hediffToApply != null && remainingCharges != 0)
-            {   
+            {
                 yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Stat_Thing_ReloadChargesRemaining_Name".Translate(Props.ChargeNounArgument), LabelRemaining, "Stat_Thing_ReloadChargesRemaining_Desc".Translate(Props.ChargeNounArgument), 2749);
                 yield return new StatDrawEntry(StatCategoryDefOf.Weapon, "Poison Inflicts", hediffToApply.LabelCap, "This weapon applies this hediff", 2750);
             }
@@ -108,7 +117,8 @@ namespace DI_Harmacy
         //currently only used on melee damage. Made partly redundant by changes in handling.
         public IEnumerable<DamageInfo> applyPoison(IEnumerable<DamageInfo> damageInfos)
         {
-            //hand the original list back unchanged.
+
+            //hands back original list unchanged. Seemingly slightly faster than for loop...somehow
             foreach (DamageInfo dInfo in damageInfos)
             {
                 yield return dInfo;
@@ -125,7 +135,7 @@ namespace DI_Harmacy
             Scribe_Values.Look(ref remainingCharges, "remainingCharges", -999);
             Scribe_Defs.Look(ref hediffToApply, "HediffToApply");
             Scribe_Values.Look(ref applyToStruckPart, "applyToStruckPart", false);
-            Scribe_Values.Look(ref shouldPoisonRaider, "poisonRaider", true);
+            Scribe_Values.Look(ref hasBeenInitialized, "poisonRaider", true);
             if (Scribe.mode == LoadSaveMode.PostLoadInit && remainingCharges == -999)
             {
                 remainingCharges = MaxCharges;

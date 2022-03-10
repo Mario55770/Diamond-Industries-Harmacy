@@ -6,9 +6,9 @@ using Verse;
 namespace DI_Harmacy
 {
     [StaticConstructorOnStartup]
-    class HarmonyPatching
+    class MeleeHarmonyPatch
     {
-        static HarmonyPatching()
+        static MeleeHarmonyPatch()
         {
             DoPatching();
         }

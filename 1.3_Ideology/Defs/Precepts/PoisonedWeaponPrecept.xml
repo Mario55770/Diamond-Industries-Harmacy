@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<IssueDef>
+		<defName>DIH_PoisonedWeaponIssue</defName>
+		<label>poisoned weapons</label>
+		<iconPath>UI/Issues/DrugUse</iconPath>
+	</IssueDef>
+
+
+	<!-- Precept -->
+	<PreceptDef>
+		<defName>DIH_PoisonedWeaponDontCare</defName>
+		<issue>DIH_PoisonedWeaponIssue</issue>
+		<label>poison unremarkable</label>
+		<description>The use of poisons is unremarkable.</description>
+		<defaultSelectionWeight>1</defaultSelectionWeight>
+		<impact>Low</impact>
+	</PreceptDef>
+	<PreceptDef>
+		<defName>DIH_PoisonedWeaponHonorable</defName>
+		<issue>DIH_PoisonedWeaponIssue</issue>
+		<label>poison honored</label>
+		<description>The use of poisons is a worthy goal and should be encouraged.</description>
+		<impact>Low</impact>
+		<defaultSelectionWeight>1</defaultSelectionWeight>
+		<comps>
+			<li Class="PreceptComp_SelfTookMemoryThought">
+				<eventDef>DIH_UsedPoisonWeapon</eventDef>
+				<thought>DIH_UsedPoisonWeaponHonored</thought>
+				<description>used a poisoned weapon</description>
+			</li>
+			<!--<li Class="PreceptComp_SelfTookMemoryThought">
+				<eventDef>UsedDespisedWeapon</eventDef>
+				<thought>UsedDespisedWeapon</thought>
+				<description>Used despised weapon</description>
+			</li>
+			<li Class="PreceptComp_SituationalThought">
+				<thought>WieldingNobleOrDespisedWeapon</thought>
+				<thoughtStageDescriptions>
+					<li>Wielding noble weapon</li>
+					<li>Wielding despised weapon</li>
+				</thoughtStageDescriptions>
+			</li>-->
+		</comps>
+	</PreceptDef>
+	<PreceptDef>
+		<defName>DIH_PoisonedWeaponDishonorable</defName>
+		<issue>DIH_PoisonedWeaponIssue</issue>
+		<label>poison dishonorable</label>
+		<description>The use of poisons are unfair, cheap, and dishonorable.</description>
+		<impact>Low</impact>
+		<defaultSelectionWeight>1</defaultSelectionWeight>
+		<comps>
+			<li Class="PreceptComp_SelfTookMemoryThought">
+				<eventDef>DIH_UsedPoisonWeapon</eventDef>
+				<thought>DIH_UsedPoisonWeaponDespised</thought>
+				<description>used a poisoned weapon</description>
+			</li>
+			<!--<li Class="PreceptComp_SelfTookMemoryThought">
+				<eventDef>UsedDespisedWeapon</eventDef>
+				<thought>UsedDespisedWeapon</thought>
+				<description>Used despised weapon</description>
+			</li>
+			<li Class="PreceptComp_SituationalThought">
+				<thought>WieldingNobleOrDespisedWeapon</thought>
+				<thoughtStageDescriptions>
+					<li>Wielding noble weapon</li>
+					<li>Wielding despised weapon</li>
+				</thoughtStageDescriptions>
+			</li>-->
+		</comps>
+	</PreceptDef>
+</Defs>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Verse;
 namespace DI_Harmacy
 {
-    public static class PoisonableUtility
+    public static class RecoatingUtility
     {
         public static CompPoisonable FindSomeReloadableComponent(Pawn pawn, bool allowForcedReload)
         {

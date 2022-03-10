@@ -18,12 +18,12 @@ namespace DI_Harmacy
 
         protected override Job TryGiveJob(Pawn pawn)
         {
-            CompPoisonable compPoisonable = PoisonableUtility.FindSomeReloadableComponent(pawn, allowForcedReload: false);
+            CompPoisonable compPoisonable = RecoatingUtility.FindSomeReloadableComponent(pawn, allowForcedReload: false);
             if (compPoisonable == null)
             {
                 return null;
             }
-            List<Thing> list = PoisonableUtility.FindEnoughAmmo(pawn, pawn.Position, compPoisonable, forceReload: false);
+            List<Thing> list = RecoatingUtility.FindEnoughAmmo(pawn, pawn.Position, compPoisonable, forceReload: false);
             if (list == null)
             {
                 return null;

@@ -128,7 +128,7 @@
     <Compile Include="Source\DefOfs\DIH_JobDefs.cs" />
     <Compile Include="Source\JobGiver\JobDriver_Poison.cs" />
     <Compile Include="Source\JobGiver\JobGiver_Poison.cs" />
-    <Compile Include="Source\JobGiver\PoisonableUtility.cs" />
+    <Compile Include="Source\JobGiver\RecoatingUtility.cs" />
     <Compile Include="Source\Comps\CompPawnPoisonTracker.cs" />
     <Compile Include="Source\ModExtensions\PoisonProps.cs" />
     <Compile Include="Source\Patches\MeleeHarmonyPatch.cs" />

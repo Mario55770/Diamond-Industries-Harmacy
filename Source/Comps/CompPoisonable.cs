@@ -22,7 +22,7 @@ namespace DI_Harmacy
         public bool hasBeenInitialized = true;
         public bool CanBeUsed => remainingCharges > 0;
 
-        public Pawn weilderOf => PoisonableUtility.WearerOf(this);
+        public Pawn weilderOf => RecoatingUtility.WearerOf(this);
 
         public string LabelRemaining => $"{RemainingCharges} / {MaxCharges}";
         

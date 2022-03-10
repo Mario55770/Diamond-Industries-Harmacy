@@ -8,6 +8,9 @@ namespace DI_Harmacy
     [StaticConstructorOnStartup]
     class RaiderPatch
     {
+        private static bool ideoStuff = ModsConfig.IdeologyActive;
+        private static PreceptDef poisonDishonorable;
+        private static PreceptDef poisonHonorable;
         static RaiderPatch()
         {
             DoPatching();
@@ -20,42 +23,38 @@ namespace DI_Harmacy
                                                                                                  // var mPrefix = SymbolExtensions.GetMethodInfo(() => MyPrefix());
             IncidentParms nullIncidentParms = null;
             var mPostfix = SymbolExtensions.GetMethodInfo(() => poisonRaiderPostFix(nullIncidentParms));
-            harmony.Patch(mOriginal, null, new HarmonyMethod(mPostfix));//new HarmonyMethod(mPrefix), new HarmonyMethod(mPostfix));
-
-        }
-       /** private static List<Pawn> UncachedAllFreeHumanLikesOfFaction(Map map, Faction faction)
-        {
-
-            //based off FreeHumanLikesOfFaction, except basically skipping the caching cause it was seemingly always cleared
-            List<Pawn> returnPawnList = new List<Pawn>();
-            List<Pawn> allPawns = map.mapPawns.AllPawns;
-            for (int i = 0; i < allPawns.Count; i++)
+            harmony.Patch(mOriginal, null, new HarmonyMethod(mPostfix));
+            if (ideoStuff)
             {
-                if (allPawns[i].Faction == faction && (allPawns[i].HostFaction == null || allPawns[i].IsSlave) && allPawns[i].RaceProps.Humanlike)
-                {
-                    returnPawnList.Add(allPawns[i]);
-                }
+
+                poisonDishonorable = (PreceptDef)GenDefDatabase.GetDef(typeof(PreceptDef), "DIH_PoisonedWeaponDishonorable");
+                poisonHonorable=(PreceptDef)GenDefDatabase.GetDef(typeof(PreceptDef), "DIH_PoisonedWeaponHonorable");
             }
-            return returnPawnList;
         }
-       **/
-        public static void poisonRaiderPostFix(IncidentParms parms)
+        
+            public static void poisonRaiderPostFix(IncidentParms parms)
         {
-            if (parms.target is Map map)
+            Faction faction = parms.faction;
+            FactionIdeosTracker ideo = faction.ideos;
+            //assuming all pawns of a raid share an ideology, this is a safe enough bet. Elsewise...assume peer pressure or something.
+            //This will end if the faction ideology does not allow poisons. It will also check if the target is a map, and set that, or end it if it is not
+            if(!(parms.target is Map map)|| ideoStuff && ideo.GetPrecept(poisonDishonorable) != null)
             {
-                Faction faction = parms.faction;
-                List<Pawn> pawns = map.mapPawns.FreeHumanlikesOfFaction(faction);
+                return;
+            }
 
+            List<Pawn> pawns = map.mapPawns.FreeHumanlikesSpawnedOfFaction(faction);
+            bool raiderWillReroll = faction.def.techLevel.IsNeolithicOrWorse() || (ideoStuff && ideo.GetPrecept(poisonHonorable) != null);
                 for (int i = 0; i < pawns.Count; ++i)
                 {
                     Pawn pawn = pawns[i];
                     CompPoisonable compPoisonable = pawn.equipment.Primary.GetComp<CompPoisonable>();
                     if (compPoisonable != null)
                     {
-                        compPoisonable.poisonRaider(faction);
+                        compPoisonable.poisonRaider(raiderWillReroll);
                     }
                 }
-            }
+            
         }
     }
 }

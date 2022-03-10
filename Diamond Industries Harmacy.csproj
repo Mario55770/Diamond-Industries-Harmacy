@@ -131,7 +131,7 @@
     <Compile Include="Source\JobGiver\PoisonableUtility.cs" />
     <Compile Include="Source\Comps\CompPawnPoisonTracker.cs" />
     <Compile Include="Source\ModExtensions\PoisonProps.cs" />
-    <Compile Include="Source\Patches\HarmonyPatching.cs" />
+    <Compile Include="Source\Patches\MeleeHarmonyPatch.cs" />
     <Compile Include="Source\Patches\RangedHarmonyPatch.cs" />
     <None Include="packages.config" />
     <Compile Include="Source\UI\PawnColumnWorker_Poison.cs" />

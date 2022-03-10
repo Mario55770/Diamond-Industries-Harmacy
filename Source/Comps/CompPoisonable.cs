@@ -25,21 +25,20 @@ namespace DI_Harmacy
         public Pawn weilderOf => PoisonableUtility.WearerOf(this);
 
         public string LabelRemaining => $"{RemainingCharges} / {MaxCharges}";
-        private bool ideoStuff = ModsConfig.IdeologyActive;
+        
         public CompPoisonable()
         {
         }
-        public void poisonRaider(Faction faction)
+        public void poisonRaider(bool factionWillReroll)
         {
-            //ends if weilder if null, should poison raider is false
-            if (weilderOf == null || !hasBeenInitialized || ideoStuff && weilderOf.ideo.Ideo.GetPrecept((PreceptDef)GenDefDatabase.GetDef(typeof(PreceptDef), "DIH_PoisonedWeaponDishonorable")) != null)
+            //due to considerable rework, this just checks if thing has been initialized
+            if (!hasBeenInitialized)
             {
-                hasBeenInitialized = false;
                 return;
             }
             ThingDef thingDef = GetRandomPoisonThingDef();
             //checks if the compprops or the rolled poison is null, and if so, ends if the tech level is above neolethic, unless they approve of poison
-            if (Props == null || thingDef == null && (!faction.def.techLevel.IsNeolithicOrWorse() || (ideoStuff && weilderOf.ideo.Ideo.GetPrecept((PreceptDef)GenDefDatabase.GetDef(typeof(PreceptDef), "DIH_PoisonedWeaponHonorable")) != null)))
+            if (Props == null || !factionWillReroll&&thingDef == null)
             {
                 hasBeenInitialized = false;
                 return;
@@ -123,7 +122,8 @@ namespace DI_Harmacy
         //currently only used on melee damage. Made partly redundant by changes in handling.
         public IEnumerable<DamageInfo> applyPoison(IEnumerable<DamageInfo> damageInfos)
         {
-            //hand the original list back unchanged.
+
+            //hands back original list unchanged. Seemingly slightly faster than for loop...somehow
             foreach (DamageInfo dInfo in damageInfos)
             {
                 yield return dInfo;

@@ -40,7 +40,7 @@ namespace DI_Harmacy
             }
             ThingWithComps weapon = pawn.equipment.Primary;
             //if the weapon def is null, or does not match the used weapon, end
-            if (weapon.def == null || !(weapon.def == v.Weapon))
+            if (weapon==null ||weapon.def == null || !(weapon.def == v.Weapon))
             {
                 return __result;
             }

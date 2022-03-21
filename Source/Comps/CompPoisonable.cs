@@ -12,6 +12,7 @@ namespace DI_Harmacy
 
         private int remainingCharges;
         public CompProperties_Poisonable Props => props as CompProperties_Poisonable;
+        public bool enabled= true;
         public int RemainingCharges => remainingCharges;
         public PoisonProps poisonProps;
         public bool applyToStruckPart = false;
@@ -20,7 +21,7 @@ namespace DI_Harmacy
         public HediffDef hediffToApply;
         public ThingDef AmmoDef = null;// => Props.ammoDef;
         public bool hasBeenInitialized = true;
-        public bool CanBeUsed => remainingCharges > 0;
+        public bool CanBeUsed => enabled&&remainingCharges > 0;
 
         public Pawn weilderOf => RecoatingUtility.WearerOf(this);
 
@@ -28,11 +29,13 @@ namespace DI_Harmacy
         
         public CompPoisonable()
         {
+            enabled = true;//enabled=!DIHSettings.instance.
         }
+        //Initializes raiders to poison state. THEORETICAL OPTOMIZATIon roll the poison and only get comp when it turns up as should poison.
         public void poisonRaider(bool factionWillReroll)
         {
             //due to considerable rework, this just checks if thing has been initialized
-            if (!hasBeenInitialized)
+            if (!hasBeenInitialized ||!enabled)
             {
                 return;
             }
@@ -131,6 +134,8 @@ namespace DI_Harmacy
 
         public override void PostExposeData()
         {
+            if(!enabled)
+            { return; }
             base.PostExposeData();
             Scribe_Values.Look(ref remainingCharges, "remainingCharges", -999);
             Scribe_Defs.Look(ref hediffToApply, "HediffToApply");
@@ -145,7 +150,7 @@ namespace DI_Harmacy
 
         public bool NeedsReload(bool allowForcedReload)
         {
-            if (AmmoDef == null)
+            if (!enabled||AmmoDef == null)
             {
                 return false;
             }

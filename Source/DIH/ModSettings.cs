@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 
 namespace DI_Harmacy
@@ -8,11 +9,7 @@ namespace DI_Harmacy
         public static DIHSettings instance;
         public bool debugLogging = false;
         public float poisonMultiplier = 1;
-        //public bool enableBulkRecipes=true;
-
-        /// <summary>
-        /// The part that writes our settings to file. Note that saving is by ref.
-        /// </summary>
+        public static List<ThingDef> disabledWeapons;
         public override void ExposeData()
         {
             Scribe_Values.Look(ref debugLogging, "debugLogging", false);

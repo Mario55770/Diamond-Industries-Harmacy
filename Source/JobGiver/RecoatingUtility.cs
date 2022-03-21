@@ -12,7 +12,7 @@ namespace DI_Harmacy
 
             CompPoisonable compPoisonable = pawnsWeapon.TryGetComp<CompPoisonable>();
 
-            if (compPoisonable == null)
+            if (compPoisonable == null||!compPoisonable.enabled)
             {
                 return null;
             }

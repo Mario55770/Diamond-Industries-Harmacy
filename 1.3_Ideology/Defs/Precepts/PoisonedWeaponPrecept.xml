@@ -36,7 +36,8 @@
 			</li>
 			<li Class="PreceptComp_SituationalThought">
 				<thought>WieldingNobleOrDespisedWeapon</thought>
-				<thoughtStageDescriptions>
+				<thoughtS
+				eDescriptions>
 					<li>Wielding noble weapon</li>
 					<li>Wielding despised weapon</li>
 				</thoughtStageDescriptions>

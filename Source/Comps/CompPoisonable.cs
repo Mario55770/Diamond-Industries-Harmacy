@@ -26,11 +26,13 @@ namespace DI_Harmacy
         public Pawn weilderOf => RecoatingUtility.WearerOf(this);
 
         public string LabelRemaining => $"{RemainingCharges} / {MaxCharges}";
-        
-        public CompPoisonable()
+
+        public override void Initialize(CompProperties props)
         {
-            enabled = true;//enabled=!DIHSettings.instance.
-        }
+            base.Initialize(props);
+                enabled = !DIHSettings.disabledWeapons.Contains(parent.def);
+                
+            }
         //Initializes raiders to poison state. THEORETICAL OPTOMIZATIon roll the poison and only get comp when it turns up as should poison.
         public void poisonRaider(bool factionWillReroll)
         {

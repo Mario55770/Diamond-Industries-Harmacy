@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 
 namespace DI_Harmacy
@@ -8,15 +9,32 @@ namespace DI_Harmacy
         public static DIHSettings instance;
         public bool debugLogging = false;
         public float poisonMultiplier = 1;
-        //public bool enableBulkRecipes=true;
-
-        /// <summary>
-        /// The part that writes our settings to file. Note that saving is by ref.
-        /// </summary>
+        public static List<ThingDef> disabledWeapons;
+        public static void initializeDisabledWeaponsList()
+        {
+            //Log.Error("This ran");
+            disabledWeapons = new List<ThingDef>();
+            //Log.Error(DefDatabase<ThingDef>.AllDefsListForReading.Count.ToString());
+            foreach (ThingDef weapon in DefDatabase<ThingDef>.AllDefsListForReading)
+            {
+                if (weapon.IsWeapon &&weapon.weaponTags!=null)
+                {
+                    
+                    List<string> weaponTags = weapon.weaponTags;
+                    if (weaponTags!=null &&weaponTags.Contains("GrenadeEMP") || weaponTags.Contains("GrenadeDestructive") || weaponTags.Contains("EmpireGrenadeDestructive"))
+                    {
+                            disabledWeapons.Add(weapon);
+                            //Log.Message("Disabled somethign");
+                   }
+                }
+            }
+        }
         public override void ExposeData()
         {
-            Scribe_Values.Look(ref debugLogging, "debugLogging", false);
+            DIHSettings.initializeDisabledWeaponsList();
 
+            Scribe_Values.Look(ref debugLogging, "debugLogging", false);
+            
             base.ExposeData();
         }
     }
@@ -30,6 +48,7 @@ namespace DI_Harmacy
         public DIHMod(ModContentPack content) : base(content)
         {
             DIHSettings.instance = base.GetSettings<DIHSettings>();
+           
         }
 
         /// <summary>

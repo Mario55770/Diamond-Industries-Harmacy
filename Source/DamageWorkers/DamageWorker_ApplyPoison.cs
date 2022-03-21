@@ -20,12 +20,8 @@ namespace DI_Harmacy
             ThingWithComps weapon = p.equipment.Primary;
             compPoisonable = weapon.TryGetComp<CompPoisonable>();
             CompPawnPoisonTracker poisonTracker = p.GetComp<CompPawnPoisonTracker>();
-            if (poisonTracker == null || !poisonTracker.applyPoisonActive)
-            {
-                return;
-            }
-            //if comp is null or can't be used. Makes a bunch of code from elsewhere redundant, which should be removed.
-            if (compPoisonable == null || compPoisonable.CanBeUsed == false)
+            //checks if either comp is null or disabled
+            if (poisonTracker == null || !poisonTracker.applyPoisonActive|| compPoisonable == null || compPoisonable.CanBeUsed == false)
             {
                 return;
             }
